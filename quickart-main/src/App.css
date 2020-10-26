@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Main Body */
+body {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgb(53, 52, 52);
+  background: url('images/background1.jpg') no-repeat center center/cover;
+  background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  color: #9370db;
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul {
+  list-style: none;
+}
+
+.addSmallMargin {
+  margin: 1rem;
+}
+
+/* Welcome Page */
+.welcomePage {
+  position: relative;
+  background: url('images/welcomePageImage.jpg') no-repeat center center/cover;
+  height: 100vh;
+}
+
+.welcomePageTextBlock {
+  color: rgb(255, 249, 249);
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.transparentFilter {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px #9370db;
+  position: fixed;
+  padding: 0.5rem 1.5rem;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  color: rgb(10, 10, 10);
+  padding: 0.5rem;
+  margin: 0.25rem;
+}
+
+.navbar a:hover {
+  color: #9370db;
+}
+
+/* Background Colors */
+.backgroundBlue {
+  background-color: #87cefa;
+  color: rgb(37, 37, 37);
+}
+
+/* Text Size */
+.largeText {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+
+/* Buttons */
+.btn {
+  background-color: #eee5e5;
+  padding: 0.4rem 1.3rem;
+  margin-right: 0.6rem;
+  font-size: 1rem;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.1s ease-in;
+}
+
+.btn.btnDefault {
+  background-color: #9874e0;
+  color: #333;
+}
+
+.btn.btnDefault:hover {
+  background: #a284e0;
+}
+
+.btn:hover {
+  background: rgb(251, 251, 251);
 }
