@@ -2,6 +2,7 @@ import React from 'react'
 
 class StickyBar extends React.Component {
     render(){
+        <section>
             <div class="sideBarContainer">  
                 <h4>Search For Items</h4>
                 <input type="text" class="searchbar" placeholder="Search.."></input>
@@ -40,5 +41,6 @@ class StickyBar extends React.Component {
                     </div>
                 </div>
             </div>  
+        </section>
     }
 }
