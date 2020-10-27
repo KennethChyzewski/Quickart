@@ -14,11 +14,11 @@ cd quickart-main
 npm install
 ### Onto your own Branch
 git checkout -b '[Name]/[Task/BugFix/EmergencyFix/etc]/[NameOfTask]'
-### once finished Task...
+### Once you have finished your Task...
 git checkout -b master
 git pull
 git checkout -b '[YourBranchName]'
-git add .
+git add . 
 git commit -m '[MeaningfulMessage]'
 git push --set-upstream origin '[YourBranchName]'
 ### create PR request and inform everyone!!!!!
