@@ -11,3 +11,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+/* Basic Properties */
+/* Background Colors */
+.backgroundDefault {
+  background-color: #9370db;
+  color: #333;
+}
+.postTitleColour{
+  color: #9370db;
+}
+
+.informationColour {
+  color: #605b4f;
+} 
+.paragraphColour{
+  color: #000000;
+}
+
+.profilePicCircle{
+  border-radius: 50%;
+}
+
+/* Used in multiple areas */
+.containerPosts {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 10rem;
+  margin-top: 5rem; 
+  margin-bottom: 20rem;
+  background-color: #333;
+}
+
+.tagBar {
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  float:left;
+  cursor: pointer; 
+}
+
+.tagOption{
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: groove;
+  color: #9370db;
+  background: white;
+
+}
+
+
+/* Used ONLY in the Detail post page */
+
+/* Used ONLY in List All Posts */
+
+
