@@ -75,7 +75,21 @@ code {
   padding: 20rem 5rem 5rem 5rem ;
 }
 
-.
+
+.searchBar[type=text]{
+  transition: width 0.8s ease-in-out;
+}
+.searchBar[type=text]:focus{
+  border: 1px solid #605b4f;
+  width: 50%;
+}
+.tagContent{
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.tagCheckbox {
+  border-radius: 50%;
+}
 
 /* Used ONLY in the Detail post page */
 
