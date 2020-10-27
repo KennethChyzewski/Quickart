@@ -49,15 +49,13 @@ class DetailedPost extends React.Component {
                     <p class = "paragraphColour">
                         Insert quick blob about himself
                     </p>
-                    <div>
-                        <h5> Tags </h5>
-                        <ul class='tagBar'>
-                            <a class="tagOption" href=""> + Tag </a>
-                            <a class="tagOption" href=""> + Tag </a>
-                            <a class="tagOption" href=""> + Tag </a>
-                            <a class="tagOption" href=""> + Tag </a>
-                        </ul>
-                    </div>
+                    <h5> Tags </h5>
+                    <ul class='tagBar'>
+                        <a class="tagOption" href=""> + Tag </a>
+                        <a class="tagOption" href=""> + Tag </a>
+                        <a class="tagOption" href=""> + Tag </a>
+                        <a class="tagOption" href=""> + Tag </a>
+                    </ul>
                 </div>
             </div>
         </section>

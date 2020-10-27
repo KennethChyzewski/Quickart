@@ -63,6 +63,19 @@ code {
 
 }
 
+/* Used ONLY in the STICKY bar */
+.sideBarContainer{
+  height: auto;
+  width: 100rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  padding: 20rem 5rem 5rem 5rem ;
+}
+
+.
 
 /* Used ONLY in the Detail post page */
 
