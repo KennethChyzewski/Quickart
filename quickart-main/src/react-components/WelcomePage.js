@@ -14,7 +14,6 @@ class  WelcomePage extends React.Component {
                         <a href="loginPage" className="btn btn">Login</a>
                     </div>
                 </div>
-    
             </div>
         </section>
         );

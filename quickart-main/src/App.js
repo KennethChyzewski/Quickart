@@ -8,8 +8,8 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-       <NavigationBar />
-       <WelcomePage />
+        <NavigationBar />
+        <WelcomePage />
       </div>
     );
   }
