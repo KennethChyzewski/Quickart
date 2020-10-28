@@ -30,9 +30,13 @@ ul {
   list-style: none;
 }
 
+p { 
+  color: #000000;
+}
 .addSmallMargin {
   margin: 1rem;
 }
+
 
 /* Background Colors */
 .backgroundBlue {
@@ -55,13 +59,9 @@ ul {
 .postTitleColour{
   color: #9370db;
 }
-
 .informationColour {
   color: #605b4f;
 } 
-.paragraphColour{
-  color: #000000;
-}
 
 /* Buttons */
 .btn {
@@ -89,24 +89,32 @@ ul {
   background: rgb(251, 251, 251);
 }
 
-/* Basic Properties */
-.profilePicCircle{
-  border-radius: 50%;
-}
-
 /* Used in multiple areas */
 .containerPosts {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
-  background-color: white;
+  background-color: light;
   padding-top: 65px;
+  padding-bottom: 10rem;
 }
 
 .tagOption{
   border: #000000;
   border-radius: 0.25rem;
-  border-style: groove;
-  color: #9370db;
-  background: white;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
 }
+
+.produce{
+  background-color: lightgreen;
+}
+.grain{
+  background-color: goldenrod;
+}
+.meat{
+  background-color: pink;
+}
+
+

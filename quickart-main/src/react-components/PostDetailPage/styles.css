@@ -1,7 +1,39 @@
 .tagBar {
-  display:flex;
-  align-items: center;
-  justify-content: flex-start;
+  display: inline-block;
   float:left;
-  cursor: pointer; 
+  cursor: pointer;
+}
+
+.tagbaritems{
+  
+
+}
+.picContainer{
+  border-style: solid;
+  border-color: #605b4f;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  background-color: lightblue;
+}
+.picContent{
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.picLeft{
+  float: left;
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+  padding-right: 1rem;
+}
+
+.profileDesc{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: medium;
+  
 }
