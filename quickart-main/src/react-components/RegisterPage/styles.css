@@ -1,0 +1,6 @@
+/* BEM Naming Convention
+.block__element--modifier */
+
+.registerPage__h1-text {
+  color: green;
+}

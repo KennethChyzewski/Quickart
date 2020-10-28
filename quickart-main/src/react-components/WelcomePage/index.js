@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
+
+import "./styles.css";
 
 class  WelcomePage extends React.Component {
 
@@ -10,16 +13,14 @@ class  WelcomePage extends React.Component {
                     <h2 className="largeText">Welcome to Quickart!</h2>
                     <p className="mediumText">Create a user profile or login to start creating and browsing posts that sell local farm items!</p>
                     <div className="LoginButtons addSmallMargin">
-                        <a href="registerPage" className="btn btnDefault">Sign Up</a>
-                        <a href="loginPage" className="btn btn">Login</a>
+                        <Link className="btn btnDefault" to="/register">Sign Up</Link>
+                        <Link className="btn btn" to="/login">Login</Link>
                     </div>
                 </div>
-    
             </div>
         </section>
         );
     }
 }
     
-
-export default WelcomePage
+export default WelcomePage;
