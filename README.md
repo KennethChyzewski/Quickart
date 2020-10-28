@@ -21,4 +21,4 @@ git checkout [YourBranchName]\
 git add . \
 git commit -m '[MeaningfulMessage]'\
 git push --set-upstream origin [YourBranchName]\
-### create PR request and inform everyone!!!!!
+### Create Pull Request and inform everyone!!!!!
