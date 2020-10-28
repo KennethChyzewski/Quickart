@@ -15,10 +15,10 @@ npm install
 ### Onto your own Branch
 git checkout -b '[Name]/[Task/BugFix/EmergencyFix/etc]/[NameOfTask]'
 ### Once you have finished your Task...
-git checkout -b master
-git pull
-git checkout -b '[YourBranchName]'
-git add . 
-git commit -m '[MeaningfulMessage]'
-git push --set-upstream origin '[YourBranchName]'
+git checkout -b master\
+git pull\
+git checkout -b '[YourBranchName]'\
+git add . \
+git commit -m '[MeaningfulMessage]'\
+git push --set-upstream origin '[YourBranchName]'\
 ### create PR request and inform everyone!!!!!
