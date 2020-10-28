@@ -15,9 +15,9 @@ npm install
 ### Onto your own Branch
 git checkout -b '[Name]/[Task/BugFix/EmergencyFix/etc]/[NameOfTask]'
 ### Once you have finished your Task...
-git checkout -b master\
+git checkout master\
 git pull\
-git checkout -b '[YourBranchName]'\
+git checkout '[YourBranchName]'\
 git add . \
 git commit -m '[MeaningfulMessage]'\
 git push --set-upstream origin '[YourBranchName]'\
