@@ -2,18 +2,18 @@ import React from 'react'
 
 class DetailedPost extends React.Component {
     render(){
+        return (
         <section class="containerPosts">
             {/*Title of Post + Bidding progress*/}
             <h1 class="postTitleColour"> Name of Post </h1>
             <div >
                 <div class="backgroundDefault">
-                    <h3> Submit A Bid </h3>
-                    <h4> Last Day to Bid: XX-XX-XXXX</h4>
+                    <h3> Last Day to Bid: XX-XX-XXXX</h3>
                 </div>
 
                 <form class="form">
-                    <textarea class="inputGroup" placeholder="Bid Value in (CAD) "></textarea>
-                    <textarea class="inputGroup" placeholder="Your message here"></textarea>
+                    <textarea class="inputGroup" placeholder="Bid Value in (CAD) "></textarea> <br></br>
+                    <textarea class="inputGroup" placeholder="Your message here"></textarea> <br></br>
                     <input type="submit" value="Submit" class="btn btn" />
                 </form>
             </div>
@@ -59,6 +59,7 @@ class DetailedPost extends React.Component {
                 </div>
             </div>
         </section>
+        );
     }
 }
 export default DetailedPost

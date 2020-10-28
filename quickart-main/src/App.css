@@ -99,10 +99,8 @@ ul {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
-  padding: 0 10rem;
-  margin-top: 5rem; 
-  margin-bottom: 20rem;
-  background-color: #333;
+  background-color: white;
+  padding-top: 65px;
 }
 
 .tagOption{
@@ -111,5 +109,4 @@ ul {
   border-style: groove;
   color: #9370db;
   background: white;
-
 }

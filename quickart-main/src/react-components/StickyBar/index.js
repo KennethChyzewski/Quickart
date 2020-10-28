@@ -2,6 +2,7 @@ import React from 'react'
 
 class StickyBar extends React.Component {
     render(){
+        return (
         <section>
             <div class="sideBarContainer">  
                 <h4>Search For Items</h4>
@@ -42,5 +43,8 @@ class StickyBar extends React.Component {
                 </div>
             </div>  
         </section>
+        );
     }
 }
+
+export default StickyBar

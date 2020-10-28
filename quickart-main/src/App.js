@@ -6,16 +6,12 @@ import AboutPage     from './react-components/AboutPage';
 import LoginPage     from './react-components/LoginPage';
 import RegisterPage  from './react-components/RegisterPage';
 import NavigationBar from './react-components/NavigationBar';
-
+import DetailedPost  from './react-components/PostDetailPage';
 class App extends React.Component {
 
   render(){
     return (
       <div className="App">
-<<<<<<< HEAD
-        <NavigationBar />
-        <WelcomePage />
-=======
         <BrowserRouter>
           {/* Place the NavigationBar outside the Switch so its always present */}
           <NavigationBar />
@@ -29,11 +25,10 @@ class App extends React.Component {
                             (<RegisterPage appState={this.state}/>)}/>
             <Route exact path='/login' render={() => 
                             (<LoginPage appState={this.state}/>)}/>
-            {/* <Route exact path='/feed' render={() => 
-                            (<FeedPage appState={this.state}/>)}/> */}
+            <Route exact path='/DetailPosting' render={() => 
+                            (< DetailedPost appState={this.state}/>)}/> 
           </Switch>
         </BrowserRouter>
->>>>>>> master
       </div>
     );
   }
