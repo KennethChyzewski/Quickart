@@ -1,0 +1,34 @@
+/* BEM Naming Convention
+.block__element--modifier */
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px #9370db;
+  position: fixed;
+  padding: 0.5rem 1.5rem;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  color: rgb(10, 10, 10);
+  padding: 0.5rem;
+  margin: 0.25rem;
+}
+
+.navbar a:hover {
+  color: #9370db;
+}
+
+/* Background Colors */
+.backgroundBlue {
+  background-color: #87cefa;
+  color: rgb(37, 37, 37);
+}
