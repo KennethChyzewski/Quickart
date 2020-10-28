@@ -19,5 +19,5 @@ git pull \
 git checkout [YourBranchName] \
 git add . \
 git commit -m '[MeaningfulMessage]' \
-git push --set-upstream origin [YourBranchName] \
+git push --set-upstream origin [YourBranchName]
 ### Create Pull Request and inform everyone!!!!!
