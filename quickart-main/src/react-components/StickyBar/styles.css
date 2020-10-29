@@ -1,19 +1,15 @@
-
 .sideBarContainer{
-  height: auto;
-  width: 20rem;
+  width:auto;
   position: fixed;
   z-index: 1;
-  top: 0;
-  left: 0;
+  left: 2px;
   overflow: hidden;
-  float: left;
-  outline-style: dotted;
-  outline-color: black;
+  border-radius: 5%;
+  padding: 2px 1px 1px 10px;
 }
 
 .searchBar[type=text]{
-  transition: border-color 0.8s width 0.8s ease-in-out;
+    transition: border-color 0.8s width 0.8s ease-in-out;
 }
 .searchBar[type=text]:focus{
   border: 1px solid lightblue;
