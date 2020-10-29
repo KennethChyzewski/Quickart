@@ -1,0 +1,42 @@
+/* Profile Page  */
+
+.containerProfile {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 20rem;
+  background-color: #333;
+  padding: 4rem;
+}
+
+.profileArea {
+  display: grid;
+  grid-template-areas: 'top' 'about' 'posts';
+  grid-gap: 1rem;
+}
+
+.profileArea .profile-top {
+  grid-area: top;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileArea .profile-top img {
+  width: 250px;
+}
+
+.profileArea .profile-about {
+  grid-area: about;
+  text-align: center;
+}
+
+.profile-post-title {
+  background-color: White;
+}
+
+.profileImg {
+  border-radius: 50%;
+}
