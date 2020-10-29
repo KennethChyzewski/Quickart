@@ -10,8 +10,8 @@ class PostsPage extends React.Component {
   render() {
     return (
       <section className='mainBackground'>
-        <StickyBar/>
         <div className='containerPosts'>
+          <StickyBar/>
           <h1 className='textDefaultColor'>Posts</h1>
           <div className='post-form'>
             <div className='backgroundDefault'>

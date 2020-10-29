@@ -128,6 +128,11 @@ p {
   background-color: pink;
 }
 
+.borderDefault{
+  color: #605b4f;
+  border-style: groove;
+}
+
 /* Text Size */
 .largeText {
   font-size: 3rem;
@@ -185,11 +190,12 @@ p {
 .containerPosts {
   max-width: 1100px;
   margin: auto;
-  margin-left: 11rem;
+  margin-left: 250px;
   overflow: hidden;
   margin-bottom: 20rem;
   background-color: #333;
   padding: 4rem;
+  float:right;
 }
 
 .containerForm {
