@@ -39,7 +39,7 @@ class PostsPage extends React.Component {
                   <button className='btn'>
                     <span>Likes: 1</span>
                   </button>
-                  <Link to='/profile' className='btn btnDefault'>
+                  <Link to='/DetailPosting' className='btn btnDefault'>
                     View
                   </Link>
                 </div>
