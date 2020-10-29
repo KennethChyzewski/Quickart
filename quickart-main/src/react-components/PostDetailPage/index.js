@@ -1,13 +1,18 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import StickyBar from '../StickyBar';
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
 class DetailedPost extends React.Component {
+
     render(){
         return (
         <section class="containerPosts">
+            <StickyBar/>
             {/*Title of Post + Bidding progress*/}
             <h1 class="postTitleColour"> Name of Post </h1>
             <div >

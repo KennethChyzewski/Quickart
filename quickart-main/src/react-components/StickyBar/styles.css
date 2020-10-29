@@ -1,13 +1,15 @@
-/* Used ONLY in the STICKY bar */
+
 .sideBarContainer{
   height: auto;
-  width: 100rem;
+  width: 20rem;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   overflow: hidden;
-  padding: 20rem 5rem 5rem 5rem ;
+  float: left;
+  outline-style: dotted;
+  outline-color: black;
 }
 
 .searchBar[type=text]{
