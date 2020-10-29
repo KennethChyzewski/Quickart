@@ -163,15 +163,6 @@ p {
   background: rgb(251, 251, 251);
 }
 /* Section Containers */
-.containerPosts {
-  max-width: 1100px;
-  margin: auto;
-  overflow: hidden;
-  background-color: light;
-  padding-top: 65px;
-  padding-bottom: 10rem;
-}
-
 .tagOption{
   border: #000000;
   border-radius: 0.25rem;
@@ -190,8 +181,10 @@ p {
   background-color: pink;
 }
 
-
-
+.containerPosts {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
   margin-bottom: 20rem;
   background-color: #333;
   padding: 4rem;

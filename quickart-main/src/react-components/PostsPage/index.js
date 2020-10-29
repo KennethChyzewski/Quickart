@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import userPicture from '../../images/defaultUserPicture.jpg';
+import StickyBar from '../StickyBar';
 
 import './styles.css';
 
@@ -9,6 +10,7 @@ class PostsPage extends React.Component {
   render() {
     return (
       <section className='mainBackground'>
+        <StickyBar/>
         <div className='containerPosts'>
           <h1 className='textDefaultColor'>Posts</h1>
           <div className='post-form'>
