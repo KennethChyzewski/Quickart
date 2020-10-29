@@ -3,20 +3,16 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-/* Component for the Register Page */
-class RegisterPage extends React.Component {
+/* Component for the Edit User Profile's Page*/
+class EditProfilesPage extends React.Component {
   render() {
     return (
       <section className='mainBackground'>
         <div className='containerForm'>
-          <h1 className='textDefaultColor'>Register</h1>
+          <h1 className='textDefaultColor'>Edit Profile</h1>
           <form className='form'>
             <div className='form-group'>
-              <input
-                className='inputGroup'
-                type='text'
-                placeholder='Username'
-              />
+              <input className='inputGroup' type='text' placeholder='Name' />
             </div>
             <div className='form-group'>
               <input
@@ -35,35 +31,28 @@ class RegisterPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                type='email'
-                placeholder='Confirm Email Address'
-              />
-            </div>
-            <div className='form-group'>
-              <input
-                className='inputGroup'
                 type='password'
                 placeholder='Password'
               />
             </div>
             <div className='form-group'>
-              <input
+              <textarea
                 className='inputGroup'
-                type='password'
-                placeholder='Confirm Password'
-              />
+                placeholder='Biography'
+              ></textarea>
             </div>
-            <Link to='/posts' type='submit' className='btn btnDefault'>
-              Register
+            <div className='form-group'>
+              <textarea className='inputGroup' placeholder='Niche'></textarea>
+            </div>
+            <input type='submit' value='Submit' className='btn btnDefault' />
+            <Link to='/' className='btn btn'>
+              Delete my Account
             </Link>
           </form>
-          <p>
-            Have an Account? <Link to='/login'>Login Here</Link>
-          </p>
         </div>
       </section>
     );
   }
 }
 
-export default RegisterPage;
+export default EditProfilesPage;

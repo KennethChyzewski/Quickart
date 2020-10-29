@@ -4,29 +4,3 @@
 .addSmallMargin {
   margin: 1rem;
 }
-
-/* Welcome Page */
-.welcomePage {
-  position: relative;
-  background: url('../../images/welcomePageImage.jpg') no-repeat center center/cover;
-  height: 100vh;
-}
-
-.welcomePageTextBlock {
-  color: rgb(255, 249, 249);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: auto;
-  width: 80%;
-  height: 100%;
-}
-
-.transparentFilter {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
-}

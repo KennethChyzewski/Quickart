@@ -1,0 +1,14 @@
+/* Posts */
+.post {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 2rem;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.circleImgPosts {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}

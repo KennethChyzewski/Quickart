@@ -1,16 +1,23 @@
 import React from 'react';
 
-import "./styles.css";
+import './styles.css';
 
-/* Component for the RegisterPage */
+/* Component for the About Page */
 class AboutPage extends React.Component {
-  
   render() {
-    console.log(this.props)
     return (
-      <div className='navBarPadding'>
-        <h1 className='aboutPage__h1-text'>AboutPage</h1>
-      </div>
+      <section className='welcomePage'>
+        <div className='transparentFilter'>
+          <div className='welcomePageTextBlock'>
+            <h1 className='largeText'>What is Quickart?</h1>
+            <p className='mediumText'>
+              Quickart is a website created to help support your local economy!
+              Browse posts created by independent farmers and growers that
+              features a wide variety of organic vegetables and fruits.
+            </p>
+          </div>
+        </div>
+      </section>
     );
   }
 }
