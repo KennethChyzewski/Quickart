@@ -118,6 +118,16 @@ p {
   color: #333;
 }
 
+.produce{
+  background-color: lightgreen;
+}
+.grain{
+  background-color: goldenrod;
+}
+.meat{
+  background-color: pink;
+}
+
 /* Text Size */
 .largeText {
   font-size: 3rem;
@@ -162,6 +172,7 @@ p {
 .btn:hover {
   background: rgb(251, 251, 251);
 }
+
 /* Section Containers */
 .tagOption{
   border: #000000;
@@ -171,19 +182,10 @@ p {
   margin-left: 1rem;
 }
 
-.produce{
-  background-color: lightgreen;
-}
-.grain{
-  background-color: goldenrod;
-}
-.meat{
-  background-color: pink;
-}
-
 .containerPosts {
   max-width: 1100px;
   margin: auto;
+  margin-left: 11rem;
   overflow: hidden;
   margin-bottom: 20rem;
   background-color: #333;

@@ -1,13 +1,17 @@
-.tagBar {
-  display: inline-block;
-  float:left;
-  cursor: pointer;
+.containerDetailedPosts {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: #333;
+  padding: 4rem;
 }
 
-.tagbaritems{
-  
-
+.paragraphColour{
+  color: whitesmoke
 }
+
+
 .picContainer{
   border-style: solid;
   border-color: #605b4f;
@@ -26,9 +30,15 @@
 .picLeft{
   float: left;
   border-radius: 50%;
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 200px;
+  max-height: 200px;
   padding-right: 1rem;
+}
+
+.tagBar {
+  display: inline-block;
+  float:left;
+  cursor: pointer;
 }
 
 .profileDesc{
@@ -37,3 +47,4 @@
   font-size: medium;
   
 }
+
