@@ -6,6 +6,8 @@ import AboutPage from './react-components/AboutPage';
 import LoginPage from './react-components/LoginPage';
 import RegisterPage from './react-components/RegisterPage';
 import NavigationBar from './react-components/NavigationBar';
+import DetailedPost  from './react-components/PostDetailPage';
+import StickyBar from './react-components/StickyBar';
 import PostsPage from './react-components/PostsPage';
 import ProfilesPage from './react-components/ProfilesPage';
 import EditProfilesPage from './react-components/EditProfilesPage';
@@ -54,7 +56,11 @@ class App extends React.Component {
               exact
               path='/editProfile'
               render={() => <EditProfilesPage appState={this.state} />}
-            />
+            />    
+            <Route 
+                exact 
+                path='/DetailPosting' 
+                render={() => (< DetailedPost appState={this.state}/>)}/> 
 
             {/* <Route exact path='/feed' render={() => 
                               (<FeedPage appState={this.state}/>)}/> */}

@@ -1,0 +1,37 @@
+
+.sideBarContainer{
+  height: auto;
+  width: 20rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  float: left;
+  outline-style: dotted;
+  outline-color: black;
+}
+
+.searchBar[type=text]{
+  transition: border-color 0.8s width 0.8s ease-in-out;
+}
+.searchBar[type=text]:focus{
+  border: 1px solid lightblue;
+  width: 50%;
+}
+
+input[type="checkbox"]{
+  background-color: white;
+  transition: border-color 0.8s
+}
+input[type="checkbox"]:focus{
+  border-color: lightblue;
+}
+
+.tagContent{
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.tagCheckbox {
+  border-radius: 50%;
+}

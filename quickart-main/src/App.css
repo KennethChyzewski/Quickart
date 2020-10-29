@@ -21,6 +21,9 @@ ul {
   list-style: none;
 }
 
+p { 
+  color: #000000;
+}
 .addSmallMargin {
   margin: 1rem;
 }
@@ -93,6 +96,10 @@ ul {
   background-color: #87cefa;
   color: rgb(37, 37, 37);
 }
+.backgroundDefault {
+  background-color: #9370db;
+  color: #333;
+}
 
 .backgroundGrey {
   background-color: #eee5e5;
@@ -118,7 +125,13 @@ ul {
   margin-bottom: 1.2rem;
 }
 
-/* Text Colors */
+/* Text Colour */
+.postTitleColour{
+  color: #9370db;
+}
+.informationColour {
+  color: #605b4f;
+} 
 .textDefaultColor {
   margin: 5px;
   color: #9370db;
@@ -149,12 +162,36 @@ ul {
 .btn:hover {
   background: rgb(251, 251, 251);
 }
-
 /* Section Containers */
 .containerPosts {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
+  background-color: light;
+  padding-top: 65px;
+  padding-bottom: 10rem;
+}
+
+.tagOption{
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.produce{
+  background-color: lightgreen;
+}
+.grain{
+  background-color: goldenrod;
+}
+.meat{
+  background-color: pink;
+}
+
+
+
   margin-bottom: 20rem;
   background-color: #333;
   padding: 4rem;
@@ -181,3 +218,4 @@ ul {
   font-size: 1.2rem;
   border: 1px solid black;
 }
+
