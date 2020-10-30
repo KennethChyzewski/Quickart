@@ -6,9 +6,9 @@ class StickyBar extends React.Component {
     render(){
         return (  
         <section>
-            <div class="sideBarContainer backgroundBlue borderDefault">  
+            <div className="sideBarContainer backgroundBlue borderDefault">  
                 <h4>Search For Items</h4>
-                <input type="text" class="searchbar" placeholder="Search.."></input>
+                <input type="text" className="searchbar" placeholder="Search.."></input>
                 <h4>Categories</h4>
                     <div>
                         <select id="categories"> 
@@ -20,8 +20,8 @@ class StickyBar extends React.Component {
                         </select>
                     </div>
                 <h4>Food Tags</h4>
-                    <div class="tagContent">
-                        <div class="tagCheckbox">
+                    <div className="tagContent">
+                        <div className="tagCheckbox">
                             <input type="checkbox"></input> 
                             <label> ONLY VODKA DIMIRTI </label> 
                             <br></br>
@@ -34,29 +34,29 @@ class StickyBar extends React.Component {
                         </div>
                     </div>
                 <h4>Location</h4>
-                    <div class="filter">
-                        <div id="Tag-Content" class="tagContent">
-                            <div class="tagCheckbox">
+                    <div className="filter">
+                        <div id="Tag-Content" className="tagContent">
+                            <div className="tagCheckbox">
                                 <input type="checkbox" id="Location1" name="Location1"></input>
-                                <label for="Location1">Russia</label>
+                                <label >Toronto</label>
                                 <br></br>
                                 <input type="checkbox" id="Location1" name="Location1"></input>
-                                <label for="Location1">France</label>
+                                <label >Ottawa</label>
                                 <br></br>
                                 <input type="checkbox" id="Location1" name="Location1"></input>
-                                <label for="Location1">Canada</label>
+                                <label>Mississauga</label>
                                 <br></br>
                                 <input type="checkbox" id="Location1" name="Location1"></input>
-                                <label for="Location1">Japan</label>
+                                <label>Markham</label>
                                 <br></br>
                             </div>
                         </div>
                     </div>
                 <h4>Bid Price</h4>
-                    <div class="filter">
-                        <div id="Tag-Content" class="tagContent">
-                            <div class="tagCheckbox">
-                                <input type="range" min="$1" max= "$100" value="100" class="slider"></input>
+                    <div className="filter">
+                        <div id="Tag-Content" className="tagContent">
+                            <div className="tagCheckbox">
+                                <input type="range" min="$1" max= "$100" className="slider"></input>
                             </div>
                         </div>
                     </div>
