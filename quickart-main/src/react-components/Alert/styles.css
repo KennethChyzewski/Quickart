@@ -1,0 +1,15 @@
+/* .alert {
+    padding-top: 65px; 
+} */
+
+.alert-error {
+    background-color: red; 
+}
+
+.alert-warning {
+    background-color: yellow;
+}
+
+.alert-success {
+    background-color: green;
+}
