@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alertActions';
+import { login } from '../../actions/loginActions';
+
 import './styles.css';
 
 /* Component for the Login Page */
@@ -20,14 +24,17 @@ class LoginPage extends React.Component {
     e.preventDefault();
     //Checks if any of the login fields are empty
     if (!this.state.username) {
-      console.log('A username is required.');
+      //console.log('A username is required.');
+      this.props.setAlert('A username is required.', 'error');
     }
     if (!this.state.userPassword) {
-      console.log('A password is required.');
+      // console.log('A password is required.');
+      this.props.setAlert('A password is required.', 'error');
     } else {
       //Makes a call to the back-end to verify the user credentials
-      console.log(this.state);
-      console.log('User has successfully been logged in.');
+      // console.log(this.state);
+      // console.log('User has successfully been logged in.');
+      this.props.login(this.state);
     }
   };
 
@@ -69,4 +76,5 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+// Replace 'null' with the components state we want to pass to the action
+export default connect(null, { login, setAlert })(LoginPage);
