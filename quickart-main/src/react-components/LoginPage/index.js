@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
       //console.log('A username is required.');
       this.props.setAlert('A username is required.', 'error');
     }
-    if (!this.state.userPassword) {
+    else if (!this.state.userPassword) {
       // console.log('A password is required.');
       this.props.setAlert('A password is required.', 'error');
     } else {
@@ -43,7 +43,8 @@ class LoginPage extends React.Component {
       <section className='mainBackground'>
         <div className='containerForm'>
           <h1 className='textDefaultColor'>Sign in</h1>
-          <form className='form' onSubmit={this.onSubmitEvent}>
+          {/* <form className='form' onSubmit={this.onSubmitEvent}> */}
+          <form className='form'>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -62,11 +63,10 @@ class LoginPage extends React.Component {
                 onChange={this.onChangeEvent}
               />
             </div>
-
-            <button type='submit' value='Login' className='btn btnDefault'>
-              Login
-            </button>
           </form>
+          <button onClick={this.onSubmitEvent} type='submit' value='Login' className='btn btnDefault'>
+            <Link style={{ color: '#333' }} to='/posts'>Login</Link>
+          </button>
           <p>
             Don't have an Account? <Link to='/register'>Register Here</Link>
           </p>

@@ -32,3 +32,7 @@
   background-color: #87cefa;
   color: rgb(37, 37, 37);
 }
+
+.hide{
+  display: none;  
+}

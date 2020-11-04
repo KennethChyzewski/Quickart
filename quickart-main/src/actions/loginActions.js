@@ -1,13 +1,16 @@
-import { VALID_LOGIN, INVALID_LOGIN, VALID_SIGNUP, INVALID_SIGNUP, SIGN_OUT } from '../constants';
+import { ADMIN_ACCOUNT, VALID_LOGIN, INVALID_LOGIN, VALID_SIGNUP, INVALID_SIGNUP, SIGN_OUT } from '../constants';
 
 export function login(credentials) {
     return (dispatch, getState) => {
+      // We need to check if the user logging in is a user or an admin
+      var accType = (credentials.username === ADMIN_ACCOUNT) ? "admin" : "user"
       // connection to Mongo DB and try to login the user
       // if we were able to successfully connect and login the user
       dispatch({
         type: VALID_LOGIN,
         payload: { 
             msg: 'loginActions LOGIN happened',
+            accType: accType,
             credentials
         }
       })
