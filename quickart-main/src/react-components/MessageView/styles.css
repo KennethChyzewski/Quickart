@@ -1,0 +1,34 @@
+.messagingUsersSidebar {
+  background-color: white;
+  height: 530px;
+  width: 320px;
+  padding: 10px;
+  margin-top: 142px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+
+  float: left;
+  overflow: auto;
+
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+}
+
+/*.messageBox {
+  
+  background-color: white;
+
+  margin-left: 390px;
+  margin-top: 20px;
+  width: 1000px;
+  height: 670px;
+  
+
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+}
+*/

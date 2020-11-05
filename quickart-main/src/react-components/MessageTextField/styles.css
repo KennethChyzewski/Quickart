@@ -1,0 +1,36 @@
+.messageBoxText {
+
+  margin: 0px;
+
+  /* Add properties below */
+  
+  width: 520px;
+  margin-top: 210px;
+  margin-left: 412px;
+  margin-bottom: 5px;
+  color: grey;
+
+}
+
+
+.messageBoxImageContainer {
+  margin-bottom: 500px;
+  margin-left: 427px;
+}
+
+.conversationBox {
+  
+  background-color: white;
+  padding-top: 90px;
+  margin-left: 390px;
+  /*margin-top: 20px;*/
+  margin-bottom: 900px;
+  width: 1000px;
+  height: 670px;
+  
+
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+}
