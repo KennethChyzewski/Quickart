@@ -24,7 +24,7 @@ class TextingHistory extends React.Component {
 				["are you there?", today, false],
 				["I'm sorry did I make you anxious?", today, false],
 				["Can I have the carrots for $5 instead of $9? I'm broke.", today, false],
-				["fuck you", today, true],
+				["Hi sorry I was really busy but yes, I am available to meet next Tuesday at 4 pm if that works for you? :)", today, true],
 			],
 			sentMessage: null,
 			vanishMode: false,
