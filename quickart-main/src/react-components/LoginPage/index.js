@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { login } from '../../actions/loginActions';
+import store from '../../store';
 
 import './styles.css';
 
@@ -24,17 +25,21 @@ class LoginPage extends React.Component {
     e.preventDefault();
     //Checks if any of the login fields are empty
     if (!this.state.username) {
-      //console.log('A username is required.');
       this.props.setAlert('A username is required.', 'error');
     }
     else if (!this.state.userPassword) {
-      // console.log('A password is required.');
       this.props.setAlert('A password is required.', 'error');
     } else {
       //Makes a call to the back-end to verify the user credentials
-      // console.log(this.state);
-      // console.log('User has successfully been logged in.');
       this.props.login(this.state);
+      // Check the redux state after trying to login the user
+      const state = store.getState()
+      let loginSuccess = (Object.keys(state['loginState']).length !== 0) ? true : false;
+      if (loginSuccess) {
+        this.props.history.push('/posts')
+      } else {
+        this.props.setAlert('Username or Password is incorrect. Please try again.', 'error')
+      }
     }
   };
 
@@ -43,8 +48,7 @@ class LoginPage extends React.Component {
       <section className='mainBackground'>
         <div className='containerForm'>
           <h1 className='textDefaultColor'>Sign in</h1>
-          {/* <form className='form' onSubmit={this.onSubmitEvent}> */}
-          <form className='form'>
+          <form className='form' onSubmit={this.onSubmitEvent}>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -63,10 +67,10 @@ class LoginPage extends React.Component {
                 onChange={this.onChangeEvent}
               />
             </div>
+            <button type='submit' value='Login' className='btn btnDefault'>
+              Login
+            </button>
           </form>
-          <button onClick={this.onSubmitEvent} type='submit' value='Login' className='btn btnDefault'>
-            <Link style={{ color: '#333' }} to='/posts'>Login</Link>
-          </button>
           <p>
             Don't have an Account? <Link to='/register'>Register Here</Link>
           </p>
@@ -77,4 +81,4 @@ class LoginPage extends React.Component {
 }
 
 // Replace 'null' with the components state we want to pass to the action
-export default connect(null, { login, setAlert })(LoginPage);
+export default withRouter(connect(null, { login, setAlert })(LoginPage));

@@ -14,16 +14,16 @@ const loginReducer = (state = initialState, action) => {
       return { ...state, payload };
 
     case INVALID_LOGIN:
-      console.log("Login Failed");
-      return { ...state, payload };
+      // return { ...state, payload };
+      return {} //Needs to be empty for NavBar update
 
     case VALID_SIGNUP:
       console.log("Signup Success");
       return { ...state, payload };
 
     case INVALID_SIGNUP:
-      console.log("Signup Failed");
-      return { ...state, payload };
+      // return { ...state, payload };
+      return {} //Needs to be empty for NavBar update
 
     case SIGN_OUT:
       console.log("Signed out");
