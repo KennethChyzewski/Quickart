@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './styles.css';
 
@@ -22,4 +23,4 @@ class AboutPage extends React.Component {
   }
 }
 
-export default AboutPage;
+export default connect(null)(AboutPage);

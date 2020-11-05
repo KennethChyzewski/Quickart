@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import StickyBar from '../StickyBar';
+import { connect } from 'react-redux';
 
 import './styles.css';
 
@@ -54,4 +55,4 @@ class PostsPage extends React.Component {
   }
 }
 
-export default PostsPage;
+export default connect(null)(PostsPage);
