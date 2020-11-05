@@ -3,12 +3,27 @@ import { Link } from 'react-router-dom';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import StickyBar from '../StickyBar';
 import { connect } from 'react-redux';
-
+import store from '../../store';
 import './styles.css';
 
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
   render() {
+    const state = store.getState()
+    let userType = state['loginReducer']['payload']["accType"]
+    let isAdmin = userType === "admin"
+
+    const adminDel = (
+      <button type="button" className='btn btnDefault'>
+        Delete Post
+      </button>
+    )
+    const userReports = (
+      <button type="button" className='btn btnDefault'>
+        Report Post
+      </button>
+    )
+    
     return (
       <section className='mainBackground'>
         <div className='containerPosts'>
@@ -45,6 +60,7 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
                 </div>
               </div>
             </div>

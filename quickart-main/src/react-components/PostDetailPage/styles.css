@@ -48,3 +48,10 @@
   
 }
 
+.title-left {
+  display: inline-block;
+}
+.title-button{
+  float:right;
+}
+

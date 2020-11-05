@@ -1,20 +1,37 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import store from '../../store';
 
 import "./styles.css";
 
 class DetailedPost extends React.Component {
 
     render(){
+        const state = store.getState()
+        let userType = state['loginReducer']['payload']["accType"]
+        let isAdmin = userType === "admin"
+
+        const adminDel = (
+        <Button className='title-button btn btnDefault'>
+            Delete Post
+        </Button>
+        )
+        const userReports = (
+            <Button className='btn btnDefault'>
+              Report Post
+            </Button>
+          )
+
         return (
         <section className='mainBackground'>
             <div className="containerDetailedPosts">
                 {/*Title of Post + Bidding progress*/}
-                <h1 className="postTitleColour"> Name of Post </h1>
-                <div >
+                <div>
+                    <h1 className="postTitleColour"> Name of Post </h1>
+                    {isAdmin ? adminDel: userReports }
+                </div>
+                <div>
                     <div className="backgroundDefault">
                         <h3> Last Day to Bid: XX-XX-XXXX</h3>
                     </div>
