@@ -27,9 +27,7 @@ class MessagesPage extends React.Component {
 
 
   render() {
-    const allUsers = this.state.users.map(item => item)
-    console.log("allUsers: ", allUsers[0])
-    const users = this.state.users.map((item,index) => <Route exact path={item[1]} render={() => (<MessageView key={index} flag={true} allUsers={allUsers} userName={item[0]} profilePic={item[2]} messagePath={item[1]}/>)}/>)
+    const users = this.state.users.map((item,index) => <Route exact path={item[1]} key={index} render={() => (<MessageView key={index} flag={true} allUsers={this.state.users} userName={item[0]} profilePic={item[2]} messagePath={item[1]}/>)}/>)
     return (
       <div>
         <Router>
