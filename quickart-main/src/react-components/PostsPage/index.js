@@ -21,12 +21,13 @@ class PostsPage extends React.Component {
   open_close_report(){
     if(this.state.isReporting === false){
       this.setState({["isReporting"]: true})
+      document.getElementById("reportFormContainer").style.display = "block";
     }else{
       this.setState({["isReporting"]: false})
+      document.getElementById("reportFormContainer").style.display = "none";
     }
-
   }
-  
+
   render() {
     const store_state = store.getState()
     let userType = store_state['loginReducer']['payload']["accType"]
@@ -38,7 +39,7 @@ class PostsPage extends React.Component {
       </button>
     )
     const userReports = (
-      <button type="button" onClick= {this.open_close_report.bind(this)} className='btn btnDefault'>
+      <button id="userReportBtn" type="button" onClick= {this.open_close_report.bind(this)} className='btn btnDefault'>
         Report Post
       </button>
     )
@@ -69,6 +70,7 @@ class PostsPage extends React.Component {
           </form>
       </div>
     )
+    
 
     return (
       <section className='mainBackground'>
@@ -108,7 +110,8 @@ class PostsPage extends React.Component {
                   </Link>
                   {isAdmin ? adminDel:userReports}
                 </div>
-                {this.state.isReporting && !isAdmin? reportForm: ""}
+
+                {!isAdmin? reportForm: ""}
 
               </div>
             </div>
