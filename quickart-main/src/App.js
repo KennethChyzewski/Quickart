@@ -10,6 +10,7 @@ import DetailedPost  from './react-components/PostDetailPage';
 import PostsPage from './react-components/PostsPage';
 import ProfilesPage from './react-components/ProfilesPage';
 import EditProfilesPage from './react-components/EditProfilesPage';
+import UserReportsPage from './react-components/UserReportsPage';
 
 import { Provider } from 'react-redux'; 
 import store from './store';
@@ -68,8 +69,13 @@ class App extends React.Component {
                   exact 
                   path='/DetailPosting' 
                   render={() => (< DetailedPost appState={this.state}/>)}/> 
-
-              {/* <Route exact path='/feed' render={() => 
+              
+              <Route 
+                exact 
+                path = '/userReports'
+                render={()=> <UserReportsPage appState={this.state} />}/>
+                
+                {/* <Route exact path='/feed' render={() => 
                                 (<FeedPage appState={this.state}/>)}/> */}
             </Switch>
           </BrowserRouter>

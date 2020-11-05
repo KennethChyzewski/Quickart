@@ -18,7 +18,7 @@ class DetailedPost extends React.Component {
         </Button>
         )
         const userReports = (
-            <Button className='btn btnDefault'>
+            <Button className='title-button btn btnDefault'>
               Report Post
             </Button>
           )
@@ -28,8 +28,8 @@ class DetailedPost extends React.Component {
             <div className="containerDetailedPosts">
                 {/*Title of Post + Bidding progress*/}
                 <div>
+                    {isAdmin ? adminDel: userReports }  
                     <h1 className="postTitleColour"> Name of Post </h1>
-                    {isAdmin ? adminDel: userReports }
                 </div>
                 <div>
                     <div className="backgroundDefault">

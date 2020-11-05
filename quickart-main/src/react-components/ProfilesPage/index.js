@@ -31,6 +31,15 @@ class ProfilesPage extends React.Component {
         </div>
       </div>
     )
+    const niche = (
+      <div>
+        <h2 className='textDefaultColor'>Niche</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    )
     const userReports = (
       <Link to='/userReports' className='btn btnDefault'>
         User Reports
@@ -58,11 +67,7 @@ class ProfilesPage extends React.Component {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
-              <h2 className='textDefaultColor'>Niche</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              {isAdmin ? "" : niche}
             </div>
             {isAdmin ? "" : postings}
           </div>
