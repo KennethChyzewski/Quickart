@@ -10,7 +10,7 @@ import './styles.css';
 class NavigationBar extends React.Component {
   render() {
     const state = store.getState()
-    let login = state['loginReducer']
+    let login = state['loginState']
     let isLoggedIn = (Object.keys(login).length !== 0) ? true : false;
 
     const notLoggedInNavBar = (
@@ -57,7 +57,7 @@ class NavigationBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  login: state.loginReducer
+  login: state.loginState
 })
 
 export default connect(mapStateToProps, { logout })(NavigationBar);
