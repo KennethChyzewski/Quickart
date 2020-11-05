@@ -1,9 +1,7 @@
 import React from "react"
 import "./styles.css"
-import ImageUploader from 'react-images-upload';
 
 import vanishModeImage from "./../../images/vanish-mode-image.png"
-import paperClip from "./../../images/paper-clip.jpg"
 import Message from "./../Message"
 
 
@@ -96,7 +94,7 @@ class TextingHistory extends React.Component {
 					</div>
 					<div className="buttonArea">
 			            
-						<div className="vanishButton"> <img alt="profile pic" src={paperClip} className="sendMessageImage" onClick={this.activateVanishMode.bind(this)}/> </div>	
+						
 					</div>
 
 				</div>

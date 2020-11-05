@@ -17,7 +17,7 @@ class MessagesPage extends React.Component {
     super()
     this.state = {
       users: [
-        ["Sasuke", "/message/Sasuke", sasukeProfilePic], 
+        ["Sasuke", "/messages/Sasuke", sasukeProfilePic], 
         ["Alex", "/messages/Alex", alexProfilePic], 
         ["ginaaa22", "/messages/ginaaa22", ginaProfilePic], 
         ["sam_x", "/messages/sam_x", samProfilePic],
