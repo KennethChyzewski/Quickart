@@ -6,7 +6,10 @@ export function updateProfile(profileDetails) {
     // if we were able to successfully connect and change the user's profile
     dispatch({
       type: PROFILE_UPDATE_SUCCESS,
-      payload: { msg: 'settingsActions UPDATE happened' }
+      payload: { 
+        msg: 'settingsActions UPDATE happened',
+        profileDetails
+      }
     })
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
