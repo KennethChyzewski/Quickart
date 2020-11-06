@@ -3,34 +3,49 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import store from '../../store';
 
 import './styles.css';
 
 class DetailedPost extends React.Component {
-  render() {
-    return (
-      <section className='mainBackground'>
-        <div className='containerDetailedPosts'>
-          {/*Title of Post + Bidding progress*/}
-          <h1 className='postTitleColour'> Name of Post </h1>
-          <div>
-            <div className='backgroundDefault'>
-              <h3> Last Day to Bid: XX-XX-XXXX</h3>
-            </div>
+    render(){
+        const state = store.getState()
+        let userType = state['loginState']['payload']["accType"]
+        let isAdmin = userType === "admin"
 
-            <form className='form'>
-              <textarea
-                className='inputGroup'
-                placeholder='Bid Value in (CAD) '
-              ></textarea>
-              <textarea
-                className='inputGroup'
-                placeholder='Your message here'
-              ></textarea>
-              <br></br>
-              <input type='submit' value='Submit' className='btn btn' />
-            </form>
-          </div>
+        const adminDel = (
+        <Button className='title-button btn btnDefault'>
+            Delete Post
+        </Button>
+        )
+        const userReports = (
+            <Button className='title-button btn btnDefault'>
+              Report Post
+            </Button>
+          )
+
+        return (
+        <section className='mainBackground'>
+            <div className="containerDetailedPosts">
+                {/*Title of Post + Bidding progress*/}
+                <div>
+                    {isAdmin ? adminDel: userReports }  
+                    <h1 className="postTitleColour"> Name of Post </h1>
+                </div>
+                  <form className='form'>
+                    <textarea
+                      className='inputGroup'
+                      placeholder='Bid Value in (CAD) '
+                    ></textarea>
+                    <textarea
+                      className='inputGroup'
+                      placeholder='Your message here'
+                    ></textarea>
+                    <br></br>
+                    <input type='submit' value='Submit' className='btn btn' />
+                  </form>
+                </div>
+
 
           {/* Information on product */}
           <div className='posts'>

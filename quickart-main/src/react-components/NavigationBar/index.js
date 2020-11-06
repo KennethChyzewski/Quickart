@@ -12,7 +12,7 @@ class NavigationBar extends React.Component {
     const state = store.getState()
     let login = state['loginState']
     let isLoggedIn = (Object.keys(login).length !== 0) ? true : false;
-
+  
     const notLoggedInNavBar = (
       <ul>
             <li id='navAbout'>
@@ -43,12 +43,38 @@ class NavigationBar extends React.Component {
             </li>
       </ul>
     );
+
+
+    const adminHome = (
+      <Link to='/userReports'>
+          <i className='fas fa-shopping-cart'></i> Quickart
+      </Link>
+    )
+    const userHome = (
+      <Link to='/posts'>
+          <i className='fas fa-shopping-cart'></i> Quickart
+      </Link>
+    )
+    const loginHome = (
+      <Link to='/'>
+          <i className='fas fa-shopping-cart'></i> Quickart
+      </Link>
+    )
+    
+    function redirector(){
+      if(isLoggedIn){
+        let userType = state['loginState']['payload']['accType'];
+        let isAdmin = userType === "admin";
+        return isAdmin ? adminHome : userHome
+      }else{
+        return loginHome
+      }
+    }
+    
     return (
       <nav className='navbar backgroundBlue'>
         <h1>
-          <Link to='/'>
-            <i className='fas fa-shopping-cart'></i> Quickart
-          </Link>
+          {redirector()}
         </h1>
         { isLoggedIn ? <div>{ loggedInNavBar }</div> : <div>{ notLoggedInNavBar }</div> }
       </nav>

@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import store from '../../store';
 import './styles.css';
 
 /* Component for the Edit User Profile's Page*/
 class EditProfilesPage extends React.Component {
   render() {
+    const state = store.getState()
+    let userType = state['loginState']['payload']["accType"]
+    let isAdmin = userType === "admin"
+
+    const niche = (
+      <div className='form-group'>
+        <textarea className='inputGroup' placeholder='Niche'></textarea>
+      </div>
+    )
     return (
       <section className='mainBackground-editProfile'>
         <div className='containerForm'>
@@ -56,7 +65,10 @@ class EditProfilesPage extends React.Component {
               value='Submit'
               className='btn btnDefault-editProfile'
             />
-            <Link to='/' className='btn btnDelete-Account'>
+            <Link to='/' className='btn btn Delete-Account'>
+            {isAdmin ? "":niche}
+            <input type='submit' value='Submit' className='btn btnDefault' />
+            <Link to='/' className='btn btn'>
               Delete my Account
             </Link>
           </form>

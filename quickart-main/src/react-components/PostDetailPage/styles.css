@@ -52,3 +52,12 @@
   margin-bottom: 1rem;
   font-size: medium;
 }
+
+.title-left {
+  display: inline-block;
+}
+.title-button{
+  float:right;
+  
+}
+
