@@ -78,3 +78,22 @@
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.btn.btnDefaultReportPost {
+  background-color: rgb(217, 230, 41);
+  color: #333;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  top: 8px;
+}
+
+.btn.btnDefaultDeletePost {
+  background-color: rgb(236, 59, 59);
+  color: #333;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  top: 8px;
+}

@@ -15,10 +15,14 @@ class DetailedPost extends React.Component {
     let isAdmin = userType === 'admin';
 
     const adminDel = (
-      <Button className='title-button btn btnDefault'>Delete Post</Button>
+      <Button className='title-button btn btnDefaultDeletePost'>
+        Delete Post
+      </Button>
     );
     const userReports = (
-      <Button className='title-button btn btnDefault'>Report Post</Button>
+      <Button className='title-button btn btnDefaultReportPost'>
+        Report Post
+      </Button>
     );
 
     return (
@@ -124,17 +128,17 @@ class DetailedPost extends React.Component {
           <div className='userContactForm'>
             <h1 className='postTitleColour'> Contact Seller Form </h1>
             <form className='form'>
-              <label className='labelDefault'>Title</label>
+              <label className='labelDefault'>Message Title</label>
               <input
                 className='inputGroup-Posts'
                 type='Title'
-                placeholder='Title'
+                placeholder='Message Title'
               />
               <label className='labelDefault'>Price</label>
               <input
                 className='inputGroup-Posts'
                 type='number'
-                placeholder='Bid Value in (CAD) '
+                placeholder='Price in (CAD)'
               />
               <label className='labelDefault'>Description</label>
               <textarea
