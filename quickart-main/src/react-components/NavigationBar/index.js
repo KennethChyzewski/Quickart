@@ -63,7 +63,7 @@ class NavigationBar extends React.Component {
     
     function redirector(){
       if(isLoggedIn){
-        let userType = state['loginReducer']['payload']['accType'];
+        let userType = state['loginState']['payload']['accType'];
         let isAdmin = userType === "admin";
         return isAdmin ? adminHome : userHome
       }else{

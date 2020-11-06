@@ -8,7 +8,7 @@ import './styles.css';
 class ProfilesPage extends React.Component {
   render() {
     const state = store.getState()
-    let userType = state['loginReducer']['payload']["accType"]
+    let userType = state['loginState']['payload']["accType"]
     let isAdmin = userType === "admin"
 
     const postings = (
