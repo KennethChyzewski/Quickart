@@ -34,12 +34,12 @@ class PostsPage extends React.Component {
     let isAdmin = userType === "admin"
 
     const adminDel = (
-      <button type="button" className='btn btnDefault'>
+      <button type="button" className='btn btnDefault-posts'>
         Delete Post
       </button>
     )
     const userReports = (
-      <button id="userReportBtn" type="button" onClick= {this.open_close_report.bind(this)} className='btn btnDefault'>
+      <button id="userReportBtn" type="button" onClick= {this.open_close_report.bind(this)} className='btn btnDefault-posts'>
         Report Post
       </button>
     )
@@ -135,6 +135,8 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault-posts'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
               <div className='post backgroundWhite'>
@@ -159,6 +161,8 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault-posts'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
               <div className='post backgroundWhite'>
@@ -184,6 +188,8 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault-posts'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
               <div className='post backgroundWhite'>
@@ -211,6 +217,8 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault-posts'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
               <div className='post backgroundWhite'>
@@ -236,6 +244,8 @@ class PostsPage extends React.Component {
                   <Link to='/DetailPosting' className='btn btnDefault-posts'>
                     View
                   </Link>
+                  {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
               <div className='post backgroundWhite'>
@@ -264,9 +274,10 @@ class PostsPage extends React.Component {
                     View
                   </Link>
                   {isAdmin ? adminDel:userReports}
+                  {!isAdmin? reportForm: ""}
                 </div>
 
-                {!isAdmin? reportForm: ""}
+                
 
               </div>
             </div>

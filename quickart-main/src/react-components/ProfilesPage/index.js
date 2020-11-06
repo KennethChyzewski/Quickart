@@ -31,6 +31,7 @@ class ProfilesPage extends React.Component {
         </div>
       </div>
     )
+    
     const niche = (
       <div>
         <h2 className='textDefaultColor'>Niche</h2>
@@ -50,28 +51,30 @@ class ProfilesPage extends React.Component {
       <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
+
             <div className='profile-top backgroundDefault'>
               <img className='profileImg' src={userPicture} alt='' />
               <h1>Johnson Smith</h1>
               <p>Toronto, ON</p>
             </div>
-            <div className='profile-about backgroundGrey '/>
+
             <div className='buttons smallMargin'>
-              <Link to='/editProfile' className='btn btnDefault'>
-                Edit Profile
-              </Link>
-              {isAdmin ? userReports: ""}
+                <Link to='/editProfile' className='btn btnDefault'>
+                  Edit Profile
+                </Link>
+                {isAdmin ? userReports: ""}
             </div>
-            
-            {/*Specific Info */}
-            <h2 className='textDefaultColor'>Biography</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            {isAdmin ? "" : niche}
+
+            <div className='profile-about backgroundGrey '>
+              <h2 className='textDefaultColor'>Biography</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              {isAdmin ? "" : niche}
+            </div>
             {isAdmin ? "" : postings}
-          </div>
+        </div>
         </div>
       </section>
     );
