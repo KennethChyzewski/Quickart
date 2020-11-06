@@ -3,13 +3,22 @@
 } */
 
 .alert-error {
-    background-color: red; 
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: center;
+  width: fit-content;
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  bottom: 60px;
 }
 
 .alert-warning {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 .alert-success {
-    background-color: green;
+  background-color: green;
 }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { signup } from '../../actions/loginActions';
 import store from '../../store';
+import Alert from '../Alert';
 
 import './styles.css';
 
@@ -29,19 +30,19 @@ class RegisterPage extends React.Component {
     e.preventDefault();
     //Checks if any of the Register fields are empty
     if (!this.state.username) {
-      console.log('A username is required.');
-    } else if (!this.state.userLocation) {
-      console.log('A Location is required.');
+      this.props.setAlert('A username is required.', 'error');
     } else if (!this.state.userEmail) {
-      console.log('An Email is required.');
+      this.props.setAlert('An email is required.', 'error');
     } else if (!this.state.userPassword) {
-      console.log('A password is required.');
+      this.props.setAlert('A passwoprd is required.', 'error');
+    } else if (!this.state.userLocation) {
+      this.props.setAlert('A Location is required.', 'error');
     }
     //Confirms whether the user's email and password are the same in both fields
     else if (this.state.userEmail !== this.state.confirmEmail) {
-      console.log('Emails are not the same.');
+      this.props.setAlert('The two emails do not match', 'error');
     } else if (this.state.userPassword !== this.state.confirmPassword) {
-      console.log('Passwords are not the same.');
+      this.props.setAlert('The two passwords do not match', 'error');
     } else {
       //Makes a call to the back-end to create a new user with the data provided
       this.props.signup(this.state);
@@ -65,6 +66,7 @@ class RegisterPage extends React.Component {
     return (
       <section className='mainBackground-register'>
         <div className='containerForm'>
+          <Alert />
           <h1 className='textDefaultColor-Register'>Register</h1>
           <form className='form' onSubmit={this.onSubmitEvent}>
             <label className='labelDefault'>Username</label>
