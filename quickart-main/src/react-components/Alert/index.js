@@ -7,7 +7,7 @@ import './styles.css';
 class Alert extends React.Component {
     render() {
         const state = store.getState()
-        let alerts = state['alertReducer']
+        let alerts = state['alertsState']
         return (
             alerts.map(alert => (
                 <div key={alert.id} className={`alert-${alert.alertType}`}>
@@ -20,7 +20,7 @@ class Alert extends React.Component {
 
 //Map redux state to this components porps
 const mapStateToProps = state => ({
-    alerts: state.alertReducer
+    alerts: state.alertsState
 })
 
 export default connect(mapStateToProps)(Alert);

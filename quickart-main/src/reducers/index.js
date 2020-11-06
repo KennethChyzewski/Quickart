@@ -4,9 +4,9 @@ import loginReducer from "./loginReducer";
 import settingsReducer from "./settingsReducer";
 
 const rootReducer = combineReducers({
-	alertReducer: alertReducer,
-  	loginReducer: loginReducer,
-  	settingsReducer: settingsReducer
+	alertsState: alertReducer,
+  	loginState: loginReducer,
+  	settingsState: settingsReducer
 });
 
 export default rootReducer;

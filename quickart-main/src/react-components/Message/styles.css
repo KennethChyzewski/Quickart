@@ -1,0 +1,59 @@
+.textMessageBoxRight {
+  width: 320px;
+  min-height: 50px;
+
+  margin-left: 635px;
+  margin-right: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.actualMessageRight {
+  margin-left: 7px;
+  font-size: 20px;
+}
+
+.timestampRight {
+  margin-left: 275px;
+  margin-right: 10px;
+  font-size: 10px;
+  color: grey;
+  float: right;
+}
+
+.textMessageBoxLeft {
+  width: 320px;
+  min-height: 50px;
+
+  margin-left: 10px;
+  margin-right: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.actualMessageLeft {
+  margin-left: 6px;
+  font-size: 20px;
+}
+
+
+.timestampLeft {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 10px;
+  color: grey;
+  float: right;
+}
+
+
+

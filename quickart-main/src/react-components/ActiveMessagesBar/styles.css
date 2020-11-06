@@ -1,0 +1,40 @@
+.activeMessagesBox {
+  margin-left: 50px;
+  margin-right: 50px;
+
+  min-height: 137px;
+  width: 60px;
+  float: left;
+}
+
+
+.messageIconContainer{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  height: 60px;
+  width: 60px;
+  float: left;
+}
+
+.messageProfileIcon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  float: right;
+}
+
+
+.messageUsernameContainer {
+  float: inline-block; 
+  width: 520px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+
+
+
+
+
