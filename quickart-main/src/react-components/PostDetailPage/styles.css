@@ -41,12 +41,6 @@
   padding-right: 1rem;
 }
 
-.tagBar {
-  display: inline-block;
-  float: left;
-  cursor: pointer;
-}
-
 .profileDesc {
   margin-top: 1rem;
   margin-bottom: 1rem;

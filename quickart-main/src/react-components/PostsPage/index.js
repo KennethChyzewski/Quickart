@@ -43,7 +43,7 @@ class PostsPage extends React.Component {
         Report Post
       </button>
     )
-
+  
     const reportForm = (
         <div className="formPopUp" id="reportFormContainer">
             <form>
@@ -137,7 +137,8 @@ class PostsPage extends React.Component {
                     View
                   </Link>
                   {isAdmin ? adminDel:userReports}
-                </div>
+                  
+               </div>
               </div>
               {!isAdmin? reportForm: ""}
               <div className='post backgroundWhite'>
