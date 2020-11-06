@@ -235,6 +235,11 @@ p {
   margin: 0.3rem 0;
 }
 
+.tagBar {
+  display: inline;
+  cursor: pointer;
+}
+
 /*Input Forms */
 .inputGroup {
   display: block;
