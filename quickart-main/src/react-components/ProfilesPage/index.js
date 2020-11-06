@@ -8,7 +8,7 @@ import './styles.css';
 class ProfilesPage extends React.Component {
   render() {
     return (
-      <section className='mainBackground'>
+      <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
             <div className='profile-top backgroundDefault'>
@@ -35,7 +35,7 @@ class ProfilesPage extends React.Component {
               <div className='backgroundWhite'>
                 <div>
                   <h4>
-                    <Link to='/login'>Title</Link>
+                    <Link to='/posts'>Title</Link>
                   </h4>
                   <h6>Date</h6>
                   <p>

@@ -4,3 +4,23 @@
 .loginPage__h1-text {
   color: blue;
 }
+
+.mainBackground-login {
+  position: relative;
+  background: url('../../images/background1.jpg') no-repeat center center/cover;
+  height: 150vh;
+}
+
+.textDefaultColor-SignIn {
+  position: relative;
+  bottom: 30px;
+  color: #7a49db;
+}
+
+.btn.btnDefault-SignIn {
+  position: relative;
+  margin: 1.2rem;
+  left: 50px;
+  background-color: #9874e0;
+  color: #333;
+}

@@ -1,0 +1,27 @@
+.mainBackground-editProfile {
+  position: relative;
+  background: url('../../images/background1.jpg') no-repeat center center/cover;
+  height: 150vh;
+}
+
+.btn.btnDefault-editProfile {
+  position: relative;
+  margin: 0.2rem;
+  background-color: #9874e0;
+  color: #333;
+  top: 15px;
+}
+
+.btn.btnDelete-Account {
+  background-color: rgb(231, 78, 78);
+  color: #333;
+  position: relative;
+  margin: 0.2rem;
+  top: 15px;
+}
+
+.textDefaultColor-editProfile {
+  position: relative;
+  bottom: 30px;
+  color: #7a49db;
+}

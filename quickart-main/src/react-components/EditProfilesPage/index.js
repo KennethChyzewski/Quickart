@@ -7,20 +7,16 @@ import './styles.css';
 class EditProfilesPage extends React.Component {
   render() {
     return (
-      <section className='mainBackground'>
+      <section className='mainBackground-editProfile'>
         <div className='containerForm'>
-          <h1 className='textDefaultColor'>Edit Profile</h1>
+          <h1 className='textDefaultColor-editProfile'>Edit Profile</h1>
           <form className='form'>
+            <label className='labelDefault'>Name</label>
             <div className='form-group'>
               <input className='inputGroup' type='text' placeholder='Name' />
             </div>
-            <div className='form-group'>
-              <input
-                className='inputGroup'
-                type='text'
-                placeholder='Location'
-              />
-            </div>
+
+            <label className='labelDefault'>Email Address</label>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -28,6 +24,7 @@ class EditProfilesPage extends React.Component {
                 placeholder='Email Address'
               />
             </div>
+            <label className='labelDefault'>Password</label>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -35,17 +32,31 @@ class EditProfilesPage extends React.Component {
                 placeholder='Password'
               />
             </div>
+            <label className='labelDefault'>Location</label>
+            <div className='form-group'>
+              <input
+                className='inputGroup'
+                type='text'
+                placeholder='Location'
+              />
+            </div>
+            <label className='labelDefault'>Biography</label>
             <div className='form-group'>
               <textarea
                 className='inputGroup'
                 placeholder='Biography'
               ></textarea>
             </div>
+            <label className='labelDefault'>Niche</label>
             <div className='form-group'>
               <textarea className='inputGroup' placeholder='Niche'></textarea>
             </div>
-            <input type='submit' value='Submit' className='btn btnDefault' />
-            <Link to='/' className='btn btn'>
+            <input
+              type='submit'
+              value='Submit'
+              className='btn btnDefault-editProfile'
+            />
+            <Link to='/' className='btn btnDelete-Account'>
               Delete my Account
             </Link>
           </form>

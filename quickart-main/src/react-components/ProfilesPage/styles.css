@@ -1,5 +1,11 @@
 /* Profile Page  */
 
+.mainBackground-profile {
+  position: relative;
+  background: url('../../images/background1.jpg') no-repeat center center/cover;
+  height: 170vh;
+}
+
 .containerProfile {
   max-width: 1100px;
   margin: auto;
@@ -7,6 +13,13 @@
   margin-bottom: 20rem;
   background-color: #333;
   padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  top: 100px;
 }
 
 .profileArea {
@@ -22,6 +35,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 12px 0.8px black;
 }
 
 .profileArea .profile-top img {
@@ -31,6 +45,11 @@
 .profileArea .profile-about {
   grid-area: about;
   text-align: center;
+  box-shadow: 0px 0px 12px 0.8px black;
+}
+
+.profile-posts {
+  box-shadow: 0px 0px 12px 0.8px black;
 }
 
 .profile-post-title {
