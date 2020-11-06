@@ -44,8 +44,8 @@ class DetailedPost extends React.Component {
                     <br></br>
                     <input type='submit' value='Submit' className='btn btn' />
                   </form>
-                </div>
-
+            </div>
+            
 
           {/* Information on product */}
           <div className='posts'>
@@ -130,7 +130,6 @@ class DetailedPost extends React.Component {
                 </ul>
               </div>
             </div>
-          </div>
         </div>
       </section>
     );

@@ -65,7 +65,7 @@ class EditProfilesPage extends React.Component {
               value='Submit'
               className='btn btnDefault-editProfile'
             />
-            <Link to='/' className='btn btn Delete-Account'>
+            <Link to='/' className='btn btn Delete-Account'/>
             {isAdmin ? "":niche}
             <input type='submit' value='Submit' className='btn btnDefault' />
             <Link to='/' className='btn btn'>

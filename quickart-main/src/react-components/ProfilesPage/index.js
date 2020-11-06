@@ -19,13 +19,13 @@ class ProfilesPage extends React.Component {
         <div className='backgroundWhite'>
           <div>
             <h4>
-              <Link to='/login'>Title</Link>
+              <Link to='/posts'>Title</Link>
             </h4>
             <h6>Date</h6>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua.
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna
+              aliqua.
             </p>
           </div>
         </div>
@@ -55,37 +55,21 @@ class ProfilesPage extends React.Component {
               <h1>Johnson Smith</h1>
               <p>Toronto, ON</p>
             </div>
-            <div className='profile-about backgroundGrey '>
+            <div className='profile-about backgroundGrey '/>
             <div className='buttons smallMargin'>
               <Link to='/editProfile' className='btn btnDefault'>
                 Edit Profile
               </Link>
               {isAdmin ? userReports: ""}
             </div>
-              <h2 className='textDefaultColor'>Biography</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              {isAdmin ? "" : niche}
-            <div className='profile-posts'>
-              <div className='profile-post-title'>
-                <h2 className='textDefaultColor'>Posts</h2>
-              </div>
-              <div className='backgroundWhite'>
-                <div>
-                  <h4>
-                    <Link to='/posts'>Title</Link>
-                  </h4>
-                  <h6>Date</h6>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                </div>
-              </div>
-            </div>
+            
+            {/*Specific Info */}
+            <h2 className='textDefaultColor'>Biography</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            {isAdmin ? "" : niche}
             {isAdmin ? "" : postings}
           </div>
         </div>
