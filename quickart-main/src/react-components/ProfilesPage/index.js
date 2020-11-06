@@ -47,7 +47,7 @@ class ProfilesPage extends React.Component {
     )
 
     return (
-      <section className='mainBackground'>
+      <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
             <div className='profile-top backgroundDefault'>
@@ -68,6 +68,23 @@ class ProfilesPage extends React.Component {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
               {isAdmin ? "" : niche}
+            <div className='profile-posts'>
+              <div className='profile-post-title'>
+                <h2 className='textDefaultColor'>Posts</h2>
+              </div>
+              <div className='backgroundWhite'>
+                <div>
+                  <h4>
+                    <Link to='/posts'>Title</Link>
+                  </h4>
+                  <h6>Date</h6>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                </div>
+              </div>
             </div>
             {isAdmin ? "" : postings}
           </div>

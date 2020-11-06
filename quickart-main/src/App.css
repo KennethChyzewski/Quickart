@@ -21,7 +21,7 @@ ul {
   list-style: none;
 }
 
-p { 
+p {
   color: #000000;
 }
 .addSmallMargin {
@@ -81,14 +81,14 @@ p {
 }
 
 .navbar a:hover {
-  color: #9370db;
+  color: #eee5e5;
 }
 
 /* Backgrounds */
 .mainBackground {
   position: relative;
   background: url('images/background1.jpg') no-repeat center center/cover;
-  height: 200vh;
+  height: 350vh;
 }
 
 /* Background Colors */
@@ -118,17 +118,17 @@ p {
   color: #333;
 }
 
-.produce{
+.produce {
   background-color: lightgreen;
 }
-.grain{
+.grain {
   background-color: goldenrod;
 }
-.meat{
+.meat {
   background-color: pink;
 }
 
-.borderDefault{
+.borderDefault {
   color: #605b4f;
   border-style: groove;
 }
@@ -141,12 +141,12 @@ p {
 }
 
 /* Text Colour */
-.postTitleColour{
+.postTitleColour {
   color: #9370db;
 }
 .informationColour {
   color: #605b4f;
-} 
+}
 .textDefaultColor {
   margin: 5px;
   color: #9370db;
@@ -154,7 +154,7 @@ p {
 
 /* Buttons */
 .btn {
-  background-color: #eee5e5;
+  background-color: #e0dddd;
   padding: 0.4rem 1.3rem;
   margin-right: 0.6rem;
   font-size: 1rem;
@@ -163,6 +163,11 @@ p {
   cursor: pointer;
   outline: none;
   transition: all 0.1s ease-in;
+}
+
+.btn.btnWhite {
+  background-color: #eee5e5;
+  color: #333;
 }
 
 .btn.btnDefault {
@@ -179,7 +184,7 @@ p {
 }
 
 /* Section Containers */
-.tagOption{
+.tagOption {
   border: #000000;
   border-radius: 0.25rem;
   border-style: initial;
@@ -188,27 +193,41 @@ p {
 }
 
 .containerPosts {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   margin-left: 250px;
   overflow: hidden;
   margin-bottom: 20rem;
   background-color: #333;
-  padding: 4rem;
-  float:right;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  top: 100px;
+  left: 200px;
 }
 
 .containerForm {
-  max-width: 1100px;
   margin: auto;
   overflow: hidden;
   margin-bottom: 20rem;
-  background-color: #d3d3d3;
+  background-color: rgb(230, 230, 230);
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  top: 100px;
 }
 
 .form-group {
-  margin: 1.2rem 0;
+  margin: 0.3rem 0;
 }
 
 /*Input Forms */
@@ -216,8 +235,11 @@ p {
   display: block;
   width: 100%;
   padding: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 1px solid black;
 }
 
-
+.labelDefault {
+  font-size: 20px;
+  color: black;
+}

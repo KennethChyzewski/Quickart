@@ -26,29 +26,33 @@ class LoginPage extends React.Component {
     //Checks if any of the login fields are empty
     if (!this.state.username) {
       this.props.setAlert('A username is required.', 'error');
-    }
-    else if (!this.state.userPassword) {
+    } else if (!this.state.userPassword) {
       this.props.setAlert('A password is required.', 'error');
     } else {
       //Makes a call to the back-end to verify the user credentials
       this.props.login(this.state);
       // Check the redux state after trying to login the user
-      const state = store.getState()
-      let loginSuccess = (Object.keys(state['loginState']).length !== 0) ? true : false;
+      const state = store.getState();
+      let loginSuccess =
+        Object.keys(state['loginState']).length !== 0 ? true : false;
       if (loginSuccess) {
-        this.props.history.push('/posts')
+        this.props.history.push('/posts');
       } else {
-        this.props.setAlert('Username or Password is incorrect. Please try again.', 'error')
+        this.props.setAlert(
+          'Username or Password is incorrect. Please try again.',
+          'error'
+        );
       }
     }
   };
 
   render() {
     return (
-      <section className='mainBackground'>
+      <section className='mainBackground-login'>
         <div className='containerForm'>
-          <h1 className='textDefaultColor'>Sign in</h1>
+          <h1 className='textDefaultColor-SignIn'>Sign in</h1>
           <form className='form' onSubmit={this.onSubmitEvent}>
+            <label className='labelDefault'>Username</label>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -58,6 +62,7 @@ class LoginPage extends React.Component {
                 onChange={this.onChangeEvent}
               />
             </div>
+            <label className='labelDefault'>Password</label>
             <div className='form-group'>
               <input
                 className='inputGroup'
@@ -67,7 +72,11 @@ class LoginPage extends React.Component {
                 onChange={this.onChangeEvent}
               />
             </div>
-            <button type='submit' value='Login' className='btn btnDefault'>
+            <button
+              type='submit'
+              value='Login'
+              className='btn btnDefault-SignIn'
+            >
               Login
             </button>
           </form>

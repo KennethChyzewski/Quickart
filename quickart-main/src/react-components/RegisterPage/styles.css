@@ -1,6 +1,26 @@
 /* BEM Naming Convention
 .block__element--modifier */
 
+.mainBackground-register {
+  position: relative;
+  background: url('../../images/background1.jpg') no-repeat center center/cover;
+  height: 150vh;
+}
+
 .registerPage__h1-text {
   color: green;
+}
+
+.textDefaultColor-Register {
+  position: relative;
+  bottom: 30px;
+  color: #7a49db;
+}
+
+.btn.btnDefault-register {
+  position: relative;
+  margin: 1.2rem;
+  left: 45px;
+  background-color: #9874e0;
+  color: #333;
 }
