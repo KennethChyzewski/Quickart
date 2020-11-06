@@ -10,7 +10,7 @@
   position: fixed;
   padding: 0.5rem 1.5rem;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navbar ul {
@@ -33,6 +33,6 @@
   color: rgb(37, 37, 37);
 }
 
-.hide{
-  display: none;  
+.hide {
+  display: none;
 }

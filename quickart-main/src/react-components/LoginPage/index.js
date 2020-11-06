@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { login } from '../../actions/loginActions';
 import store from '../../store';
+import Alert from '../Alert';
 
 import './styles.css';
 
@@ -50,6 +51,7 @@ class LoginPage extends React.Component {
     return (
       <section className='mainBackground-login'>
         <div className='containerForm'>
+          <Alert />
           <h1 className='textDefaultColor-SignIn'>Sign in</h1>
           <form className='form' onSubmit={this.onSubmitEvent}>
             <label className='labelDefault'>Username</label>

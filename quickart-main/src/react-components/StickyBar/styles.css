@@ -1,16 +1,16 @@
 .sideBarContainer {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
   z-index: 1;
-  left: 5px;
+  right: 125px;
   top: 95px;
   overflow: hidden;
   border-radius: 5%;
   padding: 2px 1px 1px 10px;
-  left: 240px;
+  left: 220px;
 }
 
 .searchBar[type='text'] {
