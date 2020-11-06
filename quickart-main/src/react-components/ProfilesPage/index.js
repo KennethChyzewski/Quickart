@@ -51,19 +51,20 @@ class ProfilesPage extends React.Component {
       <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
-
+          <div className='buttons smallMargin'>
+                <Link to='/editProfile' className='btn btnDefault'>
+                  Edit Profile
+                </Link>
+                {isAdmin ? userReports: ""}
+            </div>
+            
             <div className='profile-top backgroundDefault'>
               <img className='profileImg' src={userPicture} alt='' />
               <h1>Johnson Smith</h1>
               <p>Toronto, ON</p>
             </div>
 
-            <div className='buttons smallMargin'>
-                <Link to='/editProfile' className='btn btnDefault'>
-                  Edit Profile
-                </Link>
-                {isAdmin ? userReports: ""}
-            </div>
+            
 
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor'>Biography</h2>

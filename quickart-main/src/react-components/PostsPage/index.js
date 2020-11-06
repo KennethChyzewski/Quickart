@@ -45,30 +45,31 @@ class PostsPage extends React.Component {
     )
 
     const reportForm = (
-      <div className="formPopUp" id="reportFormContainer">
-          <form>
-              <h1>Report User</h1>
-              <h4>Reason: </h4>
-              <select id="reason">
-                <option value="Fake Items">Fake Product</option>
-                <option value="Illegal items">Illegal Items</option>
-                <option value="Other">Other</option>
-              </select>
-              <input
-                className='inputGroup'
-                id='otherReport'
-                type='text'
-                placeholder='Report'
-                onChange={this.onChangeEvent}>
-              </input>
-              <button type='submit' value='report' className='btn btnDefault'>
-                Submit Report
-              </button>
-              <button type="button" className="btn btnDefault" onClick={this.open_close_report.bind(this)}>
-                Close
-              </button>
-          </form>
-      </div>
+        <div className="formPopUp" id="reportFormContainer">
+            <form>
+                <h1>Report User</h1>
+                <h4>Reason: </h4>
+                <select id="reason">
+                  <option value="Fake Items">Fake Product</option>
+                  <option value="Illegal items">Illegal Items</option>
+                  <option value="Other">Other</option>
+                </select>
+                <textarea
+                  className='inputGroup'
+                  id='otherReport'
+                  type='text'
+                  placeholder='Description of Report'
+                  onChange={this.onChangeEvent}>
+                </textarea>
+                <br></br>
+                <button type='submit' value='report' className='btn btnDefault-posts'>
+                  Submit Report
+                </button>
+                <button type="button" className="btn btnDefault-posts" onClick={this.open_close_report.bind(this)}>
+                  Close
+                </button>
+            </form>
+        </div>
     )
     
 
@@ -136,9 +137,9 @@ class PostsPage extends React.Component {
                     View
                   </Link>
                   {isAdmin ? adminDel:userReports}
-                  {!isAdmin? reportForm: ""}
                 </div>
               </div>
+              {!isAdmin? reportForm: ""}
               <div className='post backgroundWhite'>
                 <div className='lefttGridPost'>
                   <Link to='/profile'>
