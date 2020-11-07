@@ -1,6 +1,6 @@
 # team38 - Quickart
 
-### How to Start up application
+### How to Start up and run the web application
 ```
 1. cd quickart-main/ 
 2. npm install  
@@ -14,12 +14,14 @@
 3. To view more details of an example post, click the 'view' button or feel free to navigate between the different pages found on the top right of the navigation bar. 
 
 ### Quickart Features
-1. Welcome page with an about page introducing to the user Quickart's main goal and purpose. 
+1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
 2. Registration form
 3. Create new post 
-4. View more details about a post 
+4. View more details about a specific post 
 5. Report a post
-6. Edit User profile
+6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
+7. Private messages between users
+8. Edit User profile
 
 ***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended.*** 
 
@@ -45,7 +47,7 @@ git pull
 cd quickart-main 
 npm install 
 ```
-### Onto your own Branch
+### Creating a new branch
 ```
 git checkout -b [Name]/[Task/BugFix/EmergencyFix/etc]/[NameOfTask]
 ```
