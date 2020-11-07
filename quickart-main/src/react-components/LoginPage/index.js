@@ -29,7 +29,12 @@ class LoginPage extends React.Component {
       this.props.setAlert('A username is required.', 'error');
     } else if (!this.state.userPassword) {
       this.props.setAlert('A password is required.', 'error');
-    } else {
+
+      //Checks if it's a valid user/password combination. (Hardcoding the regular user account, user/user due to the lack of a back-end and database)
+    } else if (
+      (this.state.username == 'user' && this.state.userPassword == 'user') ||
+      (this.state.username == 'admin' && this.state.userPassword == 'admin')
+    ) {
       //Makes a call to the back-end to verify the user credentials
       this.props.login(this.state);
       // Check the redux state after trying to login the user
@@ -44,6 +49,9 @@ class LoginPage extends React.Component {
           'error'
         );
       }
+      //For any invalid username and password combinations
+    } else {
+      this.props.setAlert('Invalid username and password', 'error');
     }
   };
 
