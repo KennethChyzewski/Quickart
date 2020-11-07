@@ -5,6 +5,7 @@ import StickyBar from '../StickyBar';
 import { connect } from 'react-redux';
 import store from '../../store';
 import './styles.css';
+import { posts } from '../../allPosts';
 
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
@@ -38,6 +39,7 @@ class PostsPage extends React.Component {
         Delete Post
       </button>
     );
+
     const userReports = (
       <button
         id='userReportBtn'
@@ -80,6 +82,30 @@ class PostsPage extends React.Component {
       </div>
     );
 
+    const postItems = posts.map(post => (
+      <div className='post backgroundWhite'>
+        <div className='lefttGridPost'>
+          <Link to='/profile'>
+            <img className='circleImgPosts' src={userPicture} alt='' />
+            <h4 className='postUser'>{post.postedBy}</h4>
+          </Link>
+        </div>
+        <div className='rightGridPost'>
+          <h3>{post.title}</h3>
+          <h4>{post.price}</h4>
+          <p className='smallMargin'>{post.info}</p>
+          <button className='btn regularButton'>
+            <span>Likes: {post.likes}</span>
+          </button>
+          <Link to='/DetailPosting' className='btn btnDefault-posts'>
+            View
+          </Link>
+          {isAdmin ? adminDel : userReports}
+          {!isAdmin ? reportForm : ''}
+        </div>
+      </div>
+    ));
+
     return (
       <section className='mainBackground'>
         <div className='stickyBarPosts'>
@@ -121,173 +147,8 @@ class PostsPage extends React.Component {
                 />
               </form>
             </div>
-            <div className='allPosts'>
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 1</h3>
-                  <h4>$1.67</h4>
-                  <p className='smallMargin'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <button className='btn regularButton'>
-                    <span>Likes: 2</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-                  {isAdmin ? adminDel : userReports}
-                </div>
-              </div>
-              {!isAdmin ? reportForm : ''}
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 2</h3>
-                  <h4>$7.89</h4>
-                  <p className='smallMargin'>
-                    Doming dignissim vix ut, et virtute albucius eam, exerci
-                    definitionem ne vim. Ea his dicat causae delectus. Ad option
-                    accusam mnesarchum per, at tantas discere duo. Quo ut simul
-                    laudem, choro dictas nam ex. Sit nobis homero percipit et.
-                  </p>
-                  <button className='btn regularButton'>
-                    <span>Likes: 5</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-                  {isAdmin ? adminDel : userReports}
-                  {!isAdmin ? reportForm : ''}
-                </div>
-              </div>
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 3</h3>
-                  <h4>$15.87</h4>
-                  <p className='smallMargin'>
-                    Lorem ipsum dolor sit amet, usu no nostrud iracundia
-                    efficiantur, ad vix iisque liberavisse. Et vivendum
-                    moderatius vim. Id per voluptua voluptaria, nostro officiis
-                    necessitatibus culm in. No mea meis paulo euismod. Nec ea
-                    affert vidisse.
-                  </p>
-                  <button className='btn regularButton'>
-                    <span>Likes: 6</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-                  {isAdmin ? adminDel : userReports}
-                  {!isAdmin ? reportForm : ''}
-                </div>
-              </div>
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 4</h3>
-                  <h4>$11.21</h4>
-                  <p className='smallMargin'>
-                    Mel et libris sensibus moderatius, et usu feugait
-                    posidonium, ea quot ponderum temporibus pro. Sit option
-                    assueverit cu, nominati gubergren suscipiantur ut nec. Sit
-                    esse atqui diceret ad, pro scriptorem efficiantur ut.
-                    Eleifend consequat vim ne, usu ne dolor albucius antiopam,
-                    vis ea admodum detraxit disputando. An mei melius volutpat.
-                    Ad insolens laboramus his, id agam dicunt nec.
-                  </p>
-                  <button className='btn regularButton'>
-                    <span>Likes: 8</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-                  {isAdmin ? adminDel : userReports}
-                  {!isAdmin ? reportForm : ''}
-                </div>
-              </div>
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 5</h3>
-                  <h4>$5.78</h4>
-                  <p className='smallMargin'>
-                    Ius omnis eruditi perfecto id, vis ei porro animal voluptua,
-                    causae euismod pericula et sit. Ex detracto quaerendum quo.
-                    Mea duis malis ullamcorper ad. Usu stet fugit deserunt ea,
-                    et autem nemore vel, ea tractatos concludaturque eam. Nam ne
-                    quem impetus molestiae, pro atqui corpora urbanitas an.
-                  </p>
-                  <button className='btn regularButton'>
-                    <span>Likes: 11</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-                  {isAdmin ? adminDel : userReports}
-                  {!isAdmin ? reportForm : ''}
-                </div>
-              </div>
-              <div className='post backgroundWhite'>
-                <div className='lefttGridPost'>
-                  <Link to='/profile'>
-                    <img className='circleImgPosts' src={userPicture} alt='' />
-                    <h4 className='postUser'>Johnson Smith</h4>
-                  </Link>
-                </div>
-                <div className='rightGridPost'>
-                  <h3>Post Title 6</h3>
-                  <h4>$2.36</h4>
-                  <p className='postDetails smallMargin'>
-                    Quodsi legendos facilisis at sit. Vel nostrum abhorreant
-                    quaerendum ea, alterum gloriatur conceptam ei sea, vim ne
-                    tation repudiare. Insolens oportere ex vis. Cum vidit
-                    recusabo appellantur in, eu numquam ocurreret eum, has et
-                    scripta abhorreant. Cu habeo nostrud duo, pro sanctus
-                    meliore ponderum eu.
-                  </p>
 
-                  <button className='btn regularButton'>
-                    <span>Likes: 16</span>
-                  </button>
-                  <Link to='/DetailPosting' className='btn btnDefault-posts'>
-                    View
-                  </Link>
-
-                  {isAdmin ? adminDel : userReports}
-                </div>
-
-                {!isAdmin ? reportForm : ''}
-              </div>
-            </div>
+            <div className='allPosts'>{postItems}</div>
           </div>
         </div>
       </section>
