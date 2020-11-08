@@ -101,7 +101,6 @@ class PostsPage extends React.Component {
             View
           </Link>
           {isAdmin ? adminDel : userReports}
-          {!isAdmin ? reportForm : ''}
         </div>
       </div>
     ));
@@ -150,6 +149,7 @@ class PostsPage extends React.Component {
 
             <div className='allPosts'>{postItems}</div>
           </div>
+          {!isAdmin ? reportForm : ''}
         </div>
       </section>
     );
