@@ -67,13 +67,13 @@
 }
 
 .formPopUp {
-  display: none; /* Hidden by default /
-  position: fixed; / Stay in place /
-  z-index: 1; / Sit on top /
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
   top: 10rem;
-  width: 50%; / Full width /
-  height: 30%; / Full height /
-  overflow: auto; / Enable scroll if needed */
+  width: 50%; 
+  height: 30%; 
+  overflow: auto; 
   margin: auto;
   margin-left: 5rem;
   margin-bottom: 5rem;
