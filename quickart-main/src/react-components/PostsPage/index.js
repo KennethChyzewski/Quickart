@@ -101,10 +101,9 @@ class PostsPage extends React.Component {
             View
           </Link>
           {isAdmin ? adminDel : userReports}
-          {!isAdmin ? reportForm : ''}
         </div>
-      </div>
-    ));
+	  </div>
+	));
 
     return (
       <section className='mainBackground'>
@@ -147,8 +146,10 @@ class PostsPage extends React.Component {
                 />
               </form>
             </div>
-
-            <div className='allPosts'>{postItems}</div>
+            <div className='allPosts'>
+				{postItems}
+			</div>
+			{!isAdmin ? reportForm : ''}
           </div>
         </div>
       </section>
