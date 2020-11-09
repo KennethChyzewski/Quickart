@@ -15,13 +15,15 @@
 
 ### Quickart Features
 1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
-2. Registration form
-3. Create new post 
-4. View more details about a specific post 
-5. Report a post
+2. Registration form.
+3. Create new post. 
+4. View more details about a specific post. 
+5. Report a post.
 6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
-7. Private messages between users
-8. Edit User profile
+7. Private messages between users.
+8. Liking individual messages by double clicking messages in the messages page.
+9. Vanish mode where conversations are not saved to a database in messages. 
+10. Edit User profile.
 
 ***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended.*** 
 
