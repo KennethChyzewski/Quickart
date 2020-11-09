@@ -94,8 +94,11 @@ class PostsPage extends React.Component {
           <h3>{post.title}</h3>
           <h4>{post.price}</h4>
           <p className='smallMargin'>{post.info}</p>
-          <button className='btn regularButton'>
+          <button className='btn regularButton likes'>
             <span>Likes: {post.likes}</span>
+          </button>
+          <button className='btn regularButton dislikes'>
+            <span>Dislikes: {post.dislikes}</span>
           </button>
           <Link to='/DetailPosting' className='btn btnDefault-posts'>
             View

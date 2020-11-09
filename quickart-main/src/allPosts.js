@@ -6,6 +6,7 @@ export const post1 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 2,
+  dislikes: 8
 };
 
 export const post2 = {
@@ -16,6 +17,7 @@ export const post2 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 6,
+  dislikes: 3
 };
 
 export const posts = [post1, post2];
