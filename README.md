@@ -27,7 +27,7 @@
 9. Vanish mode where conversations are not saved to a database in messages. 
 10. Edit User profile.
 
-***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended.*** 
+***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended. Please also do not refresh the page.*** 
 
 ### Login Credentials 
 Regular User: \
