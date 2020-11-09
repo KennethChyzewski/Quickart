@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: solid 1px #9370db;
+  border-bottom: solid 1px #9046cf;
   position: fixed;
   padding: 0.5rem 1.5rem;
   width: 100%;
@@ -24,7 +24,7 @@
 }
 
 .navbar a:hover {
-  color: #9370db;
+  color: #9046cf;
 }
 
 /* Background Colors */

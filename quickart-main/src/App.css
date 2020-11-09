@@ -13,7 +13,7 @@ body {
 }
 
 a {
-  color: #9370db;
+  color: #9046cf;
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: solid 1px #9370db;
+  border-bottom: solid 1px #adb9e3;
   position: fixed;
   padding: 0.5rem 1.5rem;
   width: 100%;
@@ -97,7 +97,7 @@ p {
   color: rgb(37, 37, 37);
 }
 .backgroundDefault {
-  background-color: #9370db;
+  background-color: #9046cf;
   color: #333;
 }
 
@@ -114,7 +114,7 @@ p {
 }
 
 .backgroundDefault {
-  background-color: #9370db;
+  background-color: #adb9e3;
   color: #333;
 }
 
@@ -142,14 +142,14 @@ p {
 
 /* Text Colour */
 .postTitleColour {
-  color: #9370db;
+  color: #9046cf;
 }
 .informationColour {
   color: #605b4f;
 }
 .textDefaultColor {
   margin: 5px;
-  color: #9370db;
+  color: #9046cf;
 }
 
 .textBlackColor {
@@ -176,12 +176,12 @@ p {
 }
 
 .btn.btnDefault {
-  background-color: #9874e0;
+  background-color: #adb9e3;
   color: #333;
 }
 
 .btn.btnDefault:hover {
-  background: #a284e0;
+  background: #99a9e6;
 }
 
 .btn:hover {

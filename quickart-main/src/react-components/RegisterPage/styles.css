@@ -14,13 +14,13 @@
 .textDefaultColor-Register {
   position: relative;
   bottom: 30px;
-  color: #7a49db;
+  color: #9046cf;
 }
 
 .btn.btnDefault-register {
   position: relative;
   margin: 1.2rem;
   left: 45px;
-  background-color: #9874e0;
+  background-color: #adb9e3;
   color: #333;
 }
