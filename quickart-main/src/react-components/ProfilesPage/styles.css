@@ -59,3 +59,7 @@
 .profileImg {
   border-radius: 50%;
 }
+
+.addSomeMargin {
+  margin: 5px;
+}
