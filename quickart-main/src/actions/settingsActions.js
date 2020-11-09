@@ -1,4 +1,26 @@
-import { PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
+import { PROFILE_SETTINGS_RETRIEVED, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
+
+//Hardcoded Phase 1 data
+import { userSettings } from '../allSettings';
+
+export function getSettings(credentials) {
+  return (dispatch, getState) => {
+    // connection to Mongo DB and try to get the user's settings
+    // if we were able to successfully connect and change the user's settings
+    dispatch({
+      type: PROFILE_SETTINGS_RETRIEVED,
+      payload: { 
+        msg: 'settingsActions GET happened',
+        userSettings
+      }
+    })
+    // if any of the catches trigger, meaning connection or update failed
+    // dispatch({
+    //   type: PROFILE_UPDATE_FAILED,
+    //   payload: { msg: 'settingsActions UPDATE happened' }
+    // })
+  };
+}
 
 export function updateProfile(profileDetails) {
   return (dispatch, getState) => {
@@ -8,7 +30,7 @@ export function updateProfile(profileDetails) {
       type: PROFILE_UPDATE_SUCCESS,
       payload: { 
         msg: 'settingsActions UPDATE happened',
-        profileDetails
+        userSettings: profileDetails
       }
     })
     // if any of the catches trigger, meaning connection or update failed

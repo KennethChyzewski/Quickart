@@ -12,29 +12,31 @@ import './styles.css';
 /* Component for the Edit User Profile's Page*/
 class EditProfilesPage extends React.Component {
   state = {
-    name: '',
-    email: '',
-    password: '',
-    location: '',
-    biography: '',
-    niche: ''
+    name: 'Name',
+    email: 'Email@Email.com',
+    password: '****',
+    location: 'Toronto',
+    biography: 'I Like food',
+    niche: 'Harvest'
   };
 
   onChangeEvent = e => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
+    // this.setState({
+    //   [e.target.id]: e.target.value,
+    // });
+    this.state[e.target.id] = e.target.value
   };
 
   onSubmitEvent = e => {
     e.preventDefault();
-
+      //Update the redux state
       this.props.updateProfile(this.state);
       // Check the redux state after trying to login the user
       const state = store.getState();
       let updateSuccess =
         Object.keys(state['settingsState']).length !== 0 ? true : false;
       if (updateSuccess) {
+        //Redirect the user
         this.props.history.push('/posts');
       } else {
         this.props.setAlert(
@@ -50,6 +52,12 @@ class EditProfilesPage extends React.Component {
     // let test1 = test['payload']
     // let test2 = test1['accType']
     let isAdmin = false //test === "admin"
+    // Copy redux state into component's local state
+    let temp = store.getState();
+    this.state = temp['settingsState']['payload']['userSettings']
+    // this.setState({ dealersOverallTotal: total }, () => {
+    //   console.log(this.state.dealersOverallTotal, 'dealersOverallTotal1');
+    // }); 
 
     const niche = (
       <div className='form-group'>
@@ -68,7 +76,7 @@ class EditProfilesPage extends React.Component {
                 id='name'
                 className='inputGroup'
                 type='text' 
-                placeholder='Name'
+                placeholder={this.state.name}
                 onChange={this.onChangeEvent} />
             </div>
 
@@ -78,7 +86,7 @@ class EditProfilesPage extends React.Component {
                 id='email'
                 className='inputGroup'
                 type='email'
-                placeholder='Email Address'
+                placeholder={this.state.email}
                 onChange={this.onChangeEvent}
               />
             </div>
@@ -88,7 +96,7 @@ class EditProfilesPage extends React.Component {
                 id='password'
                 className='inputGroup'
                 type='password'
-                placeholder='Password'
+                placeholder={this.state.password}
                 onChange={this.onChangeEvent}
               />
             </div>
@@ -98,7 +106,7 @@ class EditProfilesPage extends React.Component {
                 id='location'
                 className='inputGroup'
                 type='text'
-                placeholder='Location'
+                placeholder={this.state.location}
                 onChange={this.onChangeEvent}
               />
             </div>
@@ -107,7 +115,7 @@ class EditProfilesPage extends React.Component {
               <textarea
                 id='biography'
                 className='inputGroup'
-                placeholder='Biography'
+                placeholder={this.state.biography}
                 onChange={this.onChangeEvent}
               ></textarea>
             </div>
@@ -116,7 +124,7 @@ class EditProfilesPage extends React.Component {
               <textarea 
                 id='niche'
                 className='inputGroup'
-                placeholder='Niche'
+                placeholder={this.state.niche}
                 onChange={this.onChangeEvent}></textarea>
             </div>
             {/* <input
@@ -132,7 +140,7 @@ class EditProfilesPage extends React.Component {
               Submit
             </button>
 
-            {isAdmin ? "":niche}
+            {/* {isAdmin ? "":niche} */}
             {/* <input type='submit' value='Submit' className='btn btnDefault' /> */}
             <Link to='/' className='btn btnDefault'>
               Delete my Account
@@ -143,5 +151,10 @@ class EditProfilesPage extends React.Component {
     );
   }
 }
+
+//Map redux state to this components porps
+// const mapStateToProps = state => ({
+//   settings: state.settingsState
+// })
 
 export default withRouter(connect(null, { updateProfile, setAlert })(EditProfilesPage));

@@ -7,9 +7,11 @@ import './styles.css';
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
   render() {
-    const state = store.getState()
-    let userType = state['loginState']['payload']["accType"]
+    const temp = store.getState()
+    let userType = temp['loginState']['payload']["accType"]
     let isAdmin = userType === "admin"
+
+    this.state = temp['settingsState']['payload']['userSettings']
 
     const postings = (
       <div className='profile-posts'>
@@ -36,8 +38,9 @@ class ProfilesPage extends React.Component {
       <div>
         <h2 className='textDefaultColor'>Niche</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          {this.state.niche}
+          {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
         </p>
       </div>
     )
@@ -60,8 +63,10 @@ class ProfilesPage extends React.Component {
             
             <div className='profile-top backgroundDefault'>
               <img className='profileImg' src={userPicture} alt='' />
-              <h1>Johnson Smith</h1>
-              <p>Toronto, ON</p>
+              {/* <h1>Johnson Smith</h1>
+              <p>Toronto, ON</p> */}
+              <h1>{this.state.name}</h1>
+              <p>{this.state.location}</p>
             </div>
 
             
@@ -69,8 +74,9 @@ class ProfilesPage extends React.Component {
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor'>Biography</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {this.state.biography}
+                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
               </p>
               {isAdmin ? "" : niche}
             </div>
