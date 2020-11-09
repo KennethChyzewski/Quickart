@@ -39,17 +39,21 @@ class StickyBar extends React.Component {
           <div className='filter'>
             <div id='Tag-Content' className='tagContent'>
               <div className='tagCheckbox'>
-                <input type='checkbox' id='Location1' name='Location1'></input>
-                <label>Toronto</label>
+                <input
+                  type='checkbox'
+                  id='Location1'
+                  className='Location1'
+                ></input>
+                <label> Toronto</label>
                 <br></br>
                 <input type='checkbox' id='Location1' name='Location1'></input>
-                <label>Ottawa</label>
+                <label> Ottawa</label>
                 <br></br>
                 <input type='checkbox' id='Location1' name='Location1'></input>
-                <label>Mississauga</label>
+                <label> Mississauga</label>
                 <br></br>
                 <input type='checkbox' id='Location1' name='Location1'></input>
-                <label>Markham</label>
+                <label> Markham</label>
                 <br></br>
               </div>
             </div>

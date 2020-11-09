@@ -82,6 +82,9 @@ class PostsPage extends React.Component {
       </div>
     );
 
+    {
+      /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
+    }
     const postItems = posts.map(post => (
       <div className='post backgroundWhite'>
         <div className='lefttGridPost'>
@@ -134,7 +137,15 @@ class PostsPage extends React.Component {
                 <input className='inputGroup-Posts' type='date' />
                 <label className='labelDefault'>Picture</label>
                 <input className='inputGroup-Posts' type='file' />
+                <label className='labelDefault'>Pickup/Delivery Options</label>
+                <input
+                  className='inputGroup-Posts'
+                  type='text'
+                  placeholder='Pickup/Delivery Options'
+                />
                 <label className='labelDefault'>Description</label>
+                <label className='labelDefault'>Post End Date</label>
+
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'

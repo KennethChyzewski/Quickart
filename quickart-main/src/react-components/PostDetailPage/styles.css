@@ -60,7 +60,6 @@
   padding-right: 1rem;
 }
 
-
 .tagBar {
   display: inline-block;
   cursor: pointer;
@@ -135,7 +134,7 @@
 }
 
 .btn.btnDefault-Detail {
-  background-color: #9874e0;
+  background-color: #adb9e3;
   color: #333;
   border: none;
   cursor: pointer;
