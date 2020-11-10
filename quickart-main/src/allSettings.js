@@ -1,11 +1,11 @@
 export let userSettings = {
   // id: 0,
-  name: 'bob',
-  email: 'bob@bob.com',
-  password: '****',
+  name: 'Johnson Smith',
+  email: 'johnson@smith.com',
+  password: '********',
   location: 'Earth',
-  biography: 'Very cool',
-  niche: 'Test'
+  biography: 'Cool guy',
+  niche: 'Food'
 };
   
 export const adminSettings = {

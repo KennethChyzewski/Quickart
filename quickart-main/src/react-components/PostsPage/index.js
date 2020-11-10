@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import store from '../../store';
 import './styles.css';
 import { posts } from '../../allPosts';
+import { reportPost } from '../../actions/reportsActions';
+import { setAlert } from '../../actions/alertActions';
 
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
@@ -19,6 +21,24 @@ class PostsPage extends React.Component {
       [e.target.id]: e.target.value,
     });
   };
+
+  onSubmitEvent = e => {
+    e.preventDefault();
+      //Update the redux state
+      this.props.reportPost(this.state);
+      // Check the redux state after trying to login the user
+      //const state = store.getState();
+      // let updateSuccess =
+      //   Object.keys(state['settingsState']).length !== 0 ? true : false;
+      // if (!updateSuccess) {
+      //   this.props.setAlert(
+      //     'Create post failed. Please try again.',
+      //     'error'
+      //   );
+      // }
+      this.open_close_report()
+  };
+  
   open_close_report() {
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
@@ -53,7 +73,8 @@ class PostsPage extends React.Component {
 
     const reportForm = (
       <div className='formPopUp' id='reportFormContainer'>
-        <form>
+        {/* <form> */}
+        <form className='form' onSubmit={this.onSubmitEvent}>
           <h1>Report User</h1>
           <h4>Reason: </h4>
           <select id='reason'>
@@ -169,4 +190,9 @@ class PostsPage extends React.Component {
   }
 }
 
-export default connect(null)(PostsPage);
+// Map redux state to this components porps
+// const mapStateToProps = state => ({
+//   test: state.loginState
+// })
+
+export default connect(null, { setAlert, reportPost})(PostsPage);
