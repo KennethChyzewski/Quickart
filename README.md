@@ -15,8 +15,9 @@
 4. In the messages page, Double click a message from a user to like that specific message.
 5. Click the hush icon to the right of the messages box to enable vanish mode for user conversations. Use the 'enter' key on the keyboard to submit a message.
 6. On the Profiles page, you can view submitted user reports by clicking on the 'User Reports' button.
-7. Feel free to navigate between the different pages found on the top right of the navigation bar.
-8. To log out, click the 'Log Out' button on the top right of the navigation bar. 
+7. You can change your profile settings with the appropriate forms found by clicking the 'Edit Profile' button on the 'Profile' page.
+8. Feel free to navigate between the different pages found on the top right of the navigation bar.
+9. To log out, click the 'Log Out' button on the top right of the navigation bar. 
 
 ### Quickart Features
 1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
