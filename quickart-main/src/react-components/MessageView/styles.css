@@ -1,19 +1,19 @@
 .messagingUsersSidebar {
   background-color: white;
   height: 530px;
-  width: 320px;
+  width: 310px;
   padding: 10px;
   margin-top: 142px;
   margin-left: 50px;
   margin-bottom: 50px;
 
   float: left;
-  overflow: auto;
-
   border-bottom: 1px solid grey;
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   border-top: 1px solid grey;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /*.messageBox {

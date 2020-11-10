@@ -68,12 +68,12 @@ class PostsPage extends React.Component {
             placeholder='Report'
             onChange={this.onChangeEvent}
           ></input>
-          <button type='submit' value='report' className='btn btnDefault'>
+          <button type='submit' value='report' className='btn btnDefault-posts'>
             Submit Report
           </button>
           <button
             type='button'
-            className='btn btnDefault'
+            className='btn btnDefault-posts'
             onClick={this.open_close_report.bind(this)}
           >
             Close
@@ -82,6 +82,9 @@ class PostsPage extends React.Component {
       </div>
     );
 
+    {
+      /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
+    }
     const postItems = posts.map(post => (
       <div className='post backgroundWhite'>
         <div className='lefttGridPost'>
@@ -105,8 +108,8 @@ class PostsPage extends React.Component {
           </Link>
           {isAdmin ? adminDel : userReports}
         </div>
-	  </div>
-	));
+      </div>
+    ));
 
     return (
       <section className='mainBackground'>
@@ -137,7 +140,15 @@ class PostsPage extends React.Component {
                 <input className='inputGroup-Posts' type='date' />
                 <label className='labelDefault'>Picture</label>
                 <input className='inputGroup-Posts' type='file' />
+                <label className='labelDefault'>Pickup/Delivery Options</label>
+                <input
+                  className='inputGroup-Posts'
+                  type='text'
+                  placeholder='Pickup/Delivery Options'
+                />
                 <label className='labelDefault'>Description</label>
+                <label className='labelDefault'>Post End Date</label>
+
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'
@@ -149,10 +160,8 @@ class PostsPage extends React.Component {
                 />
               </form>
             </div>
-            <div className='allPosts'>
-				{postItems}
-			</div>
-			{!isAdmin ? reportForm : ''}
+            <div className='allPosts'>{postItems}</div>
+            {!isAdmin ? reportForm : ''}
           </div>
         </div>
       </section>

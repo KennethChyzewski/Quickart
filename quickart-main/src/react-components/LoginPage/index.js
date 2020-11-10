@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { login } from '../../actions/loginActions';
+import { getSettings } from '../../actions/settingsActions';
 import store from '../../store';
 import Alert from '../Alert';
 
@@ -42,6 +43,7 @@ class LoginPage extends React.Component {
       let loginSuccess =
         Object.keys(state['loginState']).length !== 0 ? true : false;
       if (loginSuccess) {
+        this.props.getSettings(this.state);
         this.props.history.push('/posts');
       } else {
         this.props.setAlert(
@@ -100,4 +102,4 @@ class LoginPage extends React.Component {
 }
 
 // Replace 'null' with the components state we want to pass to the action
-export default withRouter(connect(null, { login, setAlert })(LoginPage));
+export default withRouter(connect(null, { login, setAlert, getSettings })(LoginPage));

@@ -1,4 +1,4 @@
-import { PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
+import { PROFILE_SETTINGS_RETRIEVED, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
 
 const initialState = {
   
@@ -10,6 +10,10 @@ const settingsReducer = (state = initialState, action) => {
   const { type, payload } = action; 
 
   switch (type) {
+    case PROFILE_SETTINGS_RETRIEVED:
+      console.log("profile settings retrieved");
+      return { ...state, payload };
+
     case PROFILE_UPDATE_SUCCESS:
       console.log("profile update success");
       return { ...state, payload };

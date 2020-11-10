@@ -9,40 +9,45 @@ import './styles.css';
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
   render() {
-    const state = store.getState()
-    let userType = state['loginState']['payload']["accType"]
+    const temp = store.getState()
+    let userType = temp['loginState']['payload']["accType"]
     let isAdmin = userType === "admin"
+
+    this.state = temp['settingsState']['payload']['userSettings']
 
     const postings = (
       <div className='profile-posts'>
         <div className='profile-post-title'>
-          <h2 className='textDefaultColor'>Posts</h2>
+          <h2 className='textDefaultColor addSomeMargin'>Posts</h2>
         </div>
         <div className='backgroundWhite'>
           <div>
-            <h3>
-              <Link to='/posts'>Title</Link>
-            </h3>
-            <h4>Date</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua.
+            <h4>
+              <Link className='addSomeMargin' to='/posts'>
+                Title
+              </Link>
+            </h4>
+            <h6 className='addSomeMargin'>Date</h6>
+            <p className='addSomeMargin'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
         </div>
       </div>
-    )
-    
+    );
+
     const niche = (
       <div>
-        <h2 className='textDefaultColor'>Niche</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <h2 className='textDefaultColor addSomeMargin'>Niche</h2>
+        <p className='addSomeMargin'>
+          {this.state.niche}
+          {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
         </p>
       </div>
-    )
+    );
+    
     const tags = (
       <div className='informationColour'>
         <div className='tagBar'>
@@ -78,12 +83,13 @@ class ProfilesPage extends React.Component {
           </ul>
         </div>
       </div>
-    )
+    );
+    
     const userReports = (
       <Link to='/userReports' className='btn btnDefault'>
         User Reports
       </Link>
-    )
+    );
 
     return (
       <section className='mainBackground-profile'>
@@ -95,25 +101,27 @@ class ProfilesPage extends React.Component {
                 </Link>
                 {isAdmin ? "":userReports}
             </div>
-            
+
             <div className='profile-top backgroundDefault'>
               <img className='profileImg' src={userPicture} alt='' />
-              <h1>Johnson Smith</h1>
-              <p>Toronto, ON</p>
+              {/* <h1>Johnson Smith</h1>
+              <p>Toronto, ON</p> */}
+              <h1>{this.state.name}</h1>
+              <p>{this.state.location}</p>
             </div>
 
             <div className='profile-about backgroundGrey '>
-              <h2 className='textDefaultColor'>Biography</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              <h2 className='textDefaultColor addSomeMargin'>Biography</h2>
+              <p className='addSomeMargin'>
+                {this.state.biography}
+                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
               </p>
-              
               {isAdmin ? "" : niche}
               {isAdmin ? "" : tags}
             </div>
-            {isAdmin ? "" : postings}
-        </div>
+            {isAdmin ? '' : postings}
+          </div>
         </div>
       </section>
     );
