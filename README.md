@@ -7,7 +7,7 @@
 3. npm start 
 ```
 
-### How to Use application
+### How to Use the application
 
 1. Click either the login button found on the Welcome Page or Navigation Bar to be redirected to the login form.
 2. Enter login credentials for either a regular user or admin user provided below. This will redirect the user to the main page, the posts page.
