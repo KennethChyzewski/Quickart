@@ -43,6 +43,7 @@ password: admin
 1. React Router
 2. Redux 
 3. Material UI
+4. react-scroll
 
 
 ### Keeping up to date & Branching
