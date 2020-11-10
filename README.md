@@ -46,8 +46,8 @@ password: admin
 
 ### Keeping up to date & Branching
 ```
-git checkout -b master 
 git pull 
+git checkout -b master 
 cd quickart-main 
 npm install 
 ```
@@ -65,3 +65,6 @@ git commit -m '[MeaningfulMessage]'
 git push --set-upstream origin [YourBranchName]
 ```
 Then, on github, create a Pull Request(PR) and request review from everyone.
+
+### Contributors 
+Kenneth Chyzewski, William Gan, Wafiqah Raisa, Zi Shuai(Kevin) Gao
