@@ -23,8 +23,8 @@
 5. Report a post.
 6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
 7. Private messages between users.
-8. Liking individual messages from users.
-9. Vanish mode where conversations are not saved to a database in messages. 
+8. Ability to like and unlike messages sent by users in the chat system by double tapping the message.
+9. Vanish mode feature in the private message system where messages are not saved to a database, allowing users to talk about anything without feeling their privacy is being invaded. 
 10. Edit User profile.
 
 ***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended. Please also do not refresh the page.*** 
