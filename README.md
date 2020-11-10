@@ -26,6 +26,7 @@
 8. Ability to like and unlike messages sent by users in the chat system by double tapping the message.
 9. Vanish mode feature in the private message system where messages are not saved to a database, allowing users to talk about anything without feeling their privacy is being invaded. 
 10. Edit User profile.
+11. View all reports on a user's profile.
 
 ***DISCLAIMER: As this web application currently does not have a back-end and database, some functionalities may not work as intended. Please also do not refresh the page.*** 
 
