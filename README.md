@@ -13,7 +13,7 @@
 2. Enter login credentials for either a regular user or admin user provided below. This will redirect the user to the main page, the posts page.
 3. To view more details of an example post, click the 'view' button or feel free to navigate between the different pages found on the top right of the navigation bar. 
 4. In the messages page, Double click a message from a user to like that specific message.
-5. Click the hush icon to the right of the messages box to enable vanish mode for user conversations. 
+5. Click the hush icon to the right of the messages box to enable vanish mode for user conversations. Use the 'enter' key on the keyboard to submit a message.
 
 ### Quickart Features
 1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
