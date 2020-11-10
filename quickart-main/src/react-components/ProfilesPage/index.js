@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import store from '../../store';
 import './styles.css';
@@ -45,6 +47,44 @@ class ProfilesPage extends React.Component {
         </p>
       </div>
     );
+    
+    const tags = (
+      <div className='informationColour'>
+        <div className='tagBar'>
+          <h2 className='textDefaultColor'> Tags </h2>
+          <ul className='tagbaritems'>
+            <Button
+              size='small'
+              variant='outlined'
+              href=''
+              startIcon={<AddIcon />}
+              class='tagOption produce'
+            >
+              Apples
+            </Button>
+            <Button
+              size='small'
+              variant='outlined'
+              href=''
+              startIcon={<AddIcon />}
+              class='tagOption grain'
+            >
+              Rice
+            </Button>
+            <Button
+              size='small'
+              variant='outlined'
+              href=''
+              startIcon={<AddIcon />}
+              class='tagOption meat'
+            >
+              Cows
+            </Button>
+          </ul>
+        </div>
+      </div>
+    );
+    
     const userReports = (
       <Link to='/userReports' className='btn btnDefault'>
         User Reports
@@ -55,11 +95,11 @@ class ProfilesPage extends React.Component {
       <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
-            <div className='buttons smallMargin'>
-              <Link to='/editProfile' className='btn btnDefault'>
-                Edit Profile
-              </Link>
-              {isAdmin ? userReports : ''}
+          <div className='buttons smallMargin'>
+                <Link to='/editProfile' className='btn btnDefault'>
+                  Edit Profile
+                </Link>
+                {isAdmin ? "":userReports}
             </div>
 
             <div className='profile-top backgroundDefault'>
@@ -77,7 +117,8 @@ class ProfilesPage extends React.Component {
                 {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
               </p>
-              {isAdmin ? '' : niche}
+              {isAdmin ? "" : niche}
+              {isAdmin ? "" : tags}
             </div>
             {isAdmin ? '' : postings}
           </div>

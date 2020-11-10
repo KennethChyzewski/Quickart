@@ -236,7 +236,7 @@ p {
 }
 
 .tagBar {
-  display: inline;
+  display: inline-block;
   cursor: pointer;
 }
 

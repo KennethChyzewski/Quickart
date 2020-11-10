@@ -135,11 +135,10 @@ class EditProfilesPage extends React.Component {
             <button
               type='submit'
               value='Submit'
-              className='btn btnDefault-SignIn'
+              className='btn btnDefault'
             >
               Submit
             </button>
-
             {/* {isAdmin ? "":niche} */}
             {/* <input type='submit' value='Submit' className='btn btnDefault' /> */}
             <Link to='/' className='btn btnDefault'>

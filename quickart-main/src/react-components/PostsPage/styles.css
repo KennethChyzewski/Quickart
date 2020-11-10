@@ -101,3 +101,10 @@
   position: relative;
   top: 8px;
 }
+
+.dislikes {
+  background-color: #B33951;
+}
+.likes{
+  background-color:  #91C7B1;
+}
