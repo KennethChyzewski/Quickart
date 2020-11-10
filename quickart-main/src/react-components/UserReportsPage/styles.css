@@ -12,3 +12,28 @@
   width: 100px;
   height: 100px;
 }
+
+.containerPosts-report {
+  max-width: 1200px;
+  margin: auto;
+  margin-left: 250px;
+  overflow: hidden;
+  margin-bottom: 20rem;
+  background-color: #333;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  top: 150px;
+  left: 200px;
+}
+
+.btn.btnDefault-report {
+  background-color: #adb9e3;
+  color: #333;
+  position: relative;
+  top: 10px;
+}
