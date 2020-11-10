@@ -9,7 +9,7 @@ export const post1 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 2,
-  dislikes: 8
+  dislikes: 8,
 };
 
 export const post2 = {
@@ -23,7 +23,7 @@ export const post2 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 6,
-  dislikes: 3
+  dislikes: 3,
 };
 
 export const post3 = {
@@ -37,6 +37,7 @@ export const post3 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 7,
+  dislikes: 0,
 };
 
 export const post4 = {
@@ -50,6 +51,7 @@ export const post4 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 8,
+  dislikes: 5,
 };
 
 export const post5 = {
@@ -63,6 +65,7 @@ export const post5 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 9,
+  dislikes: 2,
 };
 
 export const posts = [post1, post2, post3, post4, post5];
