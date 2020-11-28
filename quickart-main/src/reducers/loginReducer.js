@@ -1,6 +1,10 @@
 import { VALID_LOGIN, INVALID_LOGIN, VALID_SIGNUP, INVALID_SIGNUP, SIGN_OUT } from '../constants';
 
 const initialState = {
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
+  loading: true,
+  user: null
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -19,11 +23,14 @@ const loginReducer = (state = initialState, action) => {
 
     case VALID_SIGNUP:
       console.log("Signup Success");
-      return { ...state, payload };
+      localStorage.setItem('token', payload.token);
+      return { ...state, ...payload, isAuthenticated: true, loading: false };
 
     case INVALID_SIGNUP:
       // return { ...state, payload };
-      return {} //Needs to be empty for NavBar update
+      localStorage.removeItem('token');
+      return { ...state, ...payload, token: null, isAuthenticated: false, loading: false };
+      //return {} //Needs to be empty for NavBar update
 
     case SIGN_OUT:
       console.log("Signed out");

@@ -72,5 +72,13 @@ git push --set-upstream origin [YourBranchName]
 ```
 Then, on github, create a Pull Request(PR) and request review from everyone.
 
+
+### To test API endpoints and database configuration
+Open a new terminal
+```
+cd quickart-main/
+npm run server
+```
+
 ### Contributors 
 Kenneth Chyzewski, William Gan, Wafiqah Raisa, Zi Shuai(Kevin) Gao
