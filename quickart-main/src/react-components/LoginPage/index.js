@@ -44,7 +44,7 @@ class LoginPage extends React.Component {
         Object.keys(state['loginState']).length !== 0 ? true : false;
       if (loginSuccess) {
         this.props.getSettings(this.state);
-        this.props.history.push('/posts');
+        this.props.history.push('/profile');
       } else {
         this.props.setAlert(
           'Username or Password is incorrect. Please try again.',
