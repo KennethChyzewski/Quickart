@@ -51,7 +51,7 @@ class PostsPage extends React.Component {
 
   render() {
     const store_state = store.getState();
-    let userType = store_state['loginState']['payload']['accType'];
+    let userType = store_state['loginState']['user'];
     let isAdmin = userType === 'admin';
 
     const adminDel = (

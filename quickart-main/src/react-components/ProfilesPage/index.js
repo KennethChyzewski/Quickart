@@ -9,8 +9,9 @@ import './styles.css';
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
   render() {
+    
     const temp = store.getState()
-    let userType = temp['loginState']['payload']["accType"]
+    let userType = temp['loginState']['user'];
     let isAdmin = userType === "admin"
 
     this.state = temp['settingsState']['payload']['userSettings']

@@ -10,8 +10,7 @@ import './styles.css';
 class NavigationBar extends React.Component {
   render() {
     const state = store.getState();
-    let login = state['loginState'];
-    let isLoggedIn = Object.keys(login).length !== 0 ? true : false;
+    let isLoggedIn = state['loginState']['isAuthenticated'] != null ? true : false;
 
     const notLoggedInNavBar = (
       <ul>
@@ -63,8 +62,7 @@ class NavigationBar extends React.Component {
     );
 
     function redirector() {
-      if (state['loginState']['isAuthenticated'] != null) {
-        console.log(state['loginState']['isAuthenticated']);
+      if (isLoggedIn) {
         return userHome;
       } else {
         return loginHome;

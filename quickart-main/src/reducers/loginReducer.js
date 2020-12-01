@@ -24,12 +24,12 @@ const loginReducer = (state = initialState, action) => {
     case VALID_SIGNUP:
       console.log("Signup Success");
       localStorage.setItem('token', payload.token);
-      return { ...state, ...payload, isAuthenticated: true, loading: false };
+      return { ...state, ...payload, isAuthenticated: true, loading: false, user: "user" };
 
     case INVALID_SIGNUP:
       // return { ...state, payload };
       localStorage.removeItem('token');
-      return { ...state, ...payload, token: null, isAuthenticated: false, loading: false };
+      return { ...state, ...payload, token: null, isAuthenticated: false, loading: false};
       //return {} //Needs to be empty for NavBar update
 
     case SIGN_OUT:

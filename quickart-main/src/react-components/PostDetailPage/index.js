@@ -11,7 +11,7 @@ import './styles.css';
 class DetailedPost extends React.Component {
   render() {
     const state = store.getState();
-    let userType = state['loginState']['payload']['accType'];
+    let userType = state['loginState']['user'];
     let isAdmin = userType === 'admin';
 
     const adminDel = (

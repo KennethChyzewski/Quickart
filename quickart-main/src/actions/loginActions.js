@@ -28,6 +28,7 @@ export function login(credentials) {
     var accType = (credentials.username === ADMIN_ACCOUNT) ? "admin" : "user"
     // connection to Mongo DB and try to login the user
     // if we were able to successfully connect and login the user
+
     fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: {
@@ -73,6 +74,7 @@ export function signup(credentials) {
     return (dispatch, getState) => {
       // connection to Mongo DB and try to create a user
       // if we were able to successfully connect and create the user
+      console.log("loginActions Sign Up");
       dispatch({
         type: VALID_SIGNUP,
         payload: { 
