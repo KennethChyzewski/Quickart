@@ -13,8 +13,12 @@ import './styles.css';
 /* Component for the Login Page */
 class LoginPage extends React.Component {
   state = {
-    username: '',
-    userPassword: '',
+    //username: '',
+    //userPassword: '',
+  name: "",
+  email: "test@test.com",
+  password: "",
+  accType: "user"
   };
 
   onChangeEvent = e => {
@@ -26,15 +30,16 @@ class LoginPage extends React.Component {
   onSubmitEvent = e => {
     e.preventDefault();
     //Checks if any of the login fields are empty
-    if (!this.state.username) {
+    if (!this.state.name) {
       this.props.setAlert('A username is required.', 'error');
-    } else if (!this.state.userPassword) {
+    } else if (!this.state.password) {
       this.props.setAlert('A password is required.', 'error');
 
       //Checks if it's a valid user/password combination. (Hardcoding the regular user account, user/user due to the lack of a back-end and database)
     } else if (
-      (this.state.username == 'user' && this.state.userPassword == 'user') ||
-      (this.state.username == 'admin' && this.state.userPassword == 'admin')
+      (this.state.name == 'user' && this.state.password == 'user') ||
+      (this.state.name == 'admin' && this.state.password == 'admin') ||
+      (this.state.name == 'test' && this.state.password == 'password')
     ) {
       //Makes a call to the back-end to verify the user credentials
       this.props.login(this.state);
@@ -68,7 +73,7 @@ class LoginPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='username'
+                id='name'
                 type='text'
                 placeholder='Username'
                 onChange={this.onChangeEvent}
@@ -78,7 +83,7 @@ class LoginPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='userPassword'
+                id='password'
                 type='password'
                 placeholder='Password'
                 onChange={this.onChangeEvent}

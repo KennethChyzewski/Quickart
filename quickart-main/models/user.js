@@ -16,7 +16,8 @@ const UserSchema = new mongoose.Schema({
     },
     accType: {
         type: String,
-        required: true
+        required: true,
+        default: "user"
     },
     avatar: {
         type: String

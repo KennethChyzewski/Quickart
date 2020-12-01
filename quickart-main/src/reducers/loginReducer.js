@@ -15,7 +15,15 @@ const loginReducer = (state = initialState, action) => {
   switch (type) {
     case VALID_LOGIN:
       console.log("Login Success");
-      return { ...state, payload };
+      
+      let result = {}
+      if(payload.name === "admin"){
+        result = { ...state, ...payload, isAuthenticated: true, loading: false, user: "admin" }
+      }else{
+        result = { ...state, ...payload, isAuthenticated: true, loading: false, user: "user" }
+      }
+      //REQUIRES AN OVERHAUL FOR USER TYPE
+      return { ...state, payload};
 
     case INVALID_LOGIN:
       // return { ...state, payload };
