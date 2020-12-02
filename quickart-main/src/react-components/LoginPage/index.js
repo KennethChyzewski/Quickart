@@ -28,7 +28,7 @@ class LoginPage extends React.Component {
     });
   };
 
-  onSubmitEvent = e => {
+  onSubmitEvent = async(e) => {
     e.preventDefault();
     //Checks if any of the login fields are empty
     if (!this.state.name) {
@@ -39,14 +39,10 @@ class LoginPage extends React.Component {
       //Checks if it's a valid user/password combination. (Hardcoding the regular user account, user/user due to the lack of a back-end and database)
     } else{
       //Makes a call to the back-end to verify the user credentials
-      this.props.login(this.state);
+      await this.props.login(this.state);
       // Check the redux state after trying to login the user
-      const state = store.getState();
-      
-      /*
-      let loginSuccess =
-        Object.keys(state['loginState']).length !== 0 ? true : false;
-        console.log(state)
+      const state = await store.getState();
+      let loginSuccess =state['loginState']['isAuthenticated']
       if (loginSuccess) {
         this.props.getSettings(this.state);
         this.props.history.push('/profile');
@@ -55,7 +51,7 @@ class LoginPage extends React.Component {
           'Username or Password is incorrect. Please try again.',
           'error'
         );
-      }*/
+      }
       //For any invalid username and password combinations
     } 
   };

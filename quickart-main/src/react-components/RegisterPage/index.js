@@ -48,9 +48,7 @@ class RegisterPage extends React.Component {
       //This is too fast we need to wait here for the state to get updated
       const state = await store.getState()
       // Need a PROMISE HERE 
-      console.log(state)
       let setupSuccess = state['loginState']['isAuthenticated'];
-      console.log("rope")
       if (setupSuccess) {
         this.props.history.push('/profile');
       } else {
@@ -58,7 +56,6 @@ class RegisterPage extends React.Component {
           'Registration failed. Please try again later.',
           'error'
         );
-        console.log(state)
       }
     }
   };

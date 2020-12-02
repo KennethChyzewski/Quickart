@@ -54,13 +54,11 @@ app.get('/auth', auth, async (req, res) => {
 });
 
 // POST /auth - Login a user
-app.post('/users/auth', [
+app.post('/auth', [
     check('name', 'Please include a valid username').exists(),
     check('password', 'Password is required').exists()
 ],async (req, res) => {
-    console.log("First")
     const errors = validationResult(req);
-    console.log(errors)
     if (!errors.isEmpty()) {
         //if there are errors
         return res.status(400).json({ errors: errors.array() });
@@ -95,7 +93,7 @@ app.post('/users/auth', [
             if (error) {
                 throw error;
             }
-            res.json({ token, email, password });
+            res.json({ token });
         });
     } catch(error) {
         console.error(error.message);

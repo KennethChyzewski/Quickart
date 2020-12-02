@@ -35,7 +35,7 @@ export function login(credentials) {
     })
     
     console.log(passing)
-    fetch('http://localhost:5000/users/auth', {
+    fetch('http://localhost:5000/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export function login(credentials) {
         payload: { 
             msg: 'loginActions LOGIN happened',
             accType: accType,
-            credentials
+            data
         }
       });
     })

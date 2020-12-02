@@ -23,7 +23,7 @@ const loginReducer = (state = initialState, action) => {
         result = { ...state, ...payload, isAuthenticated: true, loading: false, user: "user" }
       }
       //REQUIRES AN OVERHAUL FOR USER TYPE
-      return { ...state, payload};
+      return result;
 
     case INVALID_LOGIN:
       // return { ...state, payload };
