@@ -17,8 +17,9 @@ class LoginPage extends React.Component {
     //userPassword: '',
   name: "",
   email: "test@test.com",
+  avatar: "bruh",
   password: "",
-  accType: "user"
+  date: ""
   };
 
   onChangeEvent = e => {
@@ -36,17 +37,16 @@ class LoginPage extends React.Component {
       this.props.setAlert('A password is required.', 'error');
 
       //Checks if it's a valid user/password combination. (Hardcoding the regular user account, user/user due to the lack of a back-end and database)
-    } else if (
-      (this.state.name == 'user' && this.state.password == 'user') ||
-      (this.state.name == 'admin' && this.state.password == 'admin') ||
-      (this.state.name == 'test' && this.state.password == 'password')
-    ) {
+    } else{
       //Makes a call to the back-end to verify the user credentials
       this.props.login(this.state);
       // Check the redux state after trying to login the user
       const state = store.getState();
+      
+      /*
       let loginSuccess =
         Object.keys(state['loginState']).length !== 0 ? true : false;
+        console.log(state)
       if (loginSuccess) {
         this.props.getSettings(this.state);
         this.props.history.push('/profile');
@@ -55,11 +55,9 @@ class LoginPage extends React.Component {
           'Username or Password is incorrect. Please try again.',
           'error'
         );
-      }
+      }*/
       //For any invalid username and password combinations
-    } else {
-      this.props.setAlert('Invalid username and password', 'error');
-    }
+    } 
   };
 
   render() {

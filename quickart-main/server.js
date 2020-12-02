@@ -55,7 +55,7 @@ app.get('/auth', auth, async (req, res) => {
 
 // POST /auth - Login a user
 app.post('/auth', [
-    check('email', 'Please include a valid email').isEmail(),
+    check('name', 'Please include a valid username').exists(),
     check('password', 'Password is required').exists()
 ], async (req, res) => {
     const errors = validationResult(req);
@@ -64,11 +64,11 @@ app.post('/auth', [
         return res.status(400).json({ errors: errors.array() });
     }
     console.log(req.body);
-    const { email, password } = req.body; //delete later
+    const { name, password } = req.body; //delete later
 
     try {
         // See if user exists, send back an error
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ name });
 
         if (!user) {
             //if no 'return' errors out because res.send() line below, cant send multiple headers

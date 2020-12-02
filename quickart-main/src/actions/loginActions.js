@@ -29,12 +29,17 @@ export function login(credentials) {
     // connection to Mongo DB and try to login the user
     // if we were able to successfully connect and login the user
 
-    fetch('http://localhost:5000/users', {
+    let passing = JSON.stringify({
+      name : credentials.name ,
+      password: credentials.password,
+    })
+
+    fetch('http://localhost:5000/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(credentials),
+      body: passing,
     })
     .then(response => response.json())
     .then(data => {
@@ -75,17 +80,39 @@ export function signup(credentials) {
       // connection to Mongo DB and try to create a user
       // if we were able to successfully connect and create the user
       console.log("loginActions Sign Up");
+    
+    let passing = JSON.stringify({
+                    name : credentials.name ,
+                    email : credentials.email, 
+                    avatar: credentials.avatar,
+                    password: credentials.password,
+                    date: null
+                  })
+    
+    console.log(passing)
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: passing
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Sucess:', data);
       dispatch({
         type: VALID_SIGNUP,
         payload: { 
             msg: 'loginActions LOGIN happened',
             credentials
         }
-      })
-      // if any of the catches trigger, meaning connection or update failed
-      // dispatch({
-      //   type: INVALID_SIGNUP,
-      //   payload: { msg: 'loginActions SIGNUP happened' }
-      // })
-    };
+      });
+    }).catch((error) => {
+      console.error('Error:', error);
+      dispatch({
+        type: INVALID_SIGNUP,
+        payload: { msg: 'loginActions SIGNUP happened' }
+      });
+    });
+  }
 }

@@ -12,12 +12,12 @@ import './styles.css';
 /* Component for the Register Page */
 class RegisterPage extends React.Component {
   state = {
-    username: '',
-    userLocation: '',
-    userEmail: '',
-    confirmEmail: '',
-    userPassword: '',
-    confirmPassword: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmEmail: "",
+    confirmPassword: "",
+    userLocation: ""
   };
 
   onChangeEvent = e => {
@@ -29,31 +29,28 @@ class RegisterPage extends React.Component {
   onSubmitEvent = e => {
     e.preventDefault();
     //Checks if any of the Register fields are empty
-    if (!this.state.username) {
+    if (!this.state.name) {
       this.props.setAlert('A username is required.', 'error');
-    } else if (!this.state.userEmail) {
+    } else if (!this.state.email) {
       this.props.setAlert('An email is required.', 'error');
-    } else if (!this.state.userPassword) {
-      this.props.setAlert('A passwoprd is required.', 'error');
+    } else if (!this.state.password) {
+      this.props.setAlert('A password is required.', 'error');
     } else if (!this.state.userLocation) {
       this.props.setAlert('A Location is required.', 'error');
-    }
-    //Confirms whether the user's email and password are the same in both fields
-    else if (this.state.userEmail !== this.state.confirmEmail) {
+    } else if (this.state.email !== this.state.confirmEmail) {
       this.props.setAlert('The two emails do not match', 'error');
-    } else if (this.state.userPassword !== this.state.confirmPassword) {
+    }else if (this.state.password !== this.state.confirmPassword) {
       this.props.setAlert('The two passwords do not match', 'error');
-    } else {
+    }else {
       //Makes a call to the back-end to create a new user with the data provided
       this.props.signup(this.state);
-      // Check the redux state after trying to signup the user
+      //This is too fast we need to wait here for the state to get updated
       const state = store.getState();
-      let setupSuccess =
-        Object.keys(state['loginState']).length !== 0 ? true : false;
+      
+      let setupSuccess = state['loginState']['isAuthenticated'];
       if (setupSuccess) {
         this.props.history.push('/posts');
       } else {
-        //When would mongodb fail??
         this.props.setAlert(
           'Registration failed. Please try again later.',
           'error'
@@ -73,7 +70,7 @@ class RegisterPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='username'
+                id='name'
                 type='text'
                 placeholder='Ex: Bobby'
                 onChange={this.onChangeEvent}
@@ -83,7 +80,7 @@ class RegisterPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='userEmail'
+                id='email'
                 type='email'
                 placeholder='Ex: Bobby@gmail.com'
                 onChange={this.onChangeEvent}
@@ -103,7 +100,7 @@ class RegisterPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='userPassword'
+                id='password'
                 type='password'
                 placeholder='Ex: BobbyLovesFruits'
                 onChange={this.onChangeEvent}
