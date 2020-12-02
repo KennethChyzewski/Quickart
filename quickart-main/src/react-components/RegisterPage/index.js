@@ -26,7 +26,7 @@ class RegisterPage extends React.Component {
     });
   };
 
-  onSubmitEvent = e => {
+  onSubmitEvent = async(e) => {
     e.preventDefault();
     //Checks if any of the Register fields are empty
     if (!this.state.name) {
@@ -43,18 +43,22 @@ class RegisterPage extends React.Component {
       this.props.setAlert('The two passwords do not match', 'error');
     }else {
       //Makes a call to the back-end to create a new user with the data provided
-      this.props.signup(this.state);
-      //This is too fast we need to wait here for the state to get updated
-      const state = store.getState();
       
+      await this.props.signup(this.state)
+      //This is too fast we need to wait here for the state to get updated
+      const state = await store.getState()
+      // Need a PROMISE HERE 
+      console.log(state)
       let setupSuccess = state['loginState']['isAuthenticated'];
+      console.log("rope")
       if (setupSuccess) {
-        this.props.history.push('/posts');
+        this.props.history.push('/profile');
       } else {
         this.props.setAlert(
           'Registration failed. Please try again later.',
           'error'
         );
+        console.log(state)
       }
     }
   };

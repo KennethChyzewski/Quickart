@@ -33,13 +33,14 @@ export function login(credentials) {
       name : credentials.name ,
       password: credentials.password,
     })
-
-    fetch('http://localhost:5000/auth', {
+    
+    console.log(passing)
+    fetch('http://localhost:5000/users/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: passing,
+      body: passing
     })
     .then(response => response.json())
     .then(data => {
