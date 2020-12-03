@@ -1,21 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,  withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import store from '../../store';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alertActions';
+import { getSettings } from '../../actions/settingsActions';
 import './styles.css';
 
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
-  render() {
+  state = {
     
-    const temp = store.getState()
-    let userType = temp['loginState']['user'];
-    let isAdmin = userType === "admin"
+  }
+  isAdmin = ""
+ 
+  onLoad =  async(e) =>  {
+    const temp = await store.getState()
+    this.state = await temp['loginState']
+    console.log(this.state)
+    this.props.getSettings(await this.state)
+    
+    let userType = await temp['loginState']['user'];
+    this.isAdmin = userType === "admin"
 
-    this.state = temp['settingsState']['payload']['userSettings']
+    
+  }
 
+  render() {
+    this.onLoad()
+    
+    
     const postings = (
       <div className='profile-posts'>
         <div className='profile-post-title'>
@@ -100,7 +116,7 @@ class ProfilesPage extends React.Component {
                 <Link to='/editProfile' className='btn btnDefault'>
                   Edit Profile
                 </Link>
-                {isAdmin ? "":userReports}
+                {this.isAdmin ? "":userReports}
             </div>
 
             <div className='profile-top backgroundDefault'>
@@ -118,10 +134,10 @@ class ProfilesPage extends React.Component {
                 {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
               </p>
-              {isAdmin ? "" : niche}
-              {isAdmin ? "" : tags}
+              {this.isAdmin ? "" : niche}
+              {this.isAdmin ? "" : tags}
             </div>
-            {isAdmin ? '' : postings}
+            {this.isAdmin ? '' : postings}
           </div>
         </div>
       </section>
@@ -129,4 +145,4 @@ class ProfilesPage extends React.Component {
   }
 }
 
-export default ProfilesPage;
+export default withRouter(connect(null, { getSettings, setAlert})(ProfilesPage));

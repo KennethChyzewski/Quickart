@@ -7,6 +7,26 @@ export function getSettings(credentials) {
   return (dispatch, getState) => {
     // connection to Mongo DB and try to get the user's settings
     // if we were able to successfully connect and change the user's settings
+    
+    fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch({
+        type: PROFILE_SETTINGS_RETRIEVED,
+        payload: { 
+            msg: 'settingsActions GET happened',
+            
+        }
+      });
+    })
+
+    
     dispatch({
       type: PROFILE_SETTINGS_RETRIEVED,
       payload: { 
@@ -26,13 +46,37 @@ export function updateProfile(profileDetails) {
   return (dispatch, getState) => {
     // connection to Mongo DB and try to update the user's profile
     // if we were able to successfully connect and change the user's profile
-    dispatch({
-      type: PROFILE_UPDATE_SUCCESS,
-      payload: { 
-        msg: 'settingsActions UPDATE happened',
-        userSettings: profileDetails
-      }
+
+    let passing = JSON.stringify({
+        tags: [],
+        postings: [],
+        user: null,
+        name: profileDetails.name,
+        location: profileDetails.userLocation,
+        biography: "",
+        niche: ""
     })
+
+    fetch(`http://localhost:5000/profile`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: passing
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch({
+        type: PROFILE_UPDATE_SUCCESS,
+        payload: { 
+          msg: 'settingsActions UPDATE happened',
+          userSettings: profileDetails
+        }
+      })
+    })
+    
+    
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: PROFILE_UPDATE_FAILED,

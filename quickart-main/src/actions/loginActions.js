@@ -105,7 +105,8 @@ export function signup(credentials) {
         type: VALID_SIGNUP,
         payload: { 
             msg: 'loginActions LOGIN happened',
-            credentials
+            creds: credentials,
+            D: data
         }
       });
     }).catch((error) => {

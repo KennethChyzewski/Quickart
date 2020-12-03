@@ -4,7 +4,7 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null
+  user: null,
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -16,8 +16,9 @@ const loginReducer = (state = initialState, action) => {
     case VALID_LOGIN:
       console.log("Login Success");
       
+      //Replace user with actual Object, and then use accType assignment. 
       let result = {}
-      if(payload.name === "admin"){
+      if(payload.creds.payload.name === "admin"){
         result = { ...state, ...payload, isAuthenticated: true, loading: false, user: "admin" }
       }else{
         result = { ...state, ...payload, isAuthenticated: true, loading: false, user: "user" }
@@ -32,7 +33,7 @@ const loginReducer = (state = initialState, action) => {
     case VALID_SIGNUP:
       console.log("Signup Success");
       localStorage.setItem('token', payload.token);
-      return { ...state, ...payload, isAuthenticated: true, loading: false, user: "user" };
+      return { ...state, ...payload, user: payload.D.payload.user, isAuthenticated: true, loading: false};
 
     case INVALID_SIGNUP:
       // return { ...state, payload };

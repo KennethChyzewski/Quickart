@@ -306,6 +306,7 @@ app.put('/posts/dislike/:id', auth, async (req, res) => {
 // GET /profile/me - get users profile
 app.get('/profile/me', auth, async (req, res) => {
     try {
+        console.log(user)
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
         
         if (!profile) {
@@ -476,7 +477,7 @@ app.post('/users', [
             if (err) {
                 throw err;
             }
-            res.json({ token });
+            res.json({ payload, token });
         }); 
     } catch(error) {
         console.error(error.message);

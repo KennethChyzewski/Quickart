@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { signup } from '../../actions/loginActions';
+import { updateProfile } from '../../actions/settingsActions';
 import store from '../../store';
 import Alert from '../Alert';
 
@@ -44,21 +45,26 @@ class RegisterPage extends React.Component {
     }else {
       //Makes a call to the back-end to create a new user with the data provided
       
-      await this.props.signup(this.state)
+      await this.props.signup(this.state).then(this.temp())
       //This is too fast we need to wait here for the state to get updated
-      const state = await store.getState()
-      // Need a PROMISE HERE 
-      let setupSuccess = state['loginState']['isAuthenticated'];
-      if (setupSuccess) {
-        this.props.history.push('/profile');
-      } else {
-        this.props.setAlert(
-          'Registration failed. Please try again later.',
-          'error'
-        );
-      }
     }
   };
+
+  temp = () => {
+    const state = store.getState()
+    console.log(state)
+    let setupSuccess = state['loginState']['isAuthenticated'];
+    if (setupSuccess) {
+      // We need to make the inital profile for the user otherwise it wont exist.
+      this.props.updateProfile(this.state)
+      this.props.history.push('/profile');
+    } else {
+      this.props.setAlert(
+        'Registration failed. Please try again later.',
+        'error'
+      );
+    }
+  }
 
   render() {
     return (
@@ -144,4 +150,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { signup, setAlert })(RegisterPage));
+export default withRouter(connect(null, { updateProfile, signup, setAlert })(RegisterPage));

@@ -1,7 +1,13 @@
 import { PROFILE_SETTINGS_RETRIEVED, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
 
 const initialState = {
-  
+  user: null,
+  name: "",
+  location:"",
+  biography:"",
+  niche:"",
+  tags: [],
+  postings: []
 };
 
 const settingsReducer = (state = initialState, action) => {
