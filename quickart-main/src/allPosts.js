@@ -24,6 +24,7 @@ export const post2 = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 6,
   dislikes: 3,
+  tags: ['apple', 'fruit', 'fuji'],
 };
 
 export const post3 = {
@@ -37,7 +38,7 @@ export const post3 = {
   info:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   likes: 7,
-  dislikes: 0,
+  dislikes: 1,
 };
 
 export const post4 = {
