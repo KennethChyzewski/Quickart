@@ -1,16 +1,13 @@
 import { SET_ALERT, REMOVE_ALERT } from '../constants';
 
 export function setAlert(msg, alertType) {
-    //return (dispatch) => {
     return dispatch => {
         const id = Math.random().toString(36).substring(2);
         dispatch({
             type: SET_ALERT,
-            payload: {
-                msg,
-                alertType, 
-                id
-            }
+            msg,
+            alertType, 
+            id
         })
 
         setTimeout(() => dispatch({
@@ -21,13 +18,10 @@ export function setAlert(msg, alertType) {
 }
 
 // export function removeAlert(id) {
-//     //return (dispatch) => {
-//     return (dispatch, getState) => {
+//     //return dispatch => {
 //         dispatch({
 //             type: REMOVE_ALERT,
-//             payload: {
-//                 id
-//             }
+//             id
 //         })
 //     };
 // }

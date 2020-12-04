@@ -52,7 +52,7 @@ class RegisterPage extends React.Component {
         // We need to make the inital profile for the user otherwise it wont exist.
         this.state.id = reduxState['loginState']['id'];
         await this.props.makeEmptyProfile(this.state)
-        this.props.history.push('/editProfile');
+        this.props.history.push('/editProfileAfterRegistration'); //not /editProfile
       } else {
         this.props.setAlert(
           'Registration failed. Please try again later.',

@@ -8,15 +8,13 @@ export function reportPost(post) {
       // if we were able to successfully connect and login the user
       dispatch({
         type: REPORT_POST_SUCCESS,
-        payload: { 
-            msg: 'reportsActions REPORT happened',
-            post
-        }
+        msg: 'reportsActions REPORT happened',
+        post
       })
       // if any of the catches trigger, meaning connection or update failed
       // dispatch({
       //   type: REPORT_POST_FAILED,
-      //   payload: { msg: 'reportsActions REPORT happened' }
+      //   msg: 'reportsActions REPORT happened'
       // })
     };
 }

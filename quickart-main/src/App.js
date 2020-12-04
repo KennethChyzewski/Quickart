@@ -9,7 +9,8 @@ import NavigationBar from './react-components/NavigationBar';
 import DetailedPost from './react-components/PostDetailPage';
 import PostsPage from './react-components/PostsPage';
 import ProfilesPage from './react-components/ProfilesPage';
-import EditProfilesPage from './react-components/EditProfilesPage';
+import EditProfilePage from './react-components/EditProfilePage';
+import EditProfileAfterRegistrationPage from './react-components/EditProfileAfterRegistrationPage';
 import UserReportsPage from './react-components/UserReportsPage';
 import MessagesPage from './react-components/MessagesPage';
 
@@ -64,7 +65,12 @@ class App extends React.Component {
               <Route
                 exact
                 path='/editProfile'
-                render={() => <EditProfilesPage appState={this.state} />}
+                render={() => <EditProfilePage appState={this.state} />}
+              />
+              <Route
+                exact
+                path='/editProfileAfterRegistration'
+                render={() => <EditProfileAfterRegistrationPage appState={this.state} />}
               />
               <Route
                 exact

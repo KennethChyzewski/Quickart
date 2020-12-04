@@ -358,7 +358,7 @@ app.post('/profile',
             biography, 
             niche, 
             tags, 
-            postings
+            //postings
         } = req.body;
 
         const profileFields = {};

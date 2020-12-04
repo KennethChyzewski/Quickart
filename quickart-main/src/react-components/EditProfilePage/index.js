@@ -10,15 +10,16 @@ import { setAlert } from '../../actions/alertActions';
 import './styles.css';
 
 /* Component for the Edit User Profile's Page*/
-class EditProfilesPage extends React.Component {
-  state = {
-    name: 'Name',
-    email: 'Email@Email.com',
-    password: '****',
-    location: 'Toronto',
-    biography: 'I Like food',
-    niche: 'Harvest'
-  };
+class EditProfilePage extends React.Component {
+  // We have to remove this because if the user does not type anything, it will send this data to the server
+  // state = {
+  //   name: 'Name',
+  //   email: 'Email@Email.com',
+  //   password: '****',
+  //   location: 'Toronto',
+  //   biography: 'I Like food',
+  //   niche: 'Harvest'
+  // };
 
   onChangeEvent = e => {
     // this.setState({
@@ -27,10 +28,10 @@ class EditProfilesPage extends React.Component {
     this.state[e.target.id] = e.target.value
   };
 
-  onSubmitEvent = e => {
+  onSubmitEvent = async(e) => {
     e.preventDefault();
       //Update the redux state
-      this.props.updateProfile(this.state);
+      await this.props.updateProfile(this.state);
       // Check the redux state after trying to login the user
       const state = store.getState();
       let updateSuccess =
@@ -156,4 +157,4 @@ class EditProfilesPage extends React.Component {
 //   settings: state.settingsState
 // })
 
-export default withRouter(connect(null, { updateProfile, setAlert })(EditProfilesPage));
+export default withRouter(connect(null, { updateProfile, setAlert })(EditProfilePage));

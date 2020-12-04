@@ -28,19 +28,16 @@ export function login(credentials) {
     var accType = (credentials.username === ADMIN_ACCOUNT) ? "admin" : "user"
     // connection to Mongo DB and try to login the user
     // if we were able to successfully connect and login the user
-
-    let passing = JSON.stringify({
-      name : credentials.name ,
-      password: credentials.password,
-    })
     
-    console.log(passing)
     fetch('http://localhost:5000/auth', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: passing
+      body: JSON.stringify({
+        name: credentials.name ,
+        password: credentials.password,
+      })
     })
     .then(response => response.json())
     .then(data => {

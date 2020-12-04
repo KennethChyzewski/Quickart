@@ -55,33 +55,28 @@ export function updateProfile(profileDetails) {
   return dispatch => {
     // connection to Mongo DB and try to update the user's profile
     // if we were able to successfully connect and change the user's profile
-
-    // let passing = JSON.stringify({
-    //     tags: [],
-    //     postings: [],
-    //     user: null,
-    //     name: profileDetails.name,
-    //     location: profileDetails.userLocation,
-    //     biography: "",
-    //     niche: ""
-    // })
-
     return fetch(`http://localhost:5000/profile`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ profileDetails })
+      // body: JSON.stringify({ profileDetails })
+      body: JSON.stringify({ 
+        tags: profileDetails.tags,
+        user: profileDetails.user,
+        name: profileDetails.name,
+        location: profileDetails.location,
+        biography: profileDetails.biography,
+        niche: profileDetails.niche,
+       })
     })
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
       dispatch({
         type: PROFILE_UPDATE_SUCCESS,
-        payload: { 
-          msg: 'settingsActions UPDATE happened',
-          userSettings: profileDetails
-        }
+        msg: 'settingsActions UPDATE happened',
+        data
       })
     }).catch((error) => {
       console.error('Error:', error);
@@ -100,12 +95,12 @@ export function reportUser(userID) {
     // if we were able to successfully connect and report the user's profile
     dispatch({
       type: REPORT_USER_SUCCESS,
-      payload: { msg: 'settingsActions REPORT happened' }
+      msg: 'settingsActions REPORT happened'
     })
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: REPORT_USER_FAILED,
-    //   payload: { msg: 'settingsActions REPORT happened' }
+    //   msg: 'settingsActions REPORT happened'
     // })
   };
 }

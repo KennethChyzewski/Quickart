@@ -6,15 +6,13 @@ export function createPost(post) {
     // if we were able to successfully connect and create the post
     dispatch({
       type: CREATE_POST_SUCCESS,
-      payload: { 
-        msg: 'createPost POST happened',
-        post
-      }
+      msg: 'createPost POST happened',
+      post
     })
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: CREATE_POST_FAILED,
-    //   payload: { msg: 'createPost POST happened' }
+    //   msg: 'createPost POST happened'
     // })
   };
 }
@@ -25,15 +23,13 @@ export function likePost(post) {
     // if we were able to successfully connect and like the post
     dispatch({
       type: LIKE_POST_SUCCESS,
-      payload: { 
-        msg: 'likePost POST happened',
-        post
-      }
+      msg: 'likePost POST happened',
+      post
     })
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: LIKE_POST_FAILED,
-    //   payload: { msg: 'likePost POST happened' }
+    //   msg: 'likePost POST happened'
     // })
   };
 }
@@ -44,15 +40,13 @@ export function dislikePost(post) {
       // if we were able to successfully connect and dislike the post
       dispatch({
         type: DISLIKE_POST_SUCCESS,
-        payload: { 
-          msg: 'dislikePost POST happened',
-          post
-        }
+        msg: 'dislikePost POST happened',
+        post
       })
       // if any of the catches trigger, meaning connection or update failed
       // dispatch({
       //   type: DISLIKE_POST_SUCCESS,
-      //   payload: { msg: 'dislikePost POST happened' }
+      //   msg: 'dislikePost POST happened'
       // })
     };
   }
