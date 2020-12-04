@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import userPicture from '../../images/defaultUserPicture.jpg';
-import StickyBar from '../StickyBar';
 import { connect } from 'react-redux';
 import store from '../../store';
 import './styles.css';
@@ -20,6 +19,10 @@ class PostsPage extends React.Component {
     likeUpdated: false,
     dislikeUpdated: false,
     searchResult: '',
+    userPrice: 0,
+    userCategory: '',
+    windth: 0,
+    height: 0,
   };
 
   onChangeEvent = e => {
@@ -55,6 +58,7 @@ class PostsPage extends React.Component {
     }
   }
 
+  //Like and Dislike Button Events
   likeFunction(e) {
     e.preventDefault();
     console.log(e.target.id);
@@ -123,6 +127,14 @@ class PostsPage extends React.Component {
     this.setState({ searchResult: e.target.value }, () => {});
   }
 
+  searchByMaximumPrice(e) {
+    this.setState({ userPrice: parseFloat(e.target.value) }, () => {});
+  }
+
+  searchByCategoryName(e) {
+    this.setState({ userCategory: e.target.value }, () => {});
+  }
+
   render() {
     const store_state = store.getState();
     let userType = store_state['loginState']['user'];
@@ -180,47 +192,21 @@ class PostsPage extends React.Component {
     {
       /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
     }
-    const postItems = posts.map(post => (
-      <div className='post backgroundWhite'>
-        <div className='lefttGridPost'>
-          <Link to='/profile'>
-            <img className='circleImgPosts' src={userPicture} alt='' />
-            <h4 className='postUser'>{post.postedBy}</h4>
-          </Link>
-        </div>
-        <div className='rightGridPost'>
-          <h3>{post.title}</h3>
-          <h4>{post.price}</h4>
-          <p className='smallMargin'>{post.info}</p>
-
-          <button
-            className='btn regularButton likes'
-            value={post.likes}
-            onClick={e => this.likeFunction(e)}
-          >
-            <span>Likes: {this.state.likes + post.likes}</span>
-          </button>
-          <button
-            className='btn regularButton dislikes'
-            value={post.dislikes}
-            onClick={e => this.dislikeFunction(e)}
-          >
-            <span>Dislikes: {this.state.dislikes + post.dislikes}</span>
-          </button>
-          <Link to='/DetailPosting' className='btn btnDefault-posts'>
-            View
-          </Link>
-          {isAdmin ? adminDel : userReports}
-        </div>
-      </div>
-    ));
 
     const newData = posts.filter(item => {
-      //console.log(this.state.searchResult);
-      //console.log(item.title);
+      //Price filter
+      if (this.state.userPrice !== NaN && this.state.userPrice > 0) {
+        return parseFloat(item.price) <= this.state.userPrice;
+      }
+
+      //Category filter
+      if (this.state.userCategory !== '' && this.state.userCategory !== 'Any') {
+        return item.category.includes(this.state.userCategory);
+      }
+
+      //Title filter
       return item.title.includes(this.state.searchResult);
     });
-    //console.log(newData);
 
     const filteredPostItems = newData.map(post => (
       <div className='post backgroundWhite' key={post.id}>
@@ -232,7 +218,7 @@ class PostsPage extends React.Component {
         </div>
         <div className='rightGridPost'>
           <h3>{post.title}</h3>
-          <h4>{post.price}</h4>
+          <h4>{'$' + post.price}</h4>
           <p className='smallMargin'>{post.info}</p>
 
           <button
@@ -258,21 +244,97 @@ class PostsPage extends React.Component {
         </div>
       </div>
     ));
-    //Like and Dislike Button Events
 
     return (
       <section className='mainBackground'>
         <div className='stickyBarPosts'>
-          <StickyBar />
+          <div className='sideBarContainer backgroundBlue borderDefault'>
+            <h4>Search For Items</h4>
+            <input
+              type='text'
+              className='searchbar'
+              placeholder='Search..'
+              onChange={this.searchByTitleName.bind(this)}
+            ></input>
+
+            <h4>Categories</h4>
+            <div>
+              <select
+                id='categories'
+                onChange={this.searchByCategoryName.bind(this)}
+              >
+                <option value='Any'>Any</option>
+                <option value='Fruit'> Fruit </option>
+                <option value='Vegtable'> Vegtable</option>
+                <option value='Grain'> Grain </option>
+                <option value='Meat'> Meat </option>
+                <option value='Other'> Other </option>
+              </select>
+            </div>
+            <h4>Bid Price</h4>
+            <input
+              type='text'
+              className='searchbar'
+              placeholder='Maximum Price'
+              onChange={this.searchByMaximumPrice.bind(this)}
+            ></input>
+            <h4>Food Tags</h4>
+            <div className='tagContent'>
+              <div className='tagCheckbox'>
+                <input type='checkbox'></input>
+                <label> Apples </label>
+                <br></br>
+                <input type='checkbox'></input>
+                <label> Oranges </label>
+                <br></br>
+                <input type='checkbox'></input>
+                <label> Lettuce </label>
+                <br></br>
+              </div>
+            </div>
+            <h4>Location</h4>
+            <div className='filter'>
+              <div id='Tag-Content' className='tagContent'>
+                <div className='tagCheckbox'>
+                  <input
+                    type='checkbox'
+                    id='Location1'
+                    className='Location1'
+                  ></input>
+                  <label> Toronto</label>
+                  <br></br>
+                  <input
+                    type='checkbox'
+                    id='Location1'
+                    name='Location1'
+                  ></input>
+                  <label> Ottawa</label>
+                  <br></br>
+                  <input
+                    type='checkbox'
+                    id='Location1'
+                    name='Location1'
+                  ></input>
+                  <label> Mississauga</label>
+                  <br></br>
+                  <input
+                    type='checkbox'
+                    id='Location1'
+                    name='Location1'
+                  ></input>
+                  <label> Markham</label>
+                  <br></br>
+                </div>
+              </div>
+            </div>
+
+            <div className='filter'>
+              <div id='Tag-Content' className='tagContent'></div>
+            </div>
+          </div>
         </div>
         <div className='containerPosts'>
           <h2 className='textDefaultColor-Posts'>All Posts</h2>
-          <input
-            type='text'
-            className='searchbar'
-            placeholder='Search..'
-            onChange={this.searchByTitleName.bind(this)}
-          ></input>
           <div className='post-form'>
             <div className='userCreateNewPost'>
               <div className='backgroundDefault'>
@@ -291,6 +353,16 @@ class PostsPage extends React.Component {
                   type='number'
                   placeholder='Price'
                 />
+                <div>
+                  <label className='labelDefault'>Category</label>
+                  <select id='categories' className='inputGroup-Posts'>
+                    <option value='Fruit'> Fruit </option>
+                    <option value='Vegtable'> Vegtable</option>
+                    <option value='Grain'> Grain </option>
+                    <option value='Meat'> Meat </option>
+                    <option value='Other'> Other </option>
+                  </select>
+                </div>
                 <label className='labelDefault'>Post End Date</label>
                 <input className='inputGroup-Posts' type='date' />
                 <label className='labelDefault'>Picture</label>
@@ -302,7 +374,6 @@ class PostsPage extends React.Component {
                   placeholder='Pickup/Delivery Options'
                 />
                 <label className='labelDefault'>Description</label>
-                <label className='labelDefault'>Post End Date</label>
 
                 <textarea
                   className='inputGroup'

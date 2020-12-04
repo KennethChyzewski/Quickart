@@ -103,8 +103,47 @@
 }
 
 .dislikes {
-  background-color: #B33951;
+  background-color: #b33951;
 }
-.likes{
-  background-color:  #91C7B1;
+.likes {
+  background-color: #91c7b1;
+}
+
+.sideBarContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  z-index: 1;
+  right: 125px;
+  top: 95px;
+  overflow: hidden;
+  border-radius: 5%;
+  padding: 2px 1px 1px 10px;
+  left: 220px;
+}
+
+.searchBar[type='text'] {
+  transition: border-color 0.8s width 0.8s ease-in-out;
+}
+.searchBar[type='text']:focus {
+  border: 1px solid lightblue;
+  width: 50%;
+}
+
+input[type='checkbox'] {
+  background-color: white;
+  transition: border-color 0.8s;
+}
+input[type='checkbox']:focus {
+  border-color: lightblue;
+}
+
+.tagContent {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.tagCheckbox {
+  border-radius: 50%;
 }
