@@ -23,7 +23,7 @@ import { ADMIN_ACCOUNT, VALID_LOGIN, INVALID_LOGIN, VALID_SIGNUP, INVALID_SIGNUP
 // }
 
 export function login(credentials) {
-  return (dispatch, getState) => {
+  return dispatch => {
     // We need to check if the user logging in is a user or an admin
     var accType = (credentials.username === ADMIN_ACCOUNT) ? "admin" : "user"
     // connection to Mongo DB and try to login the user
@@ -66,7 +66,7 @@ export function login(credentials) {
 }
 
 export function logout() {
-    return (dispatch, getState) => {
+    return dispatch => {
       // connection to Mongo DB and try to logout the user
       // if we were able to successfully connect and logout the user
       dispatch({
@@ -76,44 +76,88 @@ export function logout() {
     };
 }
 
+// export function signup(credentials) {
+//     return (dispatch, getState) => {
+//       // connection to Mongo DB and try to create a user
+//       // if we were able to successfully connect and create the user
+//       console.log("loginActions Sign Up");
+    
+//     // let passing = JSON.stringify({
+//     //                 name : credentials.name ,
+//     //                 email : credentials.email, 
+//     //                 avatar: credentials.avatar,
+//     //                 password: credentials.password,
+//     //                 date: null
+//     //               })
+
+//     let passing = JSON.stringify({
+//       name: credentials.name,
+//       email: credentials.email, 
+//       password: credentials.password
+//     })
+    
+//     console.log(passing)
+//     fetch('http://localhost:5000/users', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: passing
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log('Sucess:', data);
+//       dispatch({
+//         type: VALID_SIGNUP,
+//         msg: 'loginActions LOGIN happened',
+//         credentials,
+//         data
+
+//         // payload: { 
+//         //     msg: 'loginActions LOGIN happened',
+//         //     creds: credentials,
+//         //     D: data
+//         // }
+//       });
+//     }).catch((error) => {
+//       console.error('Error:', error);
+//       dispatch({
+//         type: INVALID_SIGNUP,
+//         // payload: { msg: 'loginActions SIGNUP happened' }
+//         msg: 'loginActions SIGNUP happened'
+//       });
+//     });
+//   }
+// }
+
 export function signup(credentials) {
-    return (dispatch, getState) => {
-      // connection to Mongo DB and try to create a user
-      // if we were able to successfully connect and create the user
-      console.log("loginActions Sign Up");
-    
-    let passing = JSON.stringify({
-                    name : credentials.name ,
-                    email : credentials.email, 
-                    avatar: credentials.avatar,
-                    password: credentials.password,
-                    date: null
-                  })
-    
-    console.log(passing)
-    fetch('http://localhost:5000/users', {
+  return dispatch => {
+    return fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: passing
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email, 
+        password: credentials.password
+      })
     })
     .then(response => response.json())
     .then(data => {
       console.log('Sucess:', data);
       dispatch({
         type: VALID_SIGNUP,
-        payload: { 
-            msg: 'loginActions LOGIN happened',
-            creds: credentials,
-            D: data
-        }
+        msg: 'loginActions LOGIN happened',
+        credentials,
+        data
       });
     }).catch((error) => {
       console.error('Error:', error);
       dispatch({
         type: INVALID_SIGNUP,
-        payload: { msg: 'loginActions SIGNUP happened' }
+        // payload: { msg: 'loginActions SIGNUP happened' }
+        msg: 'loginActions SIGNUP happened'
       });
     });
   }

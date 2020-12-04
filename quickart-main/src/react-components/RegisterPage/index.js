@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { signup } from '../../actions/loginActions';
-import { updateProfile } from '../../actions/settingsActions';
+import { makeEmptyProfile } from '../../actions/settingsActions';
 import store from '../../store';
 import Alert from '../Alert';
 
@@ -18,7 +18,7 @@ class RegisterPage extends React.Component {
     password: "",
     confirmEmail: "",
     confirmPassword: "",
-    userLocation: ""
+    location: ""
   };
 
   onChangeEvent = e => {
@@ -36,7 +36,7 @@ class RegisterPage extends React.Component {
       this.props.setAlert('An email is required.', 'error');
     } else if (!this.state.password) {
       this.props.setAlert('A password is required.', 'error');
-    } else if (!this.state.userLocation) {
+    } else if (!this.state.location) {
       this.props.setAlert('A Location is required.', 'error');
     } else if (this.state.email !== this.state.confirmEmail) {
       this.props.setAlert('The two emails do not match', 'error');
@@ -44,27 +44,23 @@ class RegisterPage extends React.Component {
       this.props.setAlert('The two passwords do not match', 'error');
     }else {
       //Makes a call to the back-end to create a new user with the data provided
-      
-      await this.props.signup(this.state).then(this.temp())
+      await this.props.signup(this.state)
       //This is too fast we need to wait here for the state to get updated
+      const reduxState = store.getState()
+      let setupSuccess = reduxState['loginState']['isAuthenticated'];
+      if (setupSuccess) {
+        // We need to make the inital profile for the user otherwise it wont exist.
+        this.state.id = reduxState['loginState']['id'];
+        await this.props.makeEmptyProfile(this.state)
+        this.props.history.push('/editProfile');
+      } else {
+        this.props.setAlert(
+          'Registration failed. Please try again later.',
+          'error'
+        );
+      }
     }
   };
-
-  temp = () => {
-    const state = store.getState()
-    console.log(state)
-    let setupSuccess = state['loginState']['isAuthenticated'];
-    if (setupSuccess) {
-      // We need to make the inital profile for the user otherwise it wont exist.
-      this.props.updateProfile(this.state)
-      this.props.history.push('/profile');
-    } else {
-      this.props.setAlert(
-        'Registration failed. Please try again later.',
-        'error'
-      );
-    }
-  }
 
   render() {
     return (
@@ -127,7 +123,7 @@ class RegisterPage extends React.Component {
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='userLocation'
+                id='location'
                 type='text'
                 placeholder='Ex: Toronto'
                 onChange={this.onChangeEvent}
@@ -150,4 +146,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { updateProfile, signup, setAlert })(RegisterPage));
+export default withRouter(connect(null, { makeEmptyProfile, signup, setAlert })(RegisterPage));

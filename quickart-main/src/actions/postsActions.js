@@ -1,7 +1,7 @@
 import { CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED } from '../constants';
 
 export function createPost(post) {
-  return (dispatch, getState) => {
+  return dispatch => {
     // connection to Mongo DB and try to create the post
     // if we were able to successfully connect and create the post
     dispatch({
@@ -20,7 +20,7 @@ export function createPost(post) {
 }
 
 export function likePost(post) {
-  return (dispatch, getState) => {
+  return dispatch => {
     // connection to Mongo DB and try to like the post
     // if we were able to successfully connect and like the post
     dispatch({
@@ -39,7 +39,7 @@ export function likePost(post) {
 }
 
 export function dislikePost(post) {
-    return (dispatch, getState) => {
+    return dispatch => {
       // connection to Mongo DB and try to dislike the post
       // if we were able to successfully connect and dislike the post
       dispatch({

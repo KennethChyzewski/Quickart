@@ -10,7 +10,7 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
 
   //Destructure 'action'
-  const { type, payload } = action; 
+  const { type, payload } = action; //dont use this...
 
   switch (type) {
     case VALID_LOGIN:
@@ -32,8 +32,10 @@ const loginReducer = (state = initialState, action) => {
 
     case VALID_SIGNUP:
       console.log("Signup Success");
-      localStorage.setItem('token', payload.token);
-      return { ...state, ...payload, user: payload.D.payload.user, isAuthenticated: true, loading: false};
+      // localStorage.setItem('token', payload.token);
+      // return { ...state, ...payload, user: payload.D.payload.user, isAuthenticated: true, loading: false};
+      localStorage.setItem('token', action.data.token);
+      return { ...state, id: action.data.payload.user.id, isAuthenticated: true, loading: false};
 
     case INVALID_SIGNUP:
       // return { ...state, payload };

@@ -2,7 +2,7 @@ import { SET_ALERT, REMOVE_ALERT } from '../constants';
 
 export function setAlert(msg, alertType) {
     //return (dispatch) => {
-    return (dispatch, getState) => {
+    return dispatch => {
         const id = Math.random().toString(36).substring(2);
         dispatch({
             type: SET_ALERT,

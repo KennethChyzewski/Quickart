@@ -1,7 +1,7 @@
 import { REPORT_POST_SUCCESS, REPORT_POST_FAILED } from '../constants';
 
 export function reportPost(post) {
-    return (dispatch, getState) => {
+    return dispatch => {
       // We need to check if the user logging in is a user or an admin
       //var accType = (credentials.username === ADMIN_ACCOUNT) ? "admin" : "user"
       // connection to Mongo DB and try to login the user

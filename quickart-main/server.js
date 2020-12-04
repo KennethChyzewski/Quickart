@@ -319,6 +319,27 @@ app.get('/profile/me', auth, async (req, res) => {
     }
 });
 
+// POST /profile/me - create empty profile JUMP
+app.post('/profile/me', async (req, res) => {
+    try {
+        let profile = new Profile({
+            tags: [],
+            postings: [],
+            user: req.body.id,
+            name: req.body.name,
+            location: req.body.location,
+            biography: "",
+            niche: ""
+		})
+        await profile.save()
+        res.json(profile);
+    } catch(error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+    res.send();
+});
+
 // POST /profile - create or update user profile
 // Can we delete check? I think front end has validation for this...
 app.post('/profile', 
