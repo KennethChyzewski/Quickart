@@ -3,14 +3,16 @@ import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDAT
 //Hardcoded Phase 1 data
 import { userSettings } from '../allSettings';
 
-export function getSettings(credentials) {
+export function getProfile(userID, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to get the user's settings
     // if we were able to successfully connect and change the user's settings
-    return fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
+    // return fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
+      return fetch(`http://localhost:5000/profile/user/${userID}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
       },
     })
     .then(response => response.json())
@@ -51,7 +53,7 @@ export function makeEmptyProfile(userDetails) {
   };
 }
 
-export function updateProfile(profileDetails) {
+export function updateProfile(profileDetails, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to update the user's profile
     // if we were able to successfully connect and change the user's profile
@@ -59,6 +61,7 @@ export function updateProfile(profileDetails) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
       },
       // body: JSON.stringify({ profileDetails })
       body: JSON.stringify({ 

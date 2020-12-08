@@ -55,7 +55,7 @@ app.get('/auth', auth, async (req, res) => {
 
 // POST /auth - Login a user
 app.post('/auth', [
-    check('name', 'Please include a valid username').exists(),
+    check('email', 'Please include a valid email').exists(),
     check('password', 'Password is required').exists()
 ],async (req, res) => {
     const errors = validationResult(req);
@@ -64,11 +64,11 @@ app.post('/auth', [
         return res.status(400).json({ errors: errors.array() });
     }
     console.log(req.body);
-    const { name, password } = req.body; //delete later
+    const { email, password } = req.body; //delete later
 
     try {
         // See if user exists, send back an error
-        let user = await User.findOne({ name });
+        let user = await User.findOne({ email });
 
         if (!user) {
             //if no 'return' errors out because res.send() line below, cant send multiple headers
@@ -93,7 +93,8 @@ app.post('/auth', [
             if (error) {
                 throw error;
             }
-            res.json({ token });
+            //res.json({ token });
+            res.json({ payload, token });
         });
     } catch(error) {
         console.error(error.message);
@@ -342,16 +343,11 @@ app.post('/profile/me', async (req, res) => {
 
 // POST /profile - create or update user profile
 // Can we delete check? I think front end has validation for this...
-app.post('/profile', 
-    [
-        auth//, 
-        // check('status', 'Status is required').not().isEmpty(),
-        // check('skills', 'Skills is required').not().isEmpty()
-    ], async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+app.post('/profile', auth, async (req, res) => {
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
         const {
             name,
             location, 
@@ -361,7 +357,7 @@ app.post('/profile',
             //postings
         } = req.body;
 
-        const profileFields = {};
+        const profileFields = {}; 
         profileFields.user = req.user.id;
         if (name) {
             profileFields.name = name;
@@ -385,7 +381,7 @@ app.post('/profile',
             let profile = await Profile.findOne({ user: req.user.id });
             //we found the profile
             if(profile) {
-                profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
+                profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields });//, { new: true });
                 return res.json(profile);
             } 
             //if not, we need to create profile
@@ -400,7 +396,7 @@ app.post('/profile',
 })
 
 // GET /profile - Get all profiles
-app.get('/profile', async (req, res) => {
+app.get('/profile', auth, async (req, res) => {
     try {
         const profiles = await Profile.find().populate('user', ['name','avatar']);
         res.json(profiles)
@@ -488,7 +484,19 @@ app.post('/users', [
         user.password = await bcrypt.hash(password, salt);
         await user.save()
 
-        // Return json web token
+        
+        // jwt.sign(user.id, JWT, { expiresIn: 360000 }, (err, token) => {
+        //     if (err) {
+        //         throw err;
+        //     }
+        //     res.json({ id: user.id, token });
+        // }); 
+
+        // Return json web token, I dont understand why we need this... expiresIn crashes if we dont
+        // const payload = {
+        //     id: user.id
+        // }
+        //......
         const payload = {
             user: {
                 id: user.id

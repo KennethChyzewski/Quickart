@@ -1,4 +1,27 @@
-import { CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED } from '../constants';
+import { ALL_POSTS_LOADED, CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED } from '../constants';
+
+export function loadAllPosts(jwbToken) {
+  return dispatch => {
+    // connection to Mongo DB and try to get all posts
+    // if we were able to successfully connect and get all posts
+    return fetch(`http://localhost:5000/posts`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch({
+        type: ALL_POSTS_LOADED,
+        msg: 'loadAllPosts GET happened',
+        data
+      })
+    })
+  };
+}
 
 export function createPost(post) {
   return dispatch => {

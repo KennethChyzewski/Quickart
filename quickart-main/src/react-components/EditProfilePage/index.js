@@ -128,6 +128,14 @@ class EditProfilePage extends React.Component {
                 placeholder={this.state.niche}
                 onChange={this.onChangeEvent}></textarea>
             </div>
+            <label className='labelDefault'>Tags</label>
+            <div className='form-group'>
+              <textarea 
+                id='tags'
+                className='inputGroup'
+                placeholder={this.state.tags}
+                onChange={this.onChangeEvent}></textarea>
+            </div>
             {/* <input
               type='submit'
               value='Submit'

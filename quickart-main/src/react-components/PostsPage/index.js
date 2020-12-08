@@ -7,6 +7,7 @@ import './styles.css';
 import { posts } from '../../allPosts';
 import { reportPost } from '../../actions/reportsActions';
 import { setAlert } from '../../actions/alertActions';
+import { loadAllPosts, createPost, likePost, dislikePost } from '../../actions/postsActions';
 import { ThreeSixty } from '@material-ui/icons';
 
 /* Component for the Main Posts Page */
@@ -24,6 +25,28 @@ class PostsPage extends React.Component {
     windth: 0,
     height: 0,
   };
+
+  componentWillMount() {
+    // let reduxState = store.getState()
+    // //let cthis.state = reduxState['loginState']
+    // let userID = reduxState['loginState']['id']
+    // //console.log(this.state)
+    // await this.props.getProfile(userID)
+    // //settingsState should be stored here
+    // reduxState = store.getState()
+    // this.state = reduxState['settingsState']
+    // let userType = reduxState['loginState']['user'];
+    // this.isAdmin = userType === "admin" 
+    this.a()
+  }
+
+  async a() {
+    //console.log(this.state)
+    await this.props.loadAllPosts(localStorage.token)
+    //settingsState should be stored here
+    let reduxState = store.getState()
+    this.state = reduxState['postsState']
+  }
 
   onChangeEvent = e => {
     this.setState({
@@ -400,4 +423,4 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default connect(null, { setAlert, reportPost })(PostsPage);
+export default connect(null, { setAlert, reportPost, loadAllPosts, createPost, likePost, dislikePost })(PostsPage);

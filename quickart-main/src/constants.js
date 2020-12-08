@@ -8,6 +8,13 @@ export const VALID_SIGNUP = 'valid_signup';
 export const INVALID_SIGNUP = 'invalid_signup';
 export const SIGN_OUT = 'sign_out';
 
+export const GET_ALL_USERS_SUCCESS = 'get_all_users_success';
+export const GET_ALL_USERS_FAILED = 'get_all_users_failed';
+
+export const LOAD_MESSAGES_SUCCESS = 'load_messages_success';
+export const SEND_MESSAGE_SUCCESS = 'send_message_success';
+export const SEND_MESSAGE_FAILED = 'send_message_failed';
+
 export const PROFILE_SETTINGS_RETRIEVED = 'profile_settings_retrieved';
 export const EMPTY_PROFILE_CREATE_SUCCESS = 'empty_profile_create_success';
 export const PROFILE_UPDATE_SUCCESS = 'profile_update_success';
@@ -15,6 +22,7 @@ export const PROFILE_UPDATE_FAILED = 'profile_update_failed';
 export const REPORT_USER_SUCCESS = 'report_user_success';
 export const REPORT_USER_FAILED = 'report_user_failed';
 
+export const ALL_POSTS_LOADED = 'all_posts_loaded';
 export const CREATE_POST_SUCCESS = 'create_post_success';
 export const CREATE_POST_FAILED = 'create_post_failed';
 export const LIKE_POST_SUCCESS = 'like_post_success';

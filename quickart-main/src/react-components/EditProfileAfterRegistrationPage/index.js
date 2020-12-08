@@ -39,7 +39,7 @@ class EditProfileAfterRegistrationPage extends React.Component {
   onSubmitEvent = async(e) => {
     e.preventDefault();
       //Update the redux state
-      await this.props.updateProfile(this.state);
+      await this.props.updateProfile(this.state, localStorage.token);
       // Check the redux state after trying to login the user
       const state = store.getState();
       let updateSuccess =
@@ -136,6 +136,15 @@ class EditProfileAfterRegistrationPage extends React.Component {
                 className='inputGroup'
                 // placeholder={this.state.niche}
                 placeholder={'Harvest'}
+                onChange={this.onChangeEvent}></textarea>
+            </div>
+            <label className='labelDefault'>Tags</label>
+            <div className='form-group'>
+              <textarea 
+                id='tags'
+                className='inputGroup'
+                // placeholder={this.state.tags}
+                placeholder={'Apples, Rice, Cows'}
                 onChange={this.onChangeEvent}></textarea>
             </div>
             {/* <input

@@ -1,4 +1,4 @@
-import { CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED } from '../constants';
+import { ALL_POSTS_LOADED, CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED } from '../constants';
 
 const initialState = [
     //We make the state a list so we can store a list of all alerts 
@@ -10,6 +10,10 @@ const postsReducer = (state = initialState, action) => {
     const { type, payload } = action;   
     
     switch(type) {
+        case ALL_POSTS_LOADED:
+            console.log("Loaded All Posts Success");
+            return action.data;
+
         case CREATE_POST_SUCCESS:
             console.log("Create Post Success");
             return [...state, payload];

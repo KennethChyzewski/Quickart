@@ -7,6 +7,11 @@ import ginaProfilePic from "./../../images/gina.jpg";
 import samProfilePic from "./../../images/sam.jpg";
 import leeMinhyukPic from "./../../images/Lee-Minhyuk.jpg";
 
+import { connect } from 'react-redux';
+import { getMessages, sendMessage } from '../../actions/messagesActions';
+import { getAllUsers } from '../../actions/usersActions';
+import store from '../../store';
+
 import MessageView from "./../MessageView"
 
 
@@ -27,6 +32,26 @@ class MessagesPage extends React.Component {
     }
   }
 
+  componentWillMount() {
+    // let reduxState = store.getState()
+    // //let cthis.state = reduxState['loginState']
+    // let userID = reduxState['loginState']['id']
+    // //console.log(this.state)
+    // await this.props.getProfile(userID)
+    // //settingsState should be stored here
+    // reduxState = store.getState()
+    // this.state = reduxState['settingsState']
+    // let userType = reduxState['loginState']['user'];
+    // this.isAdmin = userType === "admin" 
+    this.a()
+  }
+
+  async a() {
+    await this.props.getAllUsers(localStorage.token)
+    let reduxState = store.getState()
+    this.state.users = reduxState['usersState']
+  }
+
 
   render() {
     const users = this.state.users.map((item,index) => <Route exact path={item[1]} key={index} render={() => (<MessageView key={index} flag={true} allUsers={this.state.users} userName={item[0]} profilePic={item[2]} messagePath={item[1]}/>)}/>)
@@ -45,4 +70,5 @@ class MessagesPage extends React.Component {
   }
 }
 
-export default MessagesPage;
+// export default MessagesPage;
+export default connect(null, { getAllUsers, getMessages, sendMessage })(MessagesPage);

@@ -6,7 +6,7 @@ import userPicture from '../../images/defaultUserPicture.jpg';
 import store from '../../store';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
-import { getSettings } from '../../actions/settingsActions';
+import { getProfile } from '../../actions/settingsActions';
 import './styles.css';
 
 /* Component for the User Profile Page */
@@ -15,22 +15,62 @@ class ProfilesPage extends React.Component {
     
   }
   isAdmin = ""
- 
-  onLoad =  async(e) =>  {
-    const temp = await store.getState()
-    this.state = await temp['loginState']
-    console.log(this.state)
-    this.props.getSettings(await this.state)
-    
-    let userType = await temp['loginState']['user'];
-    this.isAdmin = userType === "admin"
 
-    
+  componentWillMount() {
+    // let reduxState = store.getState()
+    // //let cthis.state = reduxState['loginState']
+    // let userID = reduxState['loginState']['id']
+    // //console.log(this.state)
+    // await this.props.getProfile(userID)
+    // //settingsState should be stored here
+    // reduxState = store.getState()
+    // this.state = reduxState['settingsState']
+    // let userType = reduxState['loginState']['user'];
+    // this.isAdmin = userType === "admin" 
+    this.a()
+  }
+
+  async a() {
+    let reduxState = store.getState()
+    //let cthis.state = reduxState['loginState']
+    let userID = reduxState['loginState']['id']
+    //console.log(this.state)
+    await this.props.getProfile(userID)
+    //settingsState should be stored here
+    reduxState = store.getState()
+    this.state = reduxState['settingsState']
+    let userType = reduxState['loginState']['user'];
+    this.isAdmin = userType === "admin"
+  }
+
+  // async componentDidMount() {
+  //   let reduxState = store.getState()
+  //   //let cthis.state = reduxState['loginState']
+  //   let userID = reduxState['loginState']['id']
+  //   //console.log(this.state)
+  //   await this.props.getProfile(userID)
+  //   //settingsState should be stored here
+  //   reduxState = store.getState()
+  //   this.state = reduxState['settingsState']
+  //   let userType = reduxState['loginState']['user'];
+  //   this.isAdmin = userType === "admin" 
+  // }
+ 
+  onLoad = async(e) =>  {
+    let reduxState = store.getState()
+    //let cthis.state = reduxState['loginState']
+    let userID = reduxState['loginState']['id']
+    //console.log(this.state)
+    await this.props.getProfile(userID)
+    //settingsState should be stored here
+    reduxState = store.getState()
+    this.state = reduxState['settingsState']
+    let userType = reduxState['loginState']['user'];
+    this.isAdmin = userType === "admin"    
   }
 
   render() {
-    this.onLoad()
-    
+    // this.onLoad()
     
     const postings = (
       <div className='profile-posts'>
@@ -130,6 +170,7 @@ class ProfilesPage extends React.Component {
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor addSomeMargin'>Biography</h2>
               <p className='addSomeMargin'>
+                {console.log(this.state.biography)}
                 {this.state.biography}
                 {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
@@ -145,4 +186,4 @@ class ProfilesPage extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { getSettings, setAlert})(ProfilesPage));
+export default withRouter(connect(null, { getProfile, setAlert})(ProfilesPage));

@@ -14,11 +14,11 @@ class LoginPage extends React.Component {
   state = {
     //username: '',
     //userPassword: '',
-  name: "",
-  email: "test@test.com",
-  avatar: "bruh",
-  password: "",
-  date: ""
+    // name: "",
+    email: "test@test.com",
+    // avatar: "bruh",
+    password: "",
+    // date: ""
   };
 
   onChangeEvent = e => {
@@ -30,8 +30,8 @@ class LoginPage extends React.Component {
   onSubmitEvent = async(e) => {
     e.preventDefault();
     //Checks if any of the login fields are empty
-    if (!this.state.name) {
-      this.props.setAlert('A username is required.', 'error');
+    if (!this.state.email) {
+      this.props.setAlert('An email is required.', 'error');
     } else if (!this.state.password) {
       this.props.setAlert('A password is required.', 'error');
 
@@ -41,12 +41,13 @@ class LoginPage extends React.Component {
       await this.props.login(this.state);
       // Check the redux state after trying to login the user
       const state = await store.getState();
-      let loginSuccess = await state['loginState']['isAuthenticated']
-      if (await loginSuccess) {
+      let loginSuccess = state['loginState']['isAuthenticated']
+      if (loginSuccess) {
         this.props.history.push('/profile');
+        // this.props.history.push('/posts');
       } else {
         this.props.setAlert(
-          'Username or Password is incorrect. Please try again.',
+          'Email or Password is incorrect. Please try again.',
           'error'
         );
       }
@@ -61,13 +62,13 @@ class LoginPage extends React.Component {
           <Alert />
           <h1 className='textDefaultColor-SignIn'>Sign in</h1>
           <form className='form' onSubmit={this.onSubmitEvent}>
-            <label className='labelDefault'>Username</label>
+            <label className='labelDefault'>Email</label>
             <div className='form-group'>
               <input
                 className='inputGroup'
-                id='name'
+                id='email'
                 type='text'
-                placeholder='Username'
+                placeholder='myemail@quickart.com'
                 onChange={this.onChangeEvent}
               />
             </div>

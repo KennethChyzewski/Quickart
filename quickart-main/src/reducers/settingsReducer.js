@@ -18,7 +18,8 @@ const settingsReducer = (state = initialState, action) => {
   switch (type) {
     case PROFILE_SETTINGS_RETRIEVED:
       console.log("profile settings retrieved");
-      return { ...state, payload };
+      //return { ...state, payload };
+      return action.data;
     
     case EMPTY_PROFILE_CREATE_SUCCESS:
       console.log("empty profile created success");
@@ -27,7 +28,8 @@ const settingsReducer = (state = initialState, action) => {
     case PROFILE_UPDATE_SUCCESS:
       console.log("profile update success");
       // return { ...state, id: action.data.payload.user.id, isAuthenticated: true, loading: false};
-      return { ...state, userSettings: action.userSettings };
+      //return { ...state, userSettings: action.data };
+      return action.data;
 
     case PROFILE_UPDATE_FAILED:
       console.log("profile update failed");
