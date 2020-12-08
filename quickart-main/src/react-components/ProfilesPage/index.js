@@ -16,20 +16,13 @@ class ProfilesPage extends React.Component {
   }
   isAdmin = ""
 
-  componentWillMount() {
-    // let reduxState = store.getState()
-    // //let cthis.state = reduxState['loginState']
-    // let userID = reduxState['loginState']['id']
-    // //console.log(this.state)
-    // await this.props.getProfile(userID)
-    // //settingsState should be stored here
-    // reduxState = store.getState()
-    // this.state = reduxState['settingsState']
-    // let userType = reduxState['loginState']['user'];
-    // this.isAdmin = userType === "admin" 
+  
+  componentDidMount() {
+    
     this.a()
-  }
 
+  }
+ 
   async a() {
     let reduxState = store.getState()
     //let cthis.state = reduxState['loginState']
@@ -38,40 +31,15 @@ class ProfilesPage extends React.Component {
     await this.props.getProfile(userID)
     //settingsState should be stored here
     reduxState = store.getState()
-    this.state = reduxState['settingsState']
+    this.setState(reduxState['settingsState'])
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === "admin"
-  }
 
-  // async componentDidMount() {
-  //   let reduxState = store.getState()
-  //   //let cthis.state = reduxState['loginState']
-  //   let userID = reduxState['loginState']['id']
-  //   //console.log(this.state)
-  //   await this.props.getProfile(userID)
-  //   //settingsState should be stored here
-  //   reduxState = store.getState()
-  //   this.state = reduxState['settingsState']
-  //   let userType = reduxState['loginState']['user'];
-  //   this.isAdmin = userType === "admin" 
-  // }
- 
-  onLoad = async(e) =>  {
-    let reduxState = store.getState()
-    //let cthis.state = reduxState['loginState']
-    let userID = reduxState['loginState']['id']
-    //console.log(this.state)
-    await this.props.getProfile(userID)
-    //settingsState should be stored here
-    reduxState = store.getState()
-    this.state = reduxState['settingsState']
-    let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === "admin"    
+    console.log(this.state)
   }
-
+  
   render() {
-    // this.onLoad()
-    
+
     const postings = (
       <div className='profile-posts'>
         <div className='profile-post-title'>
@@ -169,11 +137,9 @@ class ProfilesPage extends React.Component {
 
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor addSomeMargin'>Biography</h2>
-              <p className='addSomeMargin'>
+              <p className='addSomeMargin'> 
                 {console.log(this.state.biography)}
                 {this.state.biography}
-                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
               </p>
               {this.isAdmin ? "" : niche}
               {this.isAdmin ? "" : tags}
