@@ -7,7 +7,12 @@ import './styles.css';
 import { posts } from '../../allPosts';
 import { reportPost } from '../../actions/reportsActions';
 import { setAlert } from '../../actions/alertActions';
-import { loadAllPosts, createPost, likePost, dislikePost } from '../../actions/postsActions';
+import {
+  loadAllPosts,
+  createPost,
+  likePost,
+  dislikePost,
+} from '../../actions/postsActions';
 import { ThreeSixty } from '@material-ui/icons';
 
 /* Component for the Main Posts Page */
@@ -24,6 +29,15 @@ class PostsPage extends React.Component {
     userCategory: '',
     windth: 0,
     height: 0,
+    posts: [],
+
+    postedBy: '',
+    title: '',
+    price: 0,
+    category: '',
+    postEndDate: '',
+    pickUpOptions: '',
+    info: '',
   };
 
   componentWillMount() {
@@ -36,22 +50,39 @@ class PostsPage extends React.Component {
     // reduxState = store.getState()
     // this.state = reduxState['settingsState']
     // let userType = reduxState['loginState']['user'];
-    // this.isAdmin = userType === "admin" 
-    this.a()
+    // this.isAdmin = userType === "admin"
+    this.a();
   }
 
   async a() {
     //console.log(this.state)
-    await this.props.loadAllPosts(localStorage.token)
+    await this.props.loadAllPosts(localStorage.token);
     //settingsState should be stored here
-    let reduxState = store.getState()
-    this.state = reduxState['postsState']
+    let reduxState = store.getState();
+    this.setState({ posts: reduxState['postsState'] });
   }
 
   onChangeEvent = e => {
     this.setState({
       [e.target.id]: e.target.value,
     });
+  };
+
+  onPostEvent = e => {
+    e.preventDefault();
+    if (!this.state.postedBy) {
+      this.props.setAlert('Needs a Postedby', 'error');
+    } else if (!this.state.title) {
+      this.props.setAlert('A title is required.', 'error');
+    } else if (!this.state.category) {
+      this.props.setAlert('A category is required.', 'error');
+    } else if (!this.state.postEndDate) {
+      this.props.setAlert('A postEndDate is required.', 'error');
+    } else if (!this.state.pickUpOptions) {
+      this.props.setAlert('A PickUpOption is required.', 'error');
+    } else {
+      this.props.postsReducer(this.state);
+    }
   };
 
   onSubmitEvent = e => {
@@ -183,6 +214,7 @@ class PostsPage extends React.Component {
     const reportForm = (
       <div className='formPopUp' id='reportFormContainer'>
         {/* <form> */}
+
         <form className='form' onSubmit={this.onSubmitEvent}>
           <h1>Report User</h1>
           <h4>Reason: </h4>
@@ -216,7 +248,8 @@ class PostsPage extends React.Component {
       /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
     }
 
-    const newData = posts.filter(item => {
+    console.log(this.state.posts);
+    const newData = this.state.posts.filter(item => {
       //Price filter
       if (this.state.userPrice !== NaN && this.state.userPrice > 0) {
         return parseFloat(item.price) <= this.state.userPrice;
@@ -250,7 +283,7 @@ class PostsPage extends React.Component {
             id={post.id}
             onClick={e => this.likeFunction(e)}
           >
-            Likes: {this.state.likes + post.likes}
+            Likes: {post.likes.length}
           </button>
           <button
             className='btn regularButton dislikes'
@@ -258,7 +291,7 @@ class PostsPage extends React.Component {
             id={post.id}
             onClick={e => this.dislikeFunction(e)}
           >
-            <span>Dislikes: {this.state.dislikes + post.dislikes}</span>
+            <span>Dislikes: {post.dislikes.length}</span>
           </button>
           <Link to='/DetailPosting' className='btn btnDefault-posts'>
             View
@@ -363,22 +396,30 @@ class PostsPage extends React.Component {
               <div className='backgroundDefault'>
                 <h3>Create New Post: What would you like to sell?</h3>
               </div>
-              <form className='form'>
+              <form className='form' onSubmit={e => this.onPostEvent(e)}>
                 <label className='labelDefault'>Title</label>
                 <input
                   className='inputGroup-Posts'
                   type='Title'
                   placeholder='Title'
+                  id='title'
+                  onChange={this.onChangeEvent}
                 />
                 <label className='labelDefault'>Price</label>
                 <input
                   className='inputGroup-Posts'
                   type='number'
                   placeholder='Price'
+                  id='price'
+                  onChange={this.onChangeEvent}
                 />
                 <div>
                   <label className='labelDefault'>Category</label>
-                  <select id='categories' className='inputGroup-Posts'>
+                  <select
+                    id='categories'
+                    className='inputGroup-Posts'
+                    id='category'
+                  >
                     <option value='Fruit'> Fruit </option>
                     <option value='Vegtable'> Vegtable</option>
                     <option value='Grain'> Grain </option>
@@ -387,17 +428,32 @@ class PostsPage extends React.Component {
                   </select>
                 </div>
                 <label className='labelDefault'>Post End Date</label>
-                <input className='inputGroup-Posts' type='date' />
+                <input
+                  className='inputGroup-Posts'
+                  type='date'
+                  id='postEndDate'
+                  onChange={this.onChangeEvent}
+                />
                 <label className='labelDefault'>Picture</label>
                 <input className='inputGroup-Posts' type='file' />
-                <label className='labelDefault'>Pickup/Delivery Options</label>
+                <label className='labelDefault' id='pickUpOptions'>
+                  Pickup/Delivery Options
+                </label>
                 <input
                   className='inputGroup-Posts'
                   type='text'
                   placeholder='Pickup/Delivery Options'
                 />
-                <label className='labelDefault'>Description</label>
-
+                <label
+                  className='labelDefault'
+                  id='info'
+                  onChange={this.onChangeEvent}
+                >
+                  Description
+                </label>
+                {
+                  //Need to fix this
+                }
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'
@@ -423,4 +479,11 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default connect(null, { setAlert, reportPost, loadAllPosts, createPost, likePost, dislikePost })(PostsPage);
+export default connect(null, {
+  setAlert,
+  reportPost,
+  loadAllPosts,
+  createPost,
+  likePost,
+  dislikePost,
+})(PostsPage);
