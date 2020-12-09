@@ -16,7 +16,8 @@ class ProfilesPage extends React.Component {
   isAdmin = '';
 
   componentDidMount() {
-    this.a();
+    this.a()
+
   }
 
   async a() {
@@ -29,9 +30,9 @@ class ProfilesPage extends React.Component {
     reduxState = store.getState();
     this.setState(reduxState['settingsState']);
     let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === 'admin';
 
-    console.log(this.state);
+    this.isAdmin = userType === "admin"
+
   }
 
   render() {
@@ -135,8 +136,9 @@ class ProfilesPage extends React.Component {
 
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor addSomeMargin'>Biography</h2>
-              <p className='addSomeMargin'>
-                {console.log(this.state.biography)}
+
+              <p className='addSomeMargin'> 
+
                 {this.state.biography}
               </p>
               {this.isAdmin ? '' : niche}

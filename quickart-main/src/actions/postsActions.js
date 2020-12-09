@@ -36,7 +36,7 @@ export function createPost(post, jwbToken) {
     // connection to Mongo DB and try to create the post
     // if we were able to successfully connect and create the post
     const passing = JSON.stringify({
-      postedBy: 'jdajdwjdwa',
+      postedBy: post.postedBy,
       title: post.title,
       price: post.price,
       date: post.postEndDate,
@@ -73,11 +73,24 @@ export function likePost(post) {
   return dispatch => {
     // connection to Mongo DB and try to like the post
     // if we were able to successfully connect and like the post
-    dispatch({
-      type: LIKE_POST_SUCCESS,
-      msg: 'likePost POST happened',
-      post,
-    });
+    return fetch(`http://localhost:5000/posts/like/${post.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': jwbToken,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        dispatch({
+          type: LIKE_POST_SUCCESS,
+          msg: 'likePost POST happened',
+          post,
+        });
+      });
+    
+    
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: LIKE_POST_FAILED,

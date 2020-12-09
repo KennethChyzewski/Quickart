@@ -4,40 +4,63 @@ import { Link, withRouter } from 'react-router-dom';
 import store from '../../store';
 import { connect } from 'react-redux';
 
-import { updateProfile } from '../../actions/settingsActions';
+import { updateProfile, getEditProfile } from '../../actions/settingsActions';
 import { setAlert } from '../../actions/alertActions';
 
 import './styles.css';
 
 /* Component for the Edit User Profile's Page*/
 class EditProfilePage extends React.Component {
-  // We have to remove this because if the user does not type anything, it will send this data to the server
-  // state = {
-  //   name: 'Name',
-  //   email: 'Email@Email.com',
-  //   password: '****',
-  //   location: 'Toronto',
-  //   biography: 'I Like food',
-  //   niche: 'Harvest'
-  // };
+  state = {
+    user:"",
+    name: "",
+    email: "",
+    password: "",
+    location: "",
+    biography: "",
+    niche: "",
+    tags: []
+  };
+
+  componentWillMount(){
+    this.loadProfile()
+  }
+
+  async loadProfile() {
+    let reduxState = store.getState()
+    let userID = reduxState['loginState']['id']
+
+    await this.props.getEditProfile(localStorage.token)
+    reduxState = store.getState()
+    this.setState(reduxState["settingsState"])
+
+  }
 
   onChangeEvent = e => {
-    // this.setState({
-    //   [e.target.id]: e.target.value,
-    // });
     this.state[e.target.id] = e.target.value
   };
 
   onSubmitEvent = async(e) => {
     e.preventDefault();
-      //Update the redux state
-      await this.props.updateProfile(this.state);
-      // Check the redux state after trying to login the user
+    if (!this.state.name){
+      this.props.setAlert('A name is required.', 'error');
+    } else if (!this.state.email) {
+      this.props.setAlert('An email is required.', 'error');
+    } else if (!this.state.password) {
+      this.props.setAlert('A password is required.', 'error');
+    } else if (!this.state.location){
+      this.props.setAlert('A location is required.', 'error');
+    } else if (!this.state.biography) {
+      this.props.setAlert('A biography is required.', 'error');
+    } else if (!this.state.niche){
+      this.props.setAlert('A niche is required.', 'error');
+    } else {
+      await this.props.updateProfile(this.state, localStorage.token);
       const state = store.getState();
-      let updateSuccess =
-        Object.keys(state['settingsState']).length !== 0 ? true : false;
+
+      //FIX THIS WITH AN ACTUAL CHECK
+      const updateSuccess = true
       if (updateSuccess) {
-        //Redirect the user
         this.props.history.push('/posts');
       } else {
         this.props.setAlert(
@@ -45,21 +68,10 @@ class EditProfilePage extends React.Component {
           'error'
         );
       }
+    }
   };
 
   render() {
-    // const state = store.getState()
-    // let test = state['loginState']
-    // let test1 = test['payload']
-    // let test2 = test1['accType']
-    let isAdmin = false //test === "admin"
-    // Copy redux state into component's local state
-    let temp = store.getState();
-    this.state = temp['settingsState']['payload']['userSettings']
-    // this.setState({ dealersOverallTotal: total }, () => {
-    //   console.log(this.state.dealersOverallTotal, 'dealersOverallTotal1');
-    // }); 
-
     const niche = (
       <div className='form-group'>
         <textarea className='inputGroup' placeholder='Niche'></textarea>
@@ -148,7 +160,7 @@ class EditProfilePage extends React.Component {
             >
               Submit
             </button>
-            {/* {isAdmin ? "":niche} */}
+           
             {/* <input type='submit' value='Submit' className='btn btnDefault' /> */}
             <Link to='/' className='btn btnDefault'>
               Delete my Account
@@ -165,4 +177,4 @@ class EditProfilePage extends React.Component {
 //   settings: state.settingsState
 // })
 
-export default withRouter(connect(null, { updateProfile, setAlert })(EditProfilePage));
+export default withRouter(connect(null, { getEditProfile, updateProfile, setAlert })(EditProfilePage));

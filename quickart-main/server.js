@@ -307,7 +307,6 @@ app.put('/posts/dislike/:id', auth, async (req, res) => {
 // GET /profile/me - get users profile
 app.get('/profile/me', auth, async (req, res) => {
     try {
-        console.log(user)
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
         
         if (!profile) {
@@ -344,10 +343,7 @@ app.post('/profile/me', async (req, res) => {
 // POST /profile - create or update user profile
 // Can we delete check? I think front end has validation for this...
 app.post('/profile', auth, async (req, res) => {
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        //     return res.status(400).json({ errors: errors.array() });
-        // }
+        console.log("Here")
         const {
             name,
             location, 
@@ -377,6 +373,7 @@ app.post('/profile', auth, async (req, res) => {
         // if (postings) {
         //     profileFields.postings = postings;
         // }
+        console.log(profileFields)
         try {
             let profile = await Profile.findOne({ user: req.user.id });
             //we found the profile

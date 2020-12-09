@@ -3,12 +3,38 @@ import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDAT
 //Hardcoded Phase 1 data
 import { userSettings } from '../allSettings';
 
+
 export function getProfile(userID, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to get the user's settings
     // if we were able to successfully connect and change the user's settings
     // return fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
       return fetch(`http://localhost:5000/profile/user/${userID}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch({
+        type: PROFILE_SETTINGS_RETRIEVED,
+        msg: 'settingsActions GET happened',
+        data
+      });
+    })
+  };
+}
+
+
+export function getEditProfile(jwbToken) {
+  return dispatch => {
+    // connection to Mongo DB and try to get the user's settings
+    // if we were able to successfully connect and change the user's settings
+    // return fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
+      return fetch(`http://localhost:5000/profile/me`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
