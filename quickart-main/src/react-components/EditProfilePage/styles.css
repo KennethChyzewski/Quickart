@@ -25,3 +25,11 @@
   bottom: 30px;
   color: #7a49db;
 }
+
+input[type='checkbox'] {
+  background-color: white;
+  transition: border-color 0.8s;
+}
+input[type='checkbox']:focus {
+  border-color: lightblue;
+}

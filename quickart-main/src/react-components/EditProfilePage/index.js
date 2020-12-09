@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import store from '../../store';
 import { connect } from 'react-redux';
 
-import { updateProfile, getEditProfile } from '../../actions/settingsActions';
+import { updateProfile, getEditProfile, deleteUser } from '../../actions/settingsActions';
 import { setAlert } from '../../actions/alertActions';
 
 import './styles.css';
@@ -22,20 +22,35 @@ class EditProfilePage extends React.Component {
     tags: []
   };
 
-  componentWillMount(){
+  componentDidMount(){
     this.loadProfile()
   }
 
   async loadProfile() {
     let reduxState = store.getState()
-    let userID = reduxState['loginState']['id']
-
     await this.props.getEditProfile(localStorage.token)
     reduxState = store.getState()
     this.setState(reduxState["settingsState"])
 
   }
-
+  onTagEvent = e => {
+    let value = e.target.value
+    if(this.state.tags.includes(value)){
+      this.state.tags.splice(this.state.tags.indexOf(value),1)
+    }else{
+      this.state.tags.push(value)
+      console.log(value)
+      console.log(this.state)
+    }
+  }
+  /*
+  onDeleteButton = async(e) =>{
+    //e.preventDefault();
+    let reduxState = store.getState()
+    let userID = reduxState['loginState']['id']
+    this.props.deleteUser(userID, localStorage.token)
+    window.location = '/'
+  }*/
   onChangeEvent = e => {
     this.state[e.target.id] = e.target.value
   };
@@ -54,14 +69,17 @@ class EditProfilePage extends React.Component {
       this.props.setAlert('A biography is required.', 'error');
     } else if (!this.state.niche){
       this.props.setAlert('A niche is required.', 'error');
+    } else if (!this.state.tags){
+      this.props.setAlert('Tags are required.', 'error');
     } else {
+      console.log(this.state)
       await this.props.updateProfile(this.state, localStorage.token);
       const state = store.getState();
 
       //FIX THIS WITH AN ACTUAL CHECK
       const updateSuccess = true
       if (updateSuccess) {
-        this.props.history.push('/posts');
+        this.props.history.push('/profile');
       } else {
         this.props.setAlert(
           'Profile update failed. Please try again.',
@@ -141,12 +159,19 @@ class EditProfilePage extends React.Component {
                 onChange={this.onChangeEvent}></textarea>
             </div>
             <label className='labelDefault'>Tags</label>
-            <div className='form-group'>
-              <textarea 
-                id='tags'
-                className='inputGroup'
-                placeholder={this.state.tags}
-                onChange={this.onChangeEvent}></textarea>
+            <div className='tagCheckBox'>
+                <input type='checkbox' id="Fruit" value="Fruit" onChange={this.onTagEvent}></input>
+                <label for="Fruit"> Fruit </label>
+                <br></br>
+                <input type='checkbox' id="Vegetables" value="Vegetables" onChange={this.onTagEvent}></input>
+                <label for="Vegetables"> Vegetables </label>
+                <br></br>
+                <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
+                <label for="Meat"> Meat </label>
+                <br></br>
+                <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
+                <label for="Other"> Other </label>
+                <br></br>
             </div>
             {/* <input
               type='submit'
@@ -160,11 +185,17 @@ class EditProfilePage extends React.Component {
             >
               Submit
             </button>
-           
-            {/* <input type='submit' value='Submit' className='btn btnDefault' /> */}
-            <Link to='/' className='btn btnDefault'>
+            <button
+              className='btn btnDefault'
+              type='button'
+              value="delete"
+              onclick={this.onDeleteButton()}
+              >
+              Delete My Account
+            </button>
+            {/*<Link to='/' className='btn btnDefault'>
               Delete my Account
-            </Link>
+          </Link>*/}
           </form>
         </div>
       </section>
@@ -177,4 +208,4 @@ class EditProfilePage extends React.Component {
 //   settings: state.settingsState
 // })
 
-export default withRouter(connect(null, { getEditProfile, updateProfile, setAlert })(EditProfilePage));
+export default withRouter(connect(null, { deleteUser, getEditProfile, updateProfile, setAlert })(EditProfilePage));

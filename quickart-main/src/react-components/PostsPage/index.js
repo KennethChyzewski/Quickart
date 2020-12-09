@@ -12,6 +12,7 @@ import {
   createPost,
   likePost,
   dislikePost,
+  deletePost,
 } from '../../actions/postsActions';
 import { ThreeSixty } from '@material-ui/icons';
 
@@ -33,7 +34,7 @@ class PostsPage extends React.Component {
 
     //Required to display to page
     userPrice: 0,
-    userCategory: '',
+    displayPosts: [],
     posts: [],
 
     //Required by CreatePost
@@ -55,6 +56,9 @@ class PostsPage extends React.Component {
     await this.props.loadAllPosts(localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
+    this.setState({ displayPosts: reduxState['postsState'] });
+
+    //This check needs to be updated for admin.
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === 'admin';
   }
@@ -83,25 +87,25 @@ class PostsPage extends React.Component {
       this.props.createPost(this.state, localStorage.token);
     }
   };
+  
+  onDeletePost = e => {
+    let idDeleting = e.target.value
+    this.props.deletePost(idDeleting, localStorage.token)
+    let reduxState = store.getState();
+    this.setState({ posts: reduxState['postsState'] });
+    this.setState({ displayPosts: reduxState['postsState'] });
+    
+  }
 
   onSubmitEvent = e => {
     e.preventDefault();
     //Update the redux state
     this.props.reportPost(this.state);
-    // Check the redux state after trying to login the user
-    //const state = store.getState();
-    // let updateSuccess =
-    //   Object.keys(state['settingsState']).length !== 0 ? true : false;
-    // if (!updateSuccess) {
-    //   this.props.setAlert(
-    //     'Create post failed. Please try again.',
-    //     'error'
-    //   );
-    // }
     this.open_close_report();
   };
 
-  open_close_report() {
+  open_close_report = e => {
+    let idreported = e.target.value
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -170,26 +174,27 @@ class PostsPage extends React.Component {
   }
 
   searchByCategoryName(e) {
-    this.setState({ userCategory: e.target.value }, () => {});
+    const target = e.target.value
+    
+    if(target != "Any"){
+      let reduxState = store.getState()
+      let temp = reduxState["postsState"]
+      let lstposting = []
+
+      temp.forEach(
+        element => {
+          if(element.tags.includes(target)){
+            lstposting.push(element)
+          }
+        }
+      )
+      this.setState({displayPosts: lstposting})
+    }else {
+      this.setState({displayPosts: this.state.posts})
+    }
   }
 
   render() {
-    const adminDel = (
-      <button type='button' className='btn btnDefaultDeletePost'>
-        Delete Post
-      </button>
-    );
-
-    const userReports = (
-      <button
-        id='userReportBtn'
-        type='button'
-        onClick={this.open_close_report.bind(this)}
-        className='btn btnDefaultReportPost'
-      >
-        Report Post
-      </button>
-    );
 
     const reportForm = (
       <div className='formPopUp' id='reportFormContainer'>
@@ -228,15 +233,10 @@ class PostsPage extends React.Component {
       /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
     }
 
-    const newData = this.state.posts.filter(item => {
+    const newData = this.state.displayPosts.filter(item => {
       //Price filter
       if (this.state.userPrice !== NaN && this.state.userPrice > 0) {
         return parseFloat(item.price) <= this.state.userPrice;
-      }
-
-      //Category filter
-      if (this.state.userCategory !== '' && this.state.userCategory !== 'Any') {
-        return item.category.includes(this.state.userCategory);
       }
 
       //Title filter
@@ -244,7 +244,7 @@ class PostsPage extends React.Component {
     });
 
     const filteredPostItems = newData.map(post => (
-      <div className='post backgroundWhite' key={post.id}>
+      <div className='post backgroundWhite' key={post._id}>
         <div className='lefttGridPost'>
           <Link to='/profile'>
             <img className='circleImgPosts' src={userPicture} alt='' />
@@ -281,7 +281,22 @@ class PostsPage extends React.Component {
           >
             View
           </Link>
-          {this.isAdmin ? adminDel : userReports}
+          {this.isAdmin ? 
+            <button type='button' className='btn btnDefaultDeletePost' value={post._id} onClick={this.onDeletePost}>
+              Delete Post
+            </button>
+          :
+      
+            <button
+              id='userReportBtn'
+              type='button'
+              value={post._id}
+              onClick={this.open_close_report.bind(this)}
+              className='btn btnDefaultReportPost'
+            >
+              Report Post
+            </button>
+          }
         </div>
       </div>
     ));
@@ -458,13 +473,14 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default withRouter(
-  connect(null, {
-    setAlert,
-    reportPost,
-    loadAllPosts,
-    createPost,
-    likePost,
-    dislikePost,
-  })(PostsPage)
-);
+
+export default connect(null, {
+  setAlert,
+  reportPost,
+  loadAllPosts,
+  createPost,
+  likePost,
+  dislikePost,
+  deletePost,
+})(PostsPage);
+

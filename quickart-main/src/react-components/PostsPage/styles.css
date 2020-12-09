@@ -140,10 +140,3 @@ input[type='checkbox']:focus {
   border-color: lightblue;
 }
 
-.tagContent {
-  padding: 1rem 1rem 1rem 1rem;
-}
-
-.tagCheckbox {
-  border-radius: 50%;
-}
