@@ -350,7 +350,7 @@ app.post('/profile', auth, async (req, res) => {
             biography, 
             niche, 
             tags, 
-            //postings
+            postings
         } = req.body;
 
         const profileFields = {}; 
@@ -370,9 +370,9 @@ app.post('/profile', auth, async (req, res) => {
         if (tags) {
             profileFields.tags = tags.split(',').map(tag => tag.trim());
         }
-        // if (postings) {
-        //     profileFields.postings = postings;
-        // }
+        if (postings) {
+            profileFields.postings = postings;
+        }
         console.log(profileFields)
         try {
             let profile = await Profile.findOne({ user: req.user.id });

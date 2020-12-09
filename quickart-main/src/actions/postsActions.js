@@ -69,11 +69,11 @@ export function createPost(post, jwbToken) {
   };
 }
 
-export function likePost(post) {
+export function likePost(post, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to like the post
     // if we were able to successfully connect and like the post
-    return fetch(`http://localhost:5000/posts/like/${post.id}`, {
+    return fetch(`http://localhost:5000/posts/like/${post}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

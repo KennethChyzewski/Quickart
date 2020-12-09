@@ -79,6 +79,7 @@ export function makeEmptyProfile(userDetails) {
   };
 }
 
+
 export function updateProfile(profileDetails, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to update the user's profile
@@ -97,6 +98,7 @@ export function updateProfile(profileDetails, jwbToken) {
         location: profileDetails.location,
         biography: profileDetails.biography,
         niche: profileDetails.niche,
+        postings: profileDetails.postings
        })
     })
     .then(response => response.json())

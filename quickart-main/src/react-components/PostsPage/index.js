@@ -83,7 +83,7 @@ class PostsPage extends React.Component {
       let reduxState = store.getState();
       this.setState({postedBy: reduxState['loginState']['id']})  
       this.props.createPost(this.state, localStorage.token);
-
+      
     }
   };
 

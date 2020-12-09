@@ -31,6 +31,7 @@ class ProfilesPage extends React.Component {
     this.setState(reduxState['settingsState'])
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === "admin"
+    
   }
   
   render() {
