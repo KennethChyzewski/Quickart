@@ -26,9 +26,20 @@ class EditProfileAfterRegistrationPage extends React.Component {
     //   password: '****',
     //   location: 'Toronto',
       biography: '',
-      niche: ''
+      niche: '',
+      tags: []
     };
 
+  onTagEvent = e => {
+    let value = e.target.value
+    if(this.state.tags.includes(value)){
+      this.state.tags.splice(this.state.tags.indexOf(value),1)
+    }else{
+      this.state.tags.push(value)
+      console.log(value)
+      console.log(this.state)
+    }
+  }
   onChangeEvent = e => {
     // this.setState({
     //   [e.target.id]: e.target.value,
@@ -139,13 +150,19 @@ class EditProfileAfterRegistrationPage extends React.Component {
                 onChange={this.onChangeEvent}></textarea>
             </div>
             <label className='labelDefault'>Tags</label>
-            <div className='form-group'>
-              <textarea 
-                id='tags'
-                className='inputGroup'
-                // placeholder={this.state.tags}
-                placeholder={'Apples, Rice, Cows'}
-                onChange={this.onChangeEvent}></textarea>
+            <div className='tagCheckBox'>
+                <input type='checkbox' id="Fruit" value="Fruit" onChange={this.onTagEvent}></input>
+                <label for="Fruit"> Fruit </label>
+                <br></br>
+                <input type='checkbox' id="Vegetables" value="Vegetables" onChange={this.onTagEvent}></input>
+                <label for="Vegetables"> Vegetables </label>
+                <br></br>
+                <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
+                <label for="Meat"> Meat </label>
+                <br></br>
+                <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
+                <label for="Other"> Other </label>
+                <br></br>
             </div>
             {/* <input
               type='submit'
