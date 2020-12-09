@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link ,  withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import userPicture from '../../images/defaultUserPicture.jpg';
@@ -7,53 +7,56 @@ import store from '../../store';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { getProfile } from '../../actions/settingsActions';
+import { posts } from '../../allPosts';
 import './styles.css';
 
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
-  state = {
-    
-  }
-  isAdmin = ""
+  state = {};
+  isAdmin = '';
 
   componentDidMount() {
     this.a()
+
   }
- 
+
   async a() {
-    let reduxState = store.getState()
+    let reduxState = store.getState();
     //let cthis.state = reduxState['loginState']
-    let userID = reduxState['loginState']['id']
+    let userID = reduxState['loginState']['id'];
     //console.log(this.state)
-    await this.props.getProfile(userID)
+    await this.props.getProfile(userID);
     //settingsState should be stored here
-    reduxState = store.getState()
-    this.setState(reduxState['settingsState'])
+    reduxState = store.getState();
+    this.setState(reduxState['settingsState']);
     let userType = reduxState['loginState']['user'];
+
     this.isAdmin = userType === "admin"
     
   }
-  
+
   render() {
+    const allUserPosts = posts.map(post => (
+      <div className='backgroundWhite'>
+        <div>
+          <h4>
+            {
+              //Need to change the 'to' so it links to the actual post link
+            }
+            <Link className='addSomeMargin' to='/posts'>
+              {post.title}
+            </Link>
+          </h4>
+          <h6 className='addSomeMargin'>{post.postEndDate}</h6>
+          <p className='addSomeMargin'>{post.info}</p>
+        </div>
+      </div>
+    ));
 
     const postings = (
       <div className='profile-posts'>
         <div className='profile-post-title'>
           <h2 className='textDefaultColor addSomeMargin'>Posts</h2>
-        </div>
-        <div className='backgroundWhite'>
-          <div>
-            <h4>
-              <Link className='addSomeMargin' to='/posts'>
-                Title
-              </Link>
-            </h4>
-            <h6 className='addSomeMargin'>Date</h6>
-            <p className='addSomeMargin'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
         </div>
       </div>
     );
@@ -68,7 +71,7 @@ class ProfilesPage extends React.Component {
         </p>
       </div>
     );
-    
+
     const tags = (
       <div className='informationColour'>
         <div className='tagBar'>
@@ -105,7 +108,7 @@ class ProfilesPage extends React.Component {
         </div>
       </div>
     );
-    
+
     const userReports = (
       <Link to='/userReports' className='btn btnDefault'>
         User Reports
@@ -116,11 +119,11 @@ class ProfilesPage extends React.Component {
       <section className='mainBackground-profile'>
         <div className='containerProfile'>
           <div className='profileArea'>
-          <div className='buttons smallMargin'>
-                <Link to='/editProfile' className='btn btnDefault'>
-                  Edit Profile
-                </Link>
-                {this.isAdmin ? "":userReports}
+            <div className='buttons smallMargin'>
+              <Link to='/editProfile' className='btn btnDefault'>
+                Edit Profile
+              </Link>
+              {this.isAdmin ? '' : userReports}
             </div>
 
             <div className='profile-top backgroundDefault'>
@@ -133,13 +136,16 @@ class ProfilesPage extends React.Component {
 
             <div className='profile-about backgroundGrey '>
               <h2 className='textDefaultColor addSomeMargin'>Biography</h2>
+
               <p className='addSomeMargin'> 
+
                 {this.state.biography}
               </p>
-              {this.isAdmin ? "" : niche}
-              {this.isAdmin ? "" : tags}
+              {this.isAdmin ? '' : niche}
+              {this.isAdmin ? '' : tags}
             </div>
             {this.isAdmin ? '' : postings}
+            {allUserPosts}
           </div>
         </div>
       </section>
@@ -147,4 +153,6 @@ class ProfilesPage extends React.Component {
   }
 }
 
-export default withRouter(connect(null, { getProfile, setAlert})(ProfilesPage));
+export default withRouter(
+  connect(null, { getProfile, setAlert })(ProfilesPage)
+);

@@ -89,8 +89,7 @@ export function likePost(post, jwbToken) {
           post,
         });
       });
-    
-    
+
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: LIKE_POST_FAILED,
