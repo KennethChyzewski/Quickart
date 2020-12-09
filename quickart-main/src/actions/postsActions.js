@@ -138,3 +138,27 @@ export function loadOnePosts(postID, jwbToken) {
       });
   };
 }
+
+export function deletePost(postID, jwbToken) {
+  return dispatch => {
+    // connection to Mongo DB and try to get all posts
+    // if we were able to successfully connect and get all posts
+    return fetch(`http://localhost:5000/posts/${postID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': jwbToken,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        dispatch({
+          type: SINGLE_POST_LOADED,
+          msg: 'loadONEPosts GET happened',
+          data,
+        });
+      });
+  };
+}
+

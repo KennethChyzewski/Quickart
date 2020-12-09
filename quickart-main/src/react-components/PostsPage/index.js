@@ -12,6 +12,7 @@ import {
   createPost,
   likePost,
   dislikePost,
+  deletePost,
 } from '../../actions/postsActions';
 import { ThreeSixty } from '@material-ui/icons';
 
@@ -58,6 +59,8 @@ class PostsPage extends React.Component {
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
+
+    //This check needs to be updated for admin.
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === "admin"
   }
@@ -87,25 +90,25 @@ class PostsPage extends React.Component {
       
     }
   };
+  
+  onDeletePost = e => {
+    let idDeleting = e.target.value
+    this.props.deletePost(idDeleting, localStorage.token)
+    let reduxState = store.getState();
+    this.setState({ posts: reduxState['postsState'] });
+    this.setState({ displayPosts: reduxState['postsState'] });
+    
+  }
 
   onSubmitEvent = e => {
     e.preventDefault();
     //Update the redux state
     this.props.reportPost(this.state);
-    // Check the redux state after trying to login the user
-    //const state = store.getState();
-    // let updateSuccess =
-    //   Object.keys(state['settingsState']).length !== 0 ? true : false;
-    // if (!updateSuccess) {
-    //   this.props.setAlert(
-    //     'Create post failed. Please try again.',
-    //     'error'
-    //   );
-    // }
     this.open_close_report();
   };
 
-  open_close_report() {
+  open_close_report = e => {
+    let idreported = e.target.value
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -192,23 +195,7 @@ class PostsPage extends React.Component {
 
   render() {
 
-    const adminDel = (
-      <button type='button' className='btn btnDefaultDeletePost'>
-        Delete Post
-      </button>
-    );
-
-    const userReports = (
-      <button
-        id='userReportBtn'
-        type='button'
-        onClick={this.open_close_report.bind(this)}
-        className='btn btnDefaultReportPost'
-      >
-        Report Post
-      </button>
-    );
-
+  
     const reportForm = (
       <div className='formPopUp' id='reportFormContainer'>
         {/* <form> */}
@@ -257,7 +244,7 @@ class PostsPage extends React.Component {
     });
 
     const filteredPostItems = newData.map(post => (
-      <div className='post backgroundWhite' key={post.id}>
+      <div className='post backgroundWhite' key={post._id}>
         <div className='lefttGridPost'>
           <Link to='/profile'>
             <img className='circleImgPosts' src={userPicture} alt='' />
@@ -294,7 +281,22 @@ class PostsPage extends React.Component {
           >
             View 
           </Link>
-          {this.isAdmin ? adminDel : userReports}
+          {this.isAdmin ? 
+            <button type='button' className='btn btnDefaultDeletePost' value={post._id} onClick={this.onDeletePost}>
+              Delete Post
+            </button>
+          :
+      
+            <button
+              id='userReportBtn'
+              type='button'
+              value={post._id}
+              onClick={this.open_close_report.bind(this)}
+              className='btn btnDefaultReportPost'
+            >
+              Report Post
+            </button>
+          }
         </div>
       </div>
     ));
@@ -482,4 +484,5 @@ export default connect(null, {
   createPost,
   likePost,
   dislikePost,
+  deletePost,
 })(PostsPage);

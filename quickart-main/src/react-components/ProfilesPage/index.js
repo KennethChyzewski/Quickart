@@ -32,6 +32,8 @@ class ProfilesPage extends React.Component {
     //settingsState should be stored here
     reduxState = store.getState();
     this.setState(reduxState['settingsState']);
+
+    //This check needs to be updated for admin
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === "admin"
   }
@@ -89,7 +91,7 @@ class ProfilesPage extends React.Component {
             variant='outlined'
             href=''
             startIcon={<AddIcon />}
-            className={"tagOption-" + tag}
+            class={"tagOption-" + tag}
           >
             {tag}
           </Button>

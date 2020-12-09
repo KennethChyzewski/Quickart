@@ -1,4 +1,4 @@
-import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
+import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, DELETED_PROFILE_SUCCESS, DELETED_PROFILE_FAILURE, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
 
 const initialState = {
   user: null,
@@ -27,8 +27,6 @@ const settingsReducer = (state = initialState, action) => {
 
     case PROFILE_UPDATE_SUCCESS:
       console.log("profile update success");
-      // return { ...state, id: action.data.payload.user.id, isAuthenticated: true, loading: false};
-      //return { ...state, userSettings: action.data };
       return action.data;
 
     case PROFILE_UPDATE_FAILED:
@@ -42,6 +40,14 @@ const settingsReducer = (state = initialState, action) => {
     case REPORT_USER_FAILED:
       console.log("report user failed");
       return { ...state, payload };
+
+    case DELETED_PROFILE_SUCCESS:
+      console.log("delete user sucess");
+      return action.data
+
+    case DELETED_PROFILE_FAILURE:
+      console.log("delete user failed");
+      return action.data
 
     default:
       return state;

@@ -1,4 +1,4 @@
-import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
+import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, DELETED_PROFILE_SUCCESS, DELETED_PROFILE_FAILURE, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
 
 //Hardcoded Phase 1 data
 import { userSettings } from '../allSettings';
@@ -117,6 +117,25 @@ export function updateProfile(profileDetails, jwbToken) {
         msg: 'settingsActions UPDATE happened'
       })
     });
+  };
+}
+
+export function deleteUser(userID, jwbToken){
+  return dispatch => {
+    return fetch(`http://localhost:5000/profile`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch({
+        type: DELETED_PROFILE_SUCCESS, 
+        msg: 'deletedProfileAction happened'
+      })
+    })
   };
 }
 

@@ -187,14 +187,18 @@ app.get('/posts/:id', auth, async (req, res) => {
 // DELETE /posts/:id - Delete a post by its id
 app.delete('/posts/:id', auth, async (req, res) => {
     try {
+        console.log(req.params.id)
         const post = await Post.findById(req.params.id);
         if (!post) {
             return res.status(404).json({ msg: 'Post not found' });
 		}
         //Make sure user who is trying to delete post is the owner of post
+        //Only admins should be able to kill posts so its fine
+       /* 
         if (post.postedBy.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'Unauthorized transaction' });
-        }
+        } 
+        */
         await post.remove();
         res.json({ msg: 'Post removed' });
     } catch(error) {

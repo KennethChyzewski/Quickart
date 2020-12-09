@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import store from '../../store';
 import { connect } from 'react-redux';
 
-import { updateProfile, getEditProfile } from '../../actions/settingsActions';
+import { updateProfile, getEditProfile, deleteUser } from '../../actions/settingsActions';
 import { setAlert } from '../../actions/alertActions';
 
 import './styles.css';
@@ -28,8 +28,6 @@ class EditProfilePage extends React.Component {
 
   async loadProfile() {
     let reduxState = store.getState()
-    let userID = reduxState['loginState']['id']
-
     await this.props.getEditProfile(localStorage.token)
     reduxState = store.getState()
     this.setState(reduxState["settingsState"])
@@ -45,7 +43,14 @@ class EditProfilePage extends React.Component {
       console.log(this.state)
     }
   }
-
+  /*
+  onDeleteButton = async(e) =>{
+    //e.preventDefault();
+    let reduxState = store.getState()
+    let userID = reduxState['loginState']['id']
+    this.props.deleteUser(userID, localStorage.token)
+    window.location = '/'
+  }*/
   onChangeEvent = e => {
     this.state[e.target.id] = e.target.value
   };
@@ -180,11 +185,17 @@ class EditProfilePage extends React.Component {
             >
               Submit
             </button>
-           
-            {/* <input type='submit' value='Submit' className='btn btnDefault' /> */}
-            <Link to='/' className='btn btnDefault'>
+            <button
+              className='btn btnDefault'
+              type='button'
+              value="delete"
+              onclick={this.onDeleteButton()}
+              >
+              Delete My Account
+            </button>
+            {/*<Link to='/' className='btn btnDefault'>
               Delete my Account
-            </Link>
+          </Link>*/}
           </form>
         </div>
       </section>
@@ -197,4 +208,4 @@ class EditProfilePage extends React.Component {
 //   settings: state.settingsState
 // })
 
-export default withRouter(connect(null, { getEditProfile, updateProfile, setAlert })(EditProfilePage));
+export default withRouter(connect(null, { deleteUser, getEditProfile, updateProfile, setAlert })(EditProfilePage));
