@@ -69,7 +69,7 @@ export function createPost(post, jwbToken) {
   };
 }
 
-export function likePost(post) {
+export function likePost(post, jwbToken) {
   return dispatch => {
     // connection to Mongo DB and try to like the post
     // if we were able to successfully connect and like the post
@@ -89,8 +89,7 @@ export function likePost(post) {
           post,
         });
       });
-    
-    
+
     // if any of the catches trigger, meaning connection or update failed
     // dispatch({
     //   type: LIKE_POST_FAILED,
