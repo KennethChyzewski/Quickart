@@ -18,20 +18,28 @@ import { ThreeSixty } from '@material-ui/icons';
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
   state = {
+
+    //Reqiured by Report page
     otherReport: '',
     isReporting: false,
+
+    //Required by like 
     likes: 0,
     dislikes: 0,
     likeUpdated: false,
     dislikeUpdated: false,
+
+    //Search Bar 
     searchResult: '',
+
+    //Required to display to page
     userPrice: 0,
     userCategory: '',
-    windth: 0,
-    height: 0,
     posts: [],
 
-    postedBy: '',
+    
+    //Required by CreatePost
+    postedBy: "",
     title: '',
     price: 0,
     category: '',
@@ -39,27 +47,18 @@ class PostsPage extends React.Component {
     pickUpOptions: '',
     info: '',
   };
+  isAdmin = ""
 
-  componentWillMount() {
-    // let reduxState = store.getState()
-    // //let cthis.state = reduxState['loginState']
-    // let userID = reduxState['loginState']['id']
-    // //console.log(this.state)
-    // await this.props.getProfile(userID)
-    // //settingsState should be stored here
-    // reduxState = store.getState()
-    // this.state = reduxState['settingsState']
-    // let userType = reduxState['loginState']['user'];
-    // this.isAdmin = userType === "admin"
-    this.a();
+  componentDidMount() {
+    this.loadPost();
   }
 
-  async a() {
-    //console.log(this.state)
+  async loadPost() {
     await this.props.loadAllPosts(localStorage.token);
-    //settingsState should be stored here
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
+    let userType = reduxState['loginState']['user'];
+    this.isAdmin = userType === "admin"
   }
 
   onChangeEvent = e => {
@@ -70,18 +69,21 @@ class PostsPage extends React.Component {
 
   onPostEvent = e => {
     e.preventDefault();
-    if (!this.state.postedBy) {
-      this.props.setAlert('Needs a Postedby', 'error');
-    } else if (!this.state.title) {
+    if (!this.state.title) {
       this.props.setAlert('A title is required.', 'error');
     } else if (!this.state.category) {
       this.props.setAlert('A category is required.', 'error');
     } else if (!this.state.postEndDate) {
-      this.props.setAlert('A postEndDate is required.', 'error');
+      this.props.setAlert('A post end date is required.', 'error');
     } else if (!this.state.pickUpOptions) {
-      this.props.setAlert('A PickUpOption is required.', 'error');
-    } else {
-      this.props.postsReducer(this.state);
+      this.props.setAlert('A pick up option is required.', 'error');
+    } else if (!this.state.info) {
+      this.props.setAlert('A description is required.', 'error');
+    }else {
+      let reduxState = store.getState();
+      this.setState({postedBy: reduxState['loginState']['id']})  
+      this.props.createPost(this.state, localStorage.token);
+
     }
   };
 
@@ -119,59 +121,40 @@ class PostsPage extends React.Component {
 
     //If the post has neither been liked or disliked before
     if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-      //console.log('Liked Post');
-      console.log(e.currentTarget.value);
       let newLikes = this.state.likes + 1;
-      //console.log(this.state.likeUpdated);
       this.setState({ likes: newLikes });
       this.setState({ likeUpdated: true });
-      //console.log((e.currentTarget.value += 1));
     }
+
     //If the post has been disliked before
-    else if (
-      this.state.likeUpdated == false &&
-      this.state.dislikeUpdated == true
-    ) {
-      //console.log('Liked Post');
-      //console.log(e.currentTarget.value);
+    else if (this.state.likeUpdated == false &&this.state.dislikeUpdated == true) {
       let newLikes = this.state.likes + 1;
       let newDislikes = this.state.dislikes - 1;
       this.setState({ likes: newLikes });
       this.setState({ dislikes: newDislikes });
       this.setState({ likeUpdated: true });
       this.setState({ dislikeUpdated: false });
-      //console.log(this.state.dislikeUpdated);
     }
 
-    //Update the backend likes counter for specified post
+    this.props.likePost(this.state)
   }
   dislikeFunction(e) {
     //If the post has neither been liked or disliked before
     if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-      console.log('disliked Post');
-      //console.log(e.currentTarget.value);
       let newDislikes = this.state.dislikes + 1;
       this.setState({ dislikes: newDislikes });
       this.setState({ dislikeUpdated: true });
     }
-    //If the post has been liked before
-    else if (
-      this.state.likeUpdated == true &&
-      this.state.dislikeUpdated == false
-    ) {
-      //console.log('disliked Post');
-      //console.log(e.currentTarget.value);
+    else if (this.state.likeUpdated == true && this.state.dislikeUpdated == false) {
       let newDislikes = this.state.dislikes + 1;
       let newLikes = this.state.likes - 1;
       this.setState({ dislikes: newDislikes });
       this.setState({ likes: newLikes });
       this.setState({ dislikeUpdated: true });
       this.setState({ likeUpdated: false });
-
-      //console.log(this.state.dislikeUpdated);
     }
-
-    //Update the backend dislikes counter for specified post
+    this.props.dislikePost(this.state)
+    
   }
 
   searchByTitleName(e) {
@@ -190,9 +173,6 @@ class PostsPage extends React.Component {
   }
 
   render() {
-    const store_state = store.getState();
-    let userType = store_state['loginState']['user'];
-    let isAdmin = userType === 'admin';
 
     const adminDel = (
       <button type='button' className='btn btnDefaultDeletePost'>
@@ -248,7 +228,6 @@ class PostsPage extends React.Component {
       /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
     }
 
-    console.log(this.state.posts);
     const newData = this.state.posts.filter(item => {
       //Price filter
       if (this.state.userPrice !== NaN && this.state.userPrice > 0) {
@@ -293,10 +272,16 @@ class PostsPage extends React.Component {
           >
             <span>Dislikes: {post.dislikes.length}</span>
           </button>
-          <Link to='/DetailPosting' className='btn btnDefault-posts'>
-            View
+          <Link to={{
+            pathname: '/DetailPosting',
+            state: {post: "here"}
+            }}
+          className='btn btnDefault-posts'
+             
+          >
+            View 
           </Link>
-          {isAdmin ? adminDel : userReports}
+          {this.isAdmin ? adminDel : userReports}
         </div>
       </div>
     ));
@@ -419,6 +404,7 @@ class PostsPage extends React.Component {
                     id='categories'
                     className='inputGroup-Posts'
                     id='category'
+                    onChange={this.onChangeEvent}
                   >
                     <option value='Fruit'> Fruit </option>
                     <option value='Vegtable'> Vegtable</option>
@@ -436,27 +422,24 @@ class PostsPage extends React.Component {
                 />
                 <label className='labelDefault'>Picture</label>
                 <input className='inputGroup-Posts' type='file' />
-                <label className='labelDefault' id='pickUpOptions'>
+                <label className='labelDefault'>
                   Pickup/Delivery Options
                 </label>
                 <input
                   className='inputGroup-Posts'
                   type='text'
                   placeholder='Pickup/Delivery Options'
-                />
-                <label
-                  className='labelDefault'
-                  id='info'
+                  id='pickUpOptions'
                   onChange={this.onChangeEvent}
-                >
+                />
+                <label className='labelDefault' >
                   Description
                 </label>
-                {
-                  //Need to fix this
-                }
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'
+                  id="info"
+                  onChange={this.onChangeEvent}
                 ></textarea>
                 <input
                   type='submit'
@@ -466,7 +449,7 @@ class PostsPage extends React.Component {
               </form>
             </div>
             <div className='allPosts'>{filteredPostItems}</div>
-            {!isAdmin ? reportForm : ''}
+            {!this.isAdmin ? reportForm : ''}
           </div>
         </div>
       </section>

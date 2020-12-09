@@ -6,13 +6,47 @@ import { Link } from 'react-router-dom';
 import store from '../../store';
 import userPicture from '../../images/defaultUserPicture.jpg';
 
+import { getProfile } from '../../actions/settingsActions';
+import { loadAllPosts } from '../../actions/postsActions';
+
 import './styles.css';
 
 class DetailedPost extends React.Component {
+  state = {
+    //Post Itself
+    post : null,
+    //profile Part  
+    profile: null, 
+  }
+  isAdmin = ""
+  
+  componentDidMount() {
+   // const { id } = this.props.location.state
+    console.log(this.props)
+    //this.loadPost();
+  }
+
+  async loadPost() {
+    
+    console.log(this.props.location.state)
+    //this.setState({post: this.props.location.post})
+    //console.log(this.state)
+    /*
+    await this.props.loadOnePosts(localStorage.token);
+    console.log(reduxState)
+    this.setState({ posts: reduxState['postsState'] });
+    */
+   let reduxState = store.getState();
+    let userType = reduxState['loginState']['user'];
+    this.isAdmin = userType === "admin"
+  }
+
   render() {
     const state = store.getState();
     let userType = state['loginState']['user'];
     let isAdmin = userType === 'admin';
+
+    
 
     const adminDel = (
       <Button className='title-button btn btnDefaultDeletePost'>
