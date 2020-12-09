@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import { connect } from 'react-redux';
 import store from '../../store';
@@ -18,18 +18,17 @@ import { ThreeSixty } from '@material-ui/icons';
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
   state = {
-
     //Reqiured by Report page
     otherReport: '',
     isReporting: false,
 
-    //Required by like 
+    //Required by like
     likes: 0,
     dislikes: 0,
     likeUpdated: false,
     dislikeUpdated: false,
 
-    //Search Bar 
+    //Search Bar
     searchResult: '',
 
     //Required to display to page
@@ -37,9 +36,8 @@ class PostsPage extends React.Component {
     userCategory: '',
     posts: [],
 
-    
     //Required by CreatePost
-    postedBy: "",
+    postedBy: '',
     title: '',
     price: 0,
     category: '',
@@ -47,7 +45,7 @@ class PostsPage extends React.Component {
     pickUpOptions: '',
     info: '',
   };
-  isAdmin = ""
+  isAdmin = '';
 
   componentDidMount() {
     this.loadPost();
@@ -58,7 +56,7 @@ class PostsPage extends React.Component {
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
     let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === "admin"
+    this.isAdmin = userType === 'admin';
   }
 
   onChangeEvent = e => {
@@ -79,11 +77,10 @@ class PostsPage extends React.Component {
       this.props.setAlert('A pick up option is required.', 'error');
     } else if (!this.state.info) {
       this.props.setAlert('A description is required.', 'error');
-    }else {
+    } else {
       let reduxState = store.getState();
-      this.setState({postedBy: reduxState['loginState']['id']})  
+      this.setState({ postedBy: reduxState['loginState']['id'] });
       this.props.createPost(this.state, localStorage.token);
-
     }
   };
 
@@ -127,7 +124,10 @@ class PostsPage extends React.Component {
     }
 
     //If the post has been disliked before
-    else if (this.state.likeUpdated == false &&this.state.dislikeUpdated == true) {
+    else if (
+      this.state.likeUpdated == false &&
+      this.state.dislikeUpdated == true
+    ) {
       let newLikes = this.state.likes + 1;
       let newDislikes = this.state.dislikes - 1;
       this.setState({ likes: newLikes });
@@ -136,7 +136,7 @@ class PostsPage extends React.Component {
       this.setState({ dislikeUpdated: false });
     }
 
-    this.props.likePost(this.state)
+    this.props.likePost(this.state);
   }
   dislikeFunction(e) {
     //If the post has neither been liked or disliked before
@@ -144,8 +144,10 @@ class PostsPage extends React.Component {
       let newDislikes = this.state.dislikes + 1;
       this.setState({ dislikes: newDislikes });
       this.setState({ dislikeUpdated: true });
-    }
-    else if (this.state.likeUpdated == true && this.state.dislikeUpdated == false) {
+    } else if (
+      this.state.likeUpdated == true &&
+      this.state.dislikeUpdated == false
+    ) {
       let newDislikes = this.state.dislikes + 1;
       let newLikes = this.state.likes - 1;
       this.setState({ dislikes: newDislikes });
@@ -153,8 +155,7 @@ class PostsPage extends React.Component {
       this.setState({ dislikeUpdated: true });
       this.setState({ likeUpdated: false });
     }
-    this.props.dislikePost(this.state)
-    
+    this.props.dislikePost(this.state);
   }
 
   searchByTitleName(e) {
@@ -173,7 +174,6 @@ class PostsPage extends React.Component {
   }
 
   render() {
-
     const adminDel = (
       <button type='button' className='btn btnDefaultDeletePost'>
         Delete Post
@@ -272,14 +272,14 @@ class PostsPage extends React.Component {
           >
             <span>Dislikes: {post.dislikes.length}</span>
           </button>
-          <Link to={{
-            pathname: '/DetailPosting',
-            state: {post: "here"}
+
+          <Link
+            to={{
+              pathname: '/DetailPosting/' + post._id,
             }}
-          className='btn btnDefault-posts'
-             
+            className='btn btnDefault-posts'
           >
-            View 
+            View
           </Link>
           {this.isAdmin ? adminDel : userReports}
         </div>
@@ -422,9 +422,7 @@ class PostsPage extends React.Component {
                 />
                 <label className='labelDefault'>Picture</label>
                 <input className='inputGroup-Posts' type='file' />
-                <label className='labelDefault'>
-                  Pickup/Delivery Options
-                </label>
+                <label className='labelDefault'>Pickup/Delivery Options</label>
                 <input
                   className='inputGroup-Posts'
                   type='text'
@@ -432,13 +430,11 @@ class PostsPage extends React.Component {
                   id='pickUpOptions'
                   onChange={this.onChangeEvent}
                 />
-                <label className='labelDefault' >
-                  Description
-                </label>
+                <label className='labelDefault'>Description</label>
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'
-                  id="info"
+                  id='info'
                   onChange={this.onChangeEvent}
                 ></textarea>
                 <input
@@ -462,11 +458,13 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default connect(null, {
-  setAlert,
-  reportPost,
-  loadAllPosts,
-  createPost,
-  likePost,
-  dislikePost,
-})(PostsPage);
+export default withRouter(
+  connect(null, {
+    setAlert,
+    reportPost,
+    loadAllPosts,
+    createPost,
+    likePost,
+    dislikePost,
+  })(PostsPage)
+);
