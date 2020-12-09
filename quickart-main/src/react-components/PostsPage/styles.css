@@ -140,3 +140,7 @@ input[type='checkbox']:focus {
   border-color: lightblue;
 }
 
+.stickyBarPosts {
+  position: relative;
+  top: 80px;
+}

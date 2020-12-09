@@ -159,8 +159,6 @@ p {
   color: #333;
 }
 
-
-
 .borderDefault {
   color: #605b4f;
   border-style: groove;
@@ -237,7 +235,7 @@ p {
   width: fit-content;
   box-shadow: 0px 0px 12px 0.8px black;
   position: relative;
-  bottom: 500px;
+  bottom: 240px;
   left: 300px;
 }
 
@@ -284,6 +282,5 @@ p {
 }
 
 .tagCheckbox {
-
   border-radius: 50%;
 }
