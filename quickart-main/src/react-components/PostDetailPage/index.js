@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import store from '../../store';
 import userPicture from '../../images/defaultUserPicture.jpg';
@@ -14,21 +14,22 @@ import './styles.css';
 class DetailedPost extends React.Component {
   state = {
     //Post Itself
-    post : null,
-    //profile Part  
-    profile: null, 
-  }
-  isAdmin = ""
-  
+    post: null,
+    //profile Part
+    profile: null,
+    temp: '',
+  };
+  isAdmin = '';
+
   componentDidMount() {
-   // const { id } = this.props.location.state
-    console.log(this.props)
+    // const { id } = this.props.location.state
     //this.loadPost();
+    console.log(window.location.pathname.split('/')[2]);
+    //console.log(this.props);
   }
 
   async loadPost() {
-    
-    console.log(this.props.location.state)
+    console.log(this.props.location.state);
     //this.setState({post: this.props.location.post})
     //console.log(this.state)
     /*
@@ -36,17 +37,15 @@ class DetailedPost extends React.Component {
     console.log(reduxState)
     this.setState({ posts: reduxState['postsState'] });
     */
-   let reduxState = store.getState();
+    let reduxState = store.getState();
     let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === "admin"
+    this.isAdmin = userType === 'admin';
   }
 
   render() {
     const state = store.getState();
     let userType = state['loginState']['user'];
     let isAdmin = userType === 'admin';
-
-    
 
     const adminDel = (
       <Button className='title-button btn btnDefaultDeletePost'>

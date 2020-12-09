@@ -70,11 +70,13 @@ class App extends React.Component {
               <Route
                 exact
                 path='/editProfileAfterRegistration'
-                render={() => <EditProfileAfterRegistrationPage appState={this.state} />}
+                render={() => (
+                  <EditProfileAfterRegistrationPage appState={this.state} />
+                )}
               />
               <Route
                 exact
-                path='/DetailPosting'
+                path='/DetailPosting/:id'
                 render={() => <DetailedPost appState={this.state} />}
               />
 
