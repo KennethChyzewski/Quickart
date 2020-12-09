@@ -87,15 +87,14 @@ class PostsPage extends React.Component {
       this.props.createPost(this.state, localStorage.token);
     }
   };
-  
+
   onDeletePost = e => {
-    let idDeleting = e.target.value
-    this.props.deletePost(idDeleting, localStorage.token)
+    let idDeleting = e.target.value;
+    this.props.deletePost(idDeleting, localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
-    
-  }
+  };
 
   onSubmitEvent = e => {
     e.preventDefault();
@@ -105,7 +104,7 @@ class PostsPage extends React.Component {
   };
 
   open_close_report = e => {
-    let idreported = e.target.value
+    let idreported = e.target.value;
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -113,7 +112,7 @@ class PostsPage extends React.Component {
       this.setState({ ['isReporting']: false });
       document.getElementById('reportFormContainer').style.display = 'none';
     }
-  }
+  };
 
   //Like and Dislike Button Events
   likeFunction(e) {
@@ -174,28 +173,25 @@ class PostsPage extends React.Component {
   }
 
   searchByCategoryName(e) {
-    const target = e.target.value
-    
-    if(target != "Any"){
-      let reduxState = store.getState()
-      let temp = reduxState["postsState"]
-      let lstposting = []
+    const target = e.target.value;
 
-      temp.forEach(
-        element => {
-          if(element.tags.includes(target)){
-            lstposting.push(element)
-          }
+    if (target != 'Any') {
+      let reduxState = store.getState();
+      let temp = reduxState['postsState'];
+      let lstposting = [];
+
+      temp.forEach(element => {
+        if (element.tags.includes(target)) {
+          lstposting.push(element);
         }
-      )
-      this.setState({displayPosts: lstposting})
-    }else {
-      this.setState({displayPosts: this.state.posts})
+      });
+      this.setState({ displayPosts: lstposting });
+    } else {
+      this.setState({ displayPosts: this.state.posts });
     }
   }
 
   render() {
-
     const reportForm = (
       <div className='formPopUp' id='reportFormContainer'>
         {/* <form> */}
@@ -281,12 +277,16 @@ class PostsPage extends React.Component {
           >
             View
           </Link>
-          {this.isAdmin ? 
-            <button type='button' className='btn btnDefaultDeletePost' value={post._id} onClick={this.onDeletePost}>
+          {this.isAdmin ? (
+            <button
+              type='button'
+              className='btn btnDefaultDeletePost'
+              value={post._id}
+              onClick={this.onDeletePost}
+            >
               Delete Post
             </button>
-          :
-      
+          ) : (
             <button
               id='userReportBtn'
               type='button'
@@ -296,7 +296,7 @@ class PostsPage extends React.Component {
             >
               Report Post
             </button>
-          }
+          )}
         </div>
       </div>
     ));
@@ -334,20 +334,6 @@ class PostsPage extends React.Component {
               placeholder='Maximum Price'
               onChange={this.searchByMaximumPrice.bind(this)}
             ></input>
-            <h4>Food Tags</h4>
-            <div className='tagContent'>
-              <div className='tagCheckbox'>
-                <input type='checkbox'></input>
-                <label> Apples </label>
-                <br></br>
-                <input type='checkbox'></input>
-                <label> Oranges </label>
-                <br></br>
-                <input type='checkbox'></input>
-                <label> Lettuce </label>
-                <br></br>
-              </div>
-            </div>
             <h4>Location</h4>
             <div className='filter'>
               <div id='Tag-Content' className='tagContent'>
@@ -473,7 +459,6 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-
 export default connect(null, {
   setAlert,
   reportPost,
@@ -483,4 +468,3 @@ export default connect(null, {
   dislikePost,
   deletePost,
 })(PostsPage);
-

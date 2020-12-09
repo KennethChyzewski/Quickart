@@ -11,6 +11,7 @@
   border-radius: 5%;
   padding: 2px 1px 1px 10px;
   left: 220px;
+  bottom: 500px;
 }
 
 .searchBar[type='text'] {
