@@ -155,36 +155,36 @@ class DetailedPost extends React.Component {
             </div>
           </div>
           <div>{isAdmin ? adminDel : userReports}</div>
-        </div>
 
-        <div className='containerUser'>
-          {/*Title of Post + Bidding progress*/}
-          <div className='userContactForm'>
-            <h1 className='postTitleColour'> Contact Seller Form </h1>
-            <form className='form'>
-              <label className='labelDefault'>Message Title</label>
-              <input
-                className='inputGroup-Posts'
-                type='Title'
-                placeholder='Message Title'
-              />
-              <label className='labelDefault'>Price</label>
-              <input
-                className='inputGroup-Posts'
-                type='number'
-                placeholder='Price in (CAD)'
-              />
-              <label className='labelDefault'>Description</label>
-              <textarea
-                className='inputGroup'
-                placeholder='Your message here'
-              ></textarea>
-              <input
-                type='submit'
-                value='Submit'
-                className='btn btnDefault-Detail'
-              />
-            </form>
+          <div className='contactForm'>
+            {/*Title of Post + Bidding progress*/}
+            <div className='userContactForm'>
+              <h1 className='postTitleColour'> Contact Seller Form </h1>
+              <form className='form'>
+                <label className='labelDefault'>Message Title</label>
+                <input
+                  className='inputGroup-Posts'
+                  type='Title'
+                  placeholder='Message Title'
+                />
+                <label className='labelDefault'>Price</label>
+                <input
+                  className='inputGroup-Posts'
+                  type='number'
+                  placeholder='Price in (CAD)'
+                />
+                <label className='labelDefault'>Description</label>
+                <textarea
+                  className='inputGroup'
+                  placeholder='Your message here'
+                ></textarea>
+                <input
+                  type='submit'
+                  value='Submit'
+                  className='btn btnDefault-Detail'
+                />
+              </form>
+            </div>
           </div>
         </div>
       </section>

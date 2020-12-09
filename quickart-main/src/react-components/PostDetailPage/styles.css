@@ -12,7 +12,7 @@
   box-shadow: 0px 0px 12px 0.8px black;
   position: relative;
   top: 100px;
-  right: 200px;
+  right: 100px;
 }
 
 .containerUser {
@@ -27,8 +27,8 @@
   width: fit-content;
   box-shadow: 0px 0px 12px 0.8px black;
   position: relative;
-  bottom: 1200px;
-  left: 700px;
+  bottom: 800px;
+  left: 520px;
 }
 
 .paragraphColour {
@@ -140,5 +140,10 @@
   cursor: pointer;
   outline: none;
   position: relative;
-  top: 10px;
+  top: 20px;
+}
+
+.contactForm {
+  position: relative;
+  top: 20px;
 }
