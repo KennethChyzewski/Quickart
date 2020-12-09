@@ -431,7 +431,7 @@ app.get('/profile/user/:user_id', async (req, res) => {
 app.delete('/profile', auth, async (req, res) => {
     try {
         //Remove user posts
-		
+		await Post.deleteMany({ postedBy: req.user.id });
         //Remove profile
         await Profile.findOneAndRemove({ user: req.user.id });
         //Remove user
