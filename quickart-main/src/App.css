@@ -31,6 +31,47 @@ p {
 .addSmallPadding {
   padding: 1rem;
 }
+.tagOption-Vegetable {
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+  background-color: darkgreen;
+}
+.tagOption-Fruit {
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+  background-color: lightgreen;
+}
+
+.tagOption-Grain {
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+  background-color: goldenrod;
+}
+.tagOption-Meat {
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+  background-color: pink;
+}
+.tagOption-Other {
+  border: #000000;
+  border-radius: 0.25rem;
+  border-style: initial;
+  font-weight: bold;
+  margin-left: 1rem;
+  background-color: lightcyan;
+}
 
 /* Welcome Page */
 .welcomePage {
@@ -118,15 +159,7 @@ p {
   color: #333;
 }
 
-.produce {
-  background-color: lightgreen;
-}
-.grain {
-  background-color: goldenrod;
-}
-.meat {
-  background-color: pink;
-}
+
 
 .borderDefault {
   color: #605b4f;
@@ -189,13 +222,6 @@ p {
 }
 
 /* Section Containers */
-.tagOption {
-  border: #000000;
-  border-radius: 0.25rem;
-  border-style: initial;
-  font-weight: bold;
-  margin-left: 1rem;
-}
 
 .containerPosts {
   max-width: 1200px;
@@ -252,4 +278,12 @@ p {
 .labelDefault {
   font-size: 20px;
   color: black;
+}
+.tagContent {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.tagCheckbox {
+
+  border-radius: 50%;
 }

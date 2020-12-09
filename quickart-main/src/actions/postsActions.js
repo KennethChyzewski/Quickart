@@ -1,5 +1,6 @@
 import {
   ALL_POSTS_LOADED,
+  SINGLE_POST_LOADED,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILED,
   LIKE_POST_SUCCESS,
@@ -112,5 +113,28 @@ export function dislikePost(post) {
     //   type: DISLIKE_POST_SUCCESS,
     //   msg: 'dislikePost POST happened'
     // })
+  };
+}
+
+export function loadOnePosts(postID, jwbToken) {
+  return dispatch => {
+    // connection to Mongo DB and try to get all posts
+    // if we were able to successfully connect and get all posts
+    return fetch(`http://localhost:5000/posts/${postID}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': jwbToken,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        dispatch({
+          type: SINGLE_POST_LOADED,
+          msg: 'loadONEPosts GET happened',
+          data,
+        });
+      });
   };
 }

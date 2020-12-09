@@ -7,37 +7,39 @@ import store from '../../store';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alertActions';
 import { getProfile } from '../../actions/settingsActions';
+import { loadOnePosts } from '../../actions/postsActions'
 import { posts } from '../../allPosts';
 import './styles.css';
 
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
-  state = {};
+  state = {
+    posts: [],
+    tags: []
+  };
   isAdmin = '';
-
+  
   componentDidMount() {
-    this.a()
-
+    this.loadState()
   }
+  
 
-  async a() {
+  async loadState() {
     let reduxState = store.getState();
-    //let cthis.state = reduxState['loginState']
     let userID = reduxState['loginState']['id'];
-    //console.log(this.state)
     await this.props.getProfile(userID);
+
     //settingsState should be stored here
     reduxState = store.getState();
     this.setState(reduxState['settingsState']);
     let userType = reduxState['loginState']['user'];
-
     this.isAdmin = userType === "admin"
-    
   }
 
   render() {
-    const allUserPosts = posts.map(post => (
+    const allUserPosts = this.state.posts.map(post => (
       <div className='backgroundWhite'>
+        
         <div>
           <h4>
             {
@@ -76,38 +78,22 @@ class ProfilesPage extends React.Component {
       <div className='informationColour'>
         <div className='tagBar'>
           <h2 className='textDefaultColor'> Tags </h2>
-          <ul className='tagbaritems'>
-            <Button
-              size='small'
-              variant='outlined'
-              href=''
-              startIcon={<AddIcon />}
-              class='tagOption produce'
-            >
-              Apples
-            </Button>
-            <Button
-              size='small'
-              variant='outlined'
-              href=''
-              startIcon={<AddIcon />}
-              class='tagOption grain'
-            >
-              Rice
-            </Button>
-            <Button
-              size='small'
-              variant='outlined'
-              href=''
-              startIcon={<AddIcon />}
-              class='tagOption meat'
-            >
-              Cows
-            </Button>
-          </ul>
+          
         </div>
       </div>
     );
+    
+    const allTags = this.state.tags.map(tag => (
+          <Button
+            size='small'
+            variant='outlined'
+            href=''
+            startIcon={<AddIcon />}
+            className={"tagOption-" + tag}
+          >
+            {tag}
+          </Button>
+      ))
 
     const userReports = (
       <Link to='/userReports' className='btn btnDefault'>
@@ -143,9 +129,12 @@ class ProfilesPage extends React.Component {
               </p>
               {this.isAdmin ? '' : niche}
               {this.isAdmin ? '' : tags}
+              <ul className='tagbaritems'>
+                {this.isAdmin ? '' : allTags}
+              </ul>
             </div>
             {this.isAdmin ? '' : postings}
-            {allUserPosts}
+            {this.isAdmin ? '' : allUserPosts}
           </div>
         </div>
       </section>
@@ -154,5 +143,5 @@ class ProfilesPage extends React.Component {
 }
 
 export default withRouter(
-  connect(null, { getProfile, setAlert })(ProfilesPage)
+  connect(null, { loadOnePosts, getProfile, setAlert })(ProfilesPage)
 );

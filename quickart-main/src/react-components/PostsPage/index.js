@@ -34,7 +34,7 @@ class PostsPage extends React.Component {
 
     //Required to display to page
     userPrice: 0,
-    userCategory: '',
+    displayPosts: [],
     posts: [],
 
     
@@ -57,6 +57,7 @@ class PostsPage extends React.Component {
     await this.props.loadAllPosts(localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
+    this.setState({ displayPosts: reduxState['postsState'] });
     let userType = reduxState['loginState']['user'];
     this.isAdmin = userType === "admin"
   }
@@ -169,7 +170,24 @@ class PostsPage extends React.Component {
   }
 
   searchByCategoryName(e) {
-    this.setState({ userCategory: e.target.value }, () => {});
+    const target = e.target.value
+    
+    if(target != "Any"){
+      let reduxState = store.getState()
+      let temp = reduxState["postsState"]
+      let lstposting = []
+
+      temp.forEach(
+        element => {
+          if(element.tags.includes(target)){
+            lstposting.push(element)
+          }
+        }
+      )
+      this.setState({displayPosts: lstposting})
+    }else {
+      this.setState({displayPosts: this.state.posts})
+    }
   }
 
   render() {
@@ -228,15 +246,10 @@ class PostsPage extends React.Component {
       /*This will pull data from the back-end. It is currently pulling data from the 'allPosts.js' file found in the root directory*/
     }
 
-    const newData = this.state.posts.filter(item => {
+    const newData = this.state.displayPosts.filter(item => {
       //Price filter
       if (this.state.userPrice !== NaN && this.state.userPrice > 0) {
         return parseFloat(item.price) <= this.state.userPrice;
-      }
-
-      //Category filter
-      if (this.state.userCategory !== '' && this.state.userCategory !== 'Any') {
-        return item.category.includes(this.state.userCategory);
       }
 
       //Title filter

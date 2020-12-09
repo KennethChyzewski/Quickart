@@ -244,8 +244,9 @@ app.post('/posts',
 			});
 
 			const post = await newPost.save();
-			// Append the post to the user's profile
-			profile.postings.push(newPost);
+            // Append the post to the user's profile
+            profile.postings.push(newPost._id);
+            console.log(profile.postings)
 			await profile.save();
             res.json(post);
         } catch(error) {
@@ -368,7 +369,7 @@ app.post('/profile', auth, async (req, res) => {
             profileFields.niche = niche;
         }
         if (tags) {
-            profileFields.tags = tags.split(',').map(tag => tag.trim());
+            profileFields.tags = tags
         }
         if (postings) {
             profileFields.postings = postings;

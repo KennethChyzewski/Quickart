@@ -23,6 +23,7 @@ export const REPORT_USER_SUCCESS = 'report_user_success';
 export const REPORT_USER_FAILED = 'report_user_failed';
 
 export const ALL_POSTS_LOADED = 'all_posts_loaded';
+export const SINGLE_POST_LOADED = 'single_post_loaded';
 export const CREATE_POST_SUCCESS = 'create_post_success';
 export const CREATE_POST_FAILED = 'create_post_failed';
 export const LIKE_POST_SUCCESS = 'like_post_success';

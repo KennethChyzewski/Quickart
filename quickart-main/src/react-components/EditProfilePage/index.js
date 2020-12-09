@@ -22,7 +22,7 @@ class EditProfilePage extends React.Component {
     tags: []
   };
 
-  componentWillMount(){
+  componentDidMount(){
     this.loadProfile()
   }
 
@@ -34,6 +34,16 @@ class EditProfilePage extends React.Component {
     reduxState = store.getState()
     this.setState(reduxState["settingsState"])
 
+  }
+  onTagEvent = e => {
+    let value = e.target.value
+    if(this.state.tags.includes(value)){
+      this.state.tags.splice(this.state.tags.indexOf(value),1)
+    }else{
+      this.state.tags.push(value)
+      console.log(value)
+      console.log(this.state)
+    }
   }
 
   onChangeEvent = e => {
@@ -54,14 +64,17 @@ class EditProfilePage extends React.Component {
       this.props.setAlert('A biography is required.', 'error');
     } else if (!this.state.niche){
       this.props.setAlert('A niche is required.', 'error');
+    } else if (!this.state.tags){
+      this.props.setAlert('Tags are required.', 'error');
     } else {
+      console.log(this.state)
       await this.props.updateProfile(this.state, localStorage.token);
       const state = store.getState();
 
       //FIX THIS WITH AN ACTUAL CHECK
       const updateSuccess = true
       if (updateSuccess) {
-        this.props.history.push('/posts');
+        this.props.history.push('/profile');
       } else {
         this.props.setAlert(
           'Profile update failed. Please try again.',
@@ -141,12 +154,19 @@ class EditProfilePage extends React.Component {
                 onChange={this.onChangeEvent}></textarea>
             </div>
             <label className='labelDefault'>Tags</label>
-            <div className='form-group'>
-              <textarea 
-                id='tags'
-                className='inputGroup'
-                placeholder={this.state.tags}
-                onChange={this.onChangeEvent}></textarea>
+            <div className='tagCheckBox'>
+                <input type='checkbox' id="Fruit" value="Fruit" onChange={this.onTagEvent}></input>
+                <label for="Fruit"> Fruit </label>
+                <br></br>
+                <input type='checkbox' id="Vegetables" value="Vegetables" onChange={this.onTagEvent}></input>
+                <label for="Vegetables"> Vegetables </label>
+                <br></br>
+                <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
+                <label for="Meat"> Meat </label>
+                <br></br>
+                <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
+                <label for="Other"> Other </label>
+                <br></br>
             </div>
             {/* <input
               type='submit'
