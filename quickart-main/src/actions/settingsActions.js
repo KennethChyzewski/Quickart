@@ -126,7 +126,11 @@ export function deleteUser(userID, jwbToken){
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
       },
+      // body: JSON.stringify({ 
+      //   userID 
+      // })
     })
     .then(response => response.json())
     .then(data => {

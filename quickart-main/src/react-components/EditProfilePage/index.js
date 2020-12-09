@@ -43,14 +43,16 @@ class EditProfilePage extends React.Component {
       console.log(this.state)
     }
   }
-  /*
+  
   onDeleteButton = async(e) =>{
-    //e.preventDefault();
+    e.preventDefault();
+    console.log('i happened')
     let reduxState = store.getState()
     let userID = reduxState['loginState']['id']
-    this.props.deleteUser(userID, localStorage.token)
+    await this.props.deleteUser(userID, localStorage.token)
     window.location = '/'
-  }*/
+  }
+
   onChangeEvent = e => {
     this.state[e.target.id] = e.target.value
   };
@@ -161,16 +163,16 @@ class EditProfilePage extends React.Component {
             <label className='labelDefault'>Tags</label>
             <div className='tagCheckBox'>
                 <input type='checkbox' id="Fruit" value="Fruit" onChange={this.onTagEvent}></input>
-                <label for="Fruit"> Fruit </label>
+                <label htmlFor="Fruit"> Fruit </label>
                 <br></br>
                 <input type='checkbox' id="Vegetables" value="Vegetables" onChange={this.onTagEvent}></input>
-                <label for="Vegetables"> Vegetables </label>
+                <label htmlFor="Vegetables"> Vegetables </label>
                 <br></br>
                 <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
-                <label for="Meat"> Meat </label>
+                <label htmlFor="Meat"> Meat </label>
                 <br></br>
                 <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
-                <label for="Other"> Other </label>
+                <label htmlFor="Other"> Other </label>
                 <br></br>
             </div>
             {/* <input
@@ -189,7 +191,7 @@ class EditProfilePage extends React.Component {
               className='btn btnDefault'
               type='button'
               value="delete"
-              onclick={this.onDeleteButton()}
+              onClick={this.onDeleteButton}
               >
               Delete My Account
             </button>
