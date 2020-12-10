@@ -14,7 +14,7 @@ import './styles.css';
 /* Component for the User Profile Page */
 class ProfilesPage extends React.Component {
   state = {
-    posts: [],
+    postings: [],
     tags: []
   };
   isAdmin = '';
@@ -39,7 +39,7 @@ class ProfilesPage extends React.Component {
   }
 
   render() {
-    const allUserPosts = this.state.posts.map(post => (
+    const allUserPosts = this.state.postings.map(post => (
       <div className='backgroundWhite'>
         
         <div>
@@ -52,7 +52,7 @@ class ProfilesPage extends React.Component {
             </Link>
           </h4>
           <h6 className='addSomeMargin'>{post.postEndDate}</h6>
-          <p className='addSomeMargin'>{post.info}</p>
+          <p className='addSomeMargin'>{post.description}</p>
         </div>
       </div>
     ));

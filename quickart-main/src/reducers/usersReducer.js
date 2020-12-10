@@ -5,11 +5,8 @@ const initialState = [
 ];
 
 const usersReducer = (state = initialState, action) => {
-
-    //Destructure 'action'
-    const { type, payload } = action;   
     
-    switch(type) {
+    switch(action.type) {
         case GET_ALL_USERS_SUCCESS:
             console.log("Loaded All Users Success");
             return action.data;

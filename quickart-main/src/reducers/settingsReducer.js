@@ -12,10 +12,7 @@ const initialState = {
 
 const settingsReducer = (state = initialState, action) => {
 
-  //Destructure 'action'
-  const { type, payload } = action; 
-
-  switch (type) {
+  switch (action.type) {
     case PROFILE_SETTINGS_RETRIEVED:
       console.log("profile settings retrieved");
       //return { ...state, payload };
@@ -23,7 +20,7 @@ const settingsReducer = (state = initialState, action) => {
     
     case EMPTY_PROFILE_CREATE_SUCCESS:
       console.log("empty profile created success");
-      return { ...state, payload };
+      return { ...state };
 
     case PROFILE_UPDATE_SUCCESS:
       console.log("profile update success");
@@ -31,15 +28,16 @@ const settingsReducer = (state = initialState, action) => {
 
     case PROFILE_UPDATE_FAILED:
       console.log("profile update failed");
-      return { ...state, payload };
+      return { ...state };
 
     case REPORT_USER_SUCCESS:
       console.log("reported user success");
-      return { ...state, payload };
+      // return { ...state };
+      return action.data;
 
     case REPORT_USER_FAILED:
       console.log("report user failed");
-      return { ...state, payload };
+      return { ...state };
 
     case DELETED_PROFILE_SUCCESS:
       console.log("delete user sucess");

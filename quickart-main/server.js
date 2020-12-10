@@ -250,8 +250,7 @@ app.post('/posts',
 
 			const post = await newPost.save();
             // Append the post to the user's profile
-            profile.postings.push(newPost._id);
-            console.log(profile.postings)
+            profile.postings.push(newPost);
 			await profile.save();
             res.json(post);
         } catch(error) {
@@ -349,7 +348,6 @@ app.post('/profile/me', async (req, res) => {
 // POST /profile - create or update user profile
 // Can we delete check? I think front end has validation for this...
 app.post('/profile', auth, async (req, res) => {
-        console.log("Here")
         const {
             name,
             location, 
@@ -379,7 +377,7 @@ app.post('/profile', auth, async (req, res) => {
         if (postings) {
             profileFields.postings = postings;
         }
-        console.log(profileFields)
+
         try {
             let profile = await Profile.findOne({ user: req.user.id });
             //we found the profile
