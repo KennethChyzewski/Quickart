@@ -5,11 +5,8 @@ const initialState = [
 ];
 
 const alertReducer = (state = initialState, action) => {
-
-    //Destructure 'action'
-    const { type, payload } = action;   
     
-    switch(type) {
+    switch(action.type) {
         case SET_ALERT:
             return [...state, action];
 

@@ -9,10 +9,7 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
 
-  //Destructure 'action'
-  const { type, payload } = action; //dont use this...
-
-  switch (type) {
+  switch (action.type) {
     case VALID_LOGIN:
       console.log("Login Success");
       
@@ -42,7 +39,7 @@ const loginReducer = (state = initialState, action) => {
     case INVALID_SIGNUP:
       // return { ...state, payload };
       localStorage.removeItem('token');
-      return { ...state, ...payload, token: null, isAuthenticated: false, loading: false};
+      return { ...state, token: null, isAuthenticated: false, loading: false};
       //return {} //Needs to be empty for NavBar update
 
     case SIGN_OUT:

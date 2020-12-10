@@ -10,6 +10,11 @@ const ProfileSchema = new mongoose.Schema({
         type: String
         // required: true
     },
+    email: {
+        type: String
+        // required: true,
+        // unique: true
+    },
     location: {
         type: String
     },
@@ -22,42 +27,61 @@ const ProfileSchema = new mongoose.Schema({
     tags: {
         type: [String]
     },
-    postings: {
-        type: [String]
-        //posts: [PostSchema]
-    },
-    // postings: [
-    //     {
-    //         title: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         price: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         date: {
-    //             type: Date,
-    //             required: true
-    //         },
-    //         description: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         delivery: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         pictures: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         // sellerinfo: {
-    //         //     type: String,
-    //         //     required: true
-    //         // },
-    //     }
-    // ]
+    postings: [
+        {
+            postedBy: {
+                type: mongoose.Schema.Types.ObjectId
+            },
+            title: {
+                type: String,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
+            category: {
+                type: String,
+                required: true
+            },
+            postEndDate: {
+                type: Date,
+                required: true
+            },
+            pickUpOptions: {
+                type: String,
+                required: true
+            },
+            description: {
+                type: String,
+                required: true
+            },
+            pictures: {
+                type: String,
+                // required: true
+            },
+            likes: [
+                {
+                    user: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'user'
+                    }
+                }
+            ],
+            dislikes: [
+                {
+                    user: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'user'
+                    }
+                }
+            ]
+            // sellerinfo: {
+            //     type: String,
+            //     required: true
+            // },
+        }
+    ]
 });
 
 const Profile = mongoose.model('profile', ProfileSchema);
