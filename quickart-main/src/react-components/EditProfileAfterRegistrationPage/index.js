@@ -40,6 +40,7 @@ class EditProfileAfterRegistrationPage extends React.Component {
       console.log(this.state)
     }
   }
+  
   onChangeEvent = e => {
     // this.setState({
     //   [e.target.id]: e.target.value,
