@@ -14,6 +14,7 @@ import {
   dislikePost,
   deletePost,
 } from '../../actions/postsActions';
+import Alert from '../Alert';
 import { ThreeSixty } from '@material-ui/icons';
 
 /* Component for the Main Posts Page */
@@ -74,20 +75,25 @@ class PostsPage extends React.Component {
     });
   };
 
-  onPostEvent = async(e) => {
+  onPostEvent = async e => {
     e.preventDefault();
     if (!this.state.title) {
-      this.props.setAlert('A title is required.', 'error');
-    } 
+      this.props.setAlert('A Title is required.', 'error2');
+    } else if (!this.state.price) {
+      this.props.setAlert('A Price is required.', 'error2');
+    } else if (this.state.price < 0) {
+      this.props.setAlert('A price must be a positive value.', 'error2');
+      return;
+    }
     // else if (!this.state.category) {
     //   this.props.setAlert('A category is required.', 'error');
-    // } 
+    // }
     else if (!this.state.postEndDate) {
-      this.props.setAlert('A post end date is required.', 'error');
+      this.props.setAlert('A post end date is required.', 'error2');
     } else if (!this.state.pickUpOptions) {
-      this.props.setAlert('A pick up option is required.', 'error');
+      this.props.setAlert('A pick up option is required.', 'error2');
     } else if (!this.state.description) {
-      this.props.setAlert('A description is required.', 'error');
+      this.props.setAlert('A description is required.', 'error2');
     } else {
       //Default 'Fruit' bug fix....
       if (!this.state.category) {
@@ -400,6 +406,7 @@ class PostsPage extends React.Component {
             </div>
           </div>
         </div>
+        <Alert />
         <div className='containerPosts'>
           <h2 className='textDefaultColor-Posts'>All Posts</h2>
           <div className='post-form'>
@@ -432,7 +439,10 @@ class PostsPage extends React.Component {
                     id='category'
                     onChange={this.onChangeEvent}
                   >
-                    <option selected value='Fruit'> Fruit </option>
+                    <option selected value='Fruit'>
+                      {' '}
+                      Fruit{' '}
+                    </option>
                     <option value='Vegtable'> Vegtable</option>
                     <option value='Grain'> Grain </option>
                     <option value='Meat'> Meat </option>
@@ -484,15 +494,17 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default withRouter(connect(null, {
-  setAlert,
-  reportPost,
-  loadAllPosts,
-  createPost,
-  likePost,
-  dislikePost,
-  deletePost,
-})(PostsPage));
+export default withRouter(
+  connect(null, {
+    setAlert,
+    reportPost,
+    loadAllPosts,
+    createPost,
+    likePost,
+    dislikePost,
+    deletePost,
+  })(PostsPage)
+);
 
 // export default connect(null, {
 //   setAlert,
