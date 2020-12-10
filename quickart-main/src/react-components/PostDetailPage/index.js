@@ -2,51 +2,54 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { Route, Switch, BrowserRouter, useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link , withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 import store from '../../store';
 import userPicture from '../../images/defaultUserPicture.jpg';
-
 import { getProfile } from '../../actions/settingsActions';
-import { loadAllPosts } from '../../actions/postsActions';
+import { loadOnePosts } from '../../actions/postsActions';
 
 import './styles.css';
 
 class DetailedPost extends React.Component {
   state = {
-    //Post Itself
-    post: null,
-    //profile Part
-    profile: null,
-    temp: '',
+    postId: "", 
+    tags: []
   };
-  isAdmin = '';
+  isAdmin = "";
 
   componentDidMount() {
-    // const { id } = this.props.location.state
-    //this.loadPost();
-    console.log(window.location.pathname.split('/')[2]);
-    //console.log(this.props);
+    this.loadPost()
   }
 
   async loadPost() {
-    console.log(this.props.location.state);
-    //this.setState({post: this.props.location.post})
-    //console.log(this.state)
-    /*
-    await this.props.loadOnePosts(localStorage.token);
-    console.log(reduxState)
-    this.setState({ posts: reduxState['postsState'] });
-    */
+    await this.setState({postId: window.location.pathname.split('/')[2]})  
+    await this.props.loadOnePosts(this.state.postId, localStorage.token);
     let reduxState = store.getState();
-    let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === 'admin';
+    this.setState(reduxState['postsState']);
+    this.setState(reduxState['settingsState']);
+    console.log(this.state)
+
+   // let userType = state['loginState']['user'];
+   // let isAdmin = userType === 'admin';
   }
+  
 
   render() {
-    const state = store.getState();
-    let userType = state['loginState']['user'];
-    let isAdmin = userType === 'admin';
-
+    // const allTags = (<div> </div>)
+    // console.log(this.state)
+    
+    const allTags = this.state.tags.map(tag => (
+      <Button
+        size='small'
+        variant='outlined'
+        href=''
+        startIcon={<AddIcon />}
+        class={"tagOption-" + tag}
+      >
+        {tag}
+      </Button>
+  ))
     const adminDel = (
       <Button className='title-button btn btnDefaultDeletePost'>
         Delete Post
@@ -62,10 +65,11 @@ class DetailedPost extends React.Component {
       <section className='mainBackground'>
         <div className='containerDetailedPosts'>
           <div className='detailPostTitle'>
-            <h2 className='textDefaultColor'>Post Title</h2>
 
-            <h4 className='textBlackColor'>Price</h4>
-            <h5 className='textBlackColor'>mm/dd/yy</h5>
+            <h2 className='textDefaultColor'>{this.state.title}</h2>
+
+            <h4 className='textBlackColor'>{this.state.price}</h4>
+            <h5 className='textBlackColor'>{this.state.postEndDate}</h5>
           </div>
           {/* Information on product */}
           <div className='posts'>
@@ -73,14 +77,12 @@ class DetailedPost extends React.Component {
               <div>
                 <h4 className='textDefaultColor'>Product Info/Description</h4>
                 <p className='paragraphColour'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {this.state.info}
                 </p>
 
                 <h4 className='textDefaultColor'>PickUp/Delivery Options </h4>
                 <p className='paragraphColour'>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {this.state.pickUpOptions}
                 </p>
               </div>
             </div>
@@ -109,51 +111,24 @@ class DetailedPost extends React.Component {
             <div className='lefttGridPost'>
               <Link to='/profile'>
                 <img className='circleImgPosts' src={userPicture} alt='' />
-                <h4 className='postUser'>Johnson Smith</h4>
+                <h4 className='postUser'>{this.state.name}</h4>
               </Link>
             </div>
             <div className='rightGridPost'>
               <p className='smallMargin'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {this.state.biography}
               </p>
               <div className='informationColour'>
                 <div className='tagBar'>
                   <h4 className='textDefaultColor'> Tags </h4>
                   <ul className='tagbaritems'>
-                    <Button
-                      size='small'
-                      variant='outlined'
-                      href=''
-                      startIcon={<AddIcon />}
-                      class='tagOption produce'
-                    >
-                      Apples
-                    </Button>
-                    <Button
-                      size='small'
-                      variant='outlined'
-                      href=''
-                      startIcon={<AddIcon />}
-                      class='tagOption grain'
-                    >
-                      Rice
-                    </Button>
-                    <Button
-                      size='small'
-                      variant='outlined'
-                      href=''
-                      startIcon={<AddIcon />}
-                      class='tagOption meat'
-                    >
-                      Cows
-                    </Button>
+                    {allTags}
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <div>{isAdmin ? adminDel : userReports}</div>
+          <div>{this.isAdmin ? adminDel : userReports}</div>
 
           <div className='contactForm'>
             {/*Title of Post + Bidding progress*/}
@@ -190,4 +165,8 @@ class DetailedPost extends React.Component {
     );
   }
 }
-export default DetailedPost;
+export default connect(null, {loadOnePosts}) (DetailedPost);
+/*
+export default withRouter(
+  connect(null, {loadOnePosts} (DetailedPost))
+);*/
