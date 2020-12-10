@@ -34,7 +34,7 @@ class ProfilesPage extends React.Component {
     this.setState(reduxState['settingsState']);
 
     //This check needs to be updated for admin
-    let userType = reduxState['loginState']['user'];
+    let userType = reduxState['loginState']['accType'];
     this.isAdmin = userType === "admin"
   }
 

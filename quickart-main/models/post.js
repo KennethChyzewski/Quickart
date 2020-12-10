@@ -50,6 +50,7 @@ const PostSchema = new mongoose.Schema({
             }
         }
     ],
+
     //Seller information, taken from Profile schema
     name: {
         type: String

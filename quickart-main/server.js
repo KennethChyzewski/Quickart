@@ -86,7 +86,8 @@ app.post('/auth', [
         // Return json web token
         const payload = {
             user: {
-                id: user.id
+                id: user.id,
+                accType: user.accType
             }
         }
         jwt.sign(payload, JWT, { expiresIn: 360000 }, (error, token) => {
@@ -146,7 +147,6 @@ app.post('/messages/:author_id/:recipient_id', auth, async(req, res) => {
         const message = await newMessage.save();
         res.json(message);
     } catch(error) {
-        console.log('ih')
         console.error(error.message);
         res.status(500).send('Server Error');
     }
@@ -168,14 +168,12 @@ app.get('/posts', auth, async (req, res) => {
 
 // GET /posts/:id - Get a post by id
 app.get('/posts/:id', auth, async (req, res) => {
-    console.log(req)
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {
             return res.status(404).json({ msg: 'Post not found' });
         }
         // const posts = await Post.find().sort({ location: req.body.location });
-        console.log(post)
         res.json(post);
     } catch(error) {
         console.error(error.message);

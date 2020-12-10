@@ -42,7 +42,6 @@ const settingsReducer = (state = initialState, action) => {
     case DELETED_PROFILE_SUCCESS:
       console.log("delete user sucess");
       localStorage.removeItem('token');
-      // return action.data //There is no data to return, to return empty
       return {} 
 
     case DELETED_PROFILE_FAILURE:
