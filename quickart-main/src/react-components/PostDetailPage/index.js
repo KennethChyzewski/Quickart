@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import store from '../../store';
 import userPicture from '../../images/defaultUserPicture.jpg';
 import { getProfile } from '../../actions/settingsActions';
-import { loadOnePosts } from '../../actions/postsActions';
+import { loadOnePosts, deletePost } from '../../actions/postsActions';
+import { reportPost } from '../../actions/reportsActions'
 
 import './styles.css';
 
@@ -26,13 +27,45 @@ class DetailedPost extends React.Component {
     await this.setState({postId: window.location.pathname.split('/')[2]})  
     await this.props.loadOnePosts(this.state.postId, localStorage.token);
     let reduxState = store.getState();
+
+    //Temp Fix
+    this.isAdmin = true
+
+
     this.setState(reduxState['postsState']);
     this.setState(reduxState['settingsState']);
-    console.log(this.state)
 
-   // let userType = state['loginState']['user'];
-   // let isAdmin = userType === 'admin';
+    
+  // let userType = state['loginState']['user'];
+  // this.isAdmin = userType === 'admin';
   }
+
+  onDeletePost = e => {
+    let idDeleting = e.target.value;
+    this.props.deletePost(idDeleting, localStorage.token);
+    let reduxState = store.getState();
+    this.setState({ posts: reduxState['postsState'] });
+    this.setState({ displayPosts: reduxState['postsState'] });
+    
+  };
+
+  onSubmitEvent = e => {
+    e.preventDefault();
+    //Update the redux state
+    this.props.reportPost(this.state);
+    this.open_close_report();
+  };
+
+  open_close_report = e => {
+    let idreported = e.target.value;
+    if (this.state.isReporting === false) {
+      this.setState({ ['isReporting']: true });
+      document.getElementById('reportFormContainer').style.display = 'block';
+    } else {
+      this.setState({ ['isReporting']: false });
+      document.getElementById('reportFormContainer').style.display = 'none';
+    }
+  };
   
 
   render() {
@@ -50,16 +83,39 @@ class DetailedPost extends React.Component {
         {tag}
       </Button>
   ))
-    const adminDel = (
-      <Button className='title-button btn btnDefaultDeletePost'>
-        Delete Post
-      </Button>
-    );
-    const userReports = (
-      <Button className='title-button btn btnDefaultReportPost'>
-        Report Post
-      </Button>
-    );
+
+  const reportForm = (
+    <div className='formPopUp' id='reportFormContainer'>
+      {/* <form> */}
+
+      <form className='form' onSubmit={this.onSubmitEvent}>
+        <h1>Report User</h1>
+        <h4>Reason: </h4>
+        <select id='reason'>
+          <option value='Fake Items'>Fake Product</option>
+          <option value='Illegal items'>Illegal Items</option>
+          <option value='Other'>Other</option>
+        </select>
+        <input
+          className='inputGroup'
+          id='otherReport'
+          type='text'
+          placeholder='Report'
+          onChange={this.onChangeEvent}
+        ></input>
+        <button type='submit' value='report' className='btn btnDefault-posts'>
+          Submit Report
+        </button>
+        <button
+          type='button'
+          className='btn btnDefault-posts'
+          onClick={this.open_close_report.bind(this)}
+        >
+          Close
+        </button>
+      </form>
+    </div>
+  );
 
     return (
       <section className='mainBackground'>
@@ -128,7 +184,28 @@ class DetailedPost extends React.Component {
               </div>
             </div>
           </div>
-          <div>{this.isAdmin ? adminDel : userReports}</div>
+          <div>
+            {this.isAdmin ? (
+            <button
+              type='button'
+              className='btn btnDefaultDeletePost'
+              value={this.state.postId}
+              onClick={this.onDeletePost}
+            >
+              Delete Post
+            </button>
+          ) : (
+            <button
+              id='userReportBtn'
+              type='button'
+              value={this.state.postId}
+              onClick={this.open_close_report.bind(this)}
+              className='btn btnDefaultReportPost'
+            >
+              Report Post
+            </button>
+          )}
+          </div>
 
           <div className='contactForm'>
             {/*Title of Post + Bidding progress*/}
@@ -161,12 +238,9 @@ class DetailedPost extends React.Component {
             </div>
           </div>
         </div>
+        {!this.isAdmin ? reportForm : ''}
       </section>
     );
   }
 }
-export default connect(null, {loadOnePosts}) (DetailedPost);
-/*
-export default withRouter(
-  connect(null, {loadOnePosts} (DetailedPost))
-);*/
+export default connect(null, {loadOnePosts, deletePost, reportPost}) (DetailedPost);
