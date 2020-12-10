@@ -42,15 +42,12 @@ export function login(credentials) {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      var accType = (credentials.email === ADMIN_ACCOUNT) ? "admin" : "user"
       dispatch({
         type: VALID_LOGIN,
         msg: 'loginActions LOGIN happened',
-        accType: accType,
         data
       });
     })
-    // if any of the catches trigger, meaning connection or update failed
     .catch((error) => {
       console.error('Error:', error);
       dispatch({

@@ -26,38 +26,7 @@ const ProfileSchema = new mongoose.Schema({
         type: [String]
         //posts: [PostSchema]
     },
-    // postings: [
-    //     {
-    //         title: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         price: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         date: {
-    //             type: Date,
-    //             required: true
-    //         },
-    //         description: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         delivery: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         pictures: {
-    //             type: String,
-    //             required: true
-    //         },
-    //         // sellerinfo: {
-    //         //     type: String,
-    //         //     required: true
-    //         // },
-    //     }
-    // ]
+    
 });
 
 const Profile = mongoose.model('profile', ProfileSchema);

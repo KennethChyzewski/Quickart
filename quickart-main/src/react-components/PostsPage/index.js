@@ -48,7 +48,7 @@ class PostsPage extends React.Component {
     pickUpOptions: '',
     description: '',
   };
-  isAdmin = '';
+  isAdmin = "";
 
   componentDidMount() {
     this.loadPost();
@@ -57,12 +57,15 @@ class PostsPage extends React.Component {
   async loadPost() {
     await this.props.loadAllPosts(localStorage.token);
     let reduxState = store.getState();
+    //This check needs to be updated for admin.
+    let userType = reduxState['loginState']['accType'];
+    this.isAdmin = userType === "admin"
+    
+   
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
 
-    //This check needs to be updated for admin.
-    let userType = reduxState['loginState']['user'];
-    this.isAdmin = userType === 'admin';
+   
   }
 
   onChangeEvent = e => {
@@ -88,7 +91,6 @@ class PostsPage extends React.Component {
     } else {
       //Default 'Fruit' bug fix....
       if (!this.state.category) {
-        // this.setState({ category: "Fruit" });
         this.state.category = "Fruit";
       }
       await this.props.createPost(this.state, localStorage.token);
@@ -106,7 +108,6 @@ class PostsPage extends React.Component {
 
   onSubmitEvent = e => {
     e.preventDefault();
-    //Update the redux state
     this.props.reportPost(this.state);
     this.open_close_report();
   };
@@ -180,6 +181,23 @@ class PostsPage extends React.Component {
     this.setState({ userPrice: parseFloat(e.target.value) }, () => {});
   }
 
+  searchyByLocation(e){
+    const target = e.target.value
+    
+    let reduxState = store.getState()
+    const all_posts = reduxState['postsState'];
+    let lstposting = []
+
+    all_posts.forEach(element => {
+      if (element.location === target){
+        lstposting.push(element)
+      }
+    })
+    
+    if(lstposting){
+      this.setState({displayPosts : lstposting})
+    }
+  }
   searchByCategoryName(e) {
     const target = e.target.value;
 
@@ -345,36 +363,35 @@ class PostsPage extends React.Component {
             <h4>Location</h4>
             <div className='filter'>
               <div id='Tag-Content' className='tagContent'>
-                <div className='tagCheckbox'>
+                <form className='tagCheckbox'>
                   <input
-                    type='checkbox'
-                    id='Location1'
-                    className='Location1'
+                    type='radio'
+                    id='Toronto'
+                    value='Toronto'
+                    name='Location'
+                    onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label> Toronto</label>
+                  <label for='Toronto'> Toronto</label>
                   <br></br>
                   <input
-                    type='checkbox'
-                    id='Location1'
-                    name='Location1'
+                    type='radio'
+                    id='Ottawa'
+                    value='Ottawa'
+                    name='Location'
+                    onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label> Ottawa</label>
+                  <label for='Ottawa'> Ottawa</label>
                   <br></br>
                   <input
-                    type='checkbox'
-                    id='Location1'
-                    name='Location1'
+                    type='radio'
+                    id='Mississauga'
+                    value='Mississauga'
+                    name='Location'
+                    onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label> Mississauga</label>
+                  <label for='Mississauga'> Mississauga</label>
                   <br></br>
-                  <input
-                    type='checkbox'
-                    id='Location1'
-                    name='Location1'
-                  ></input>
-                  <label> Markham</label>
-                  <br></br>
-                </div>
+                </form>
               </div>
             </div>
 

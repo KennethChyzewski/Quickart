@@ -28,10 +28,9 @@ class DetailedPost extends React.Component {
     await this.props.loadOnePosts(this.state.postId, localStorage.token);
     let reduxState = store.getState();
 
-    //Temp Fix
-    this.isAdmin = true
-
-
+    let userType = reduxState['loginState']['accType'];
+    this.isAdmin = userType === "admin"
+    
     this.setState(reduxState['postsState']);
     this.setState(reduxState['settingsState']);
 

@@ -50,17 +50,6 @@ const PostSchema = new mongoose.Schema({
             }
         }
     ],
-    // likes: [{
-    //     // type: Number
-    //     type: [mongoose.Schema.Types.ObjectId],
-    //     ref: 'user'
-    // }],
-    // dislike: {
-    //     // type: Number
-    //     type: [mongoose.Schema.Types.ObjectId],
-    //     ref: 'user'
-    // },
-    //Seller information, taken from Profile schema
     name: {
         type: String
     },

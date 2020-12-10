@@ -13,6 +13,7 @@ const postsReducer = (state = initialState, action) => {
         case ALL_POSTS_LOADED:
             console.log("Loaded All Posts Success");
             return action.data;
+            
         case SINGLE_POST_LOADED:
             console.log("Loaded One Post Sucess");
             return action.data
