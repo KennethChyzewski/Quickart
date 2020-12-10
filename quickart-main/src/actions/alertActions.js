@@ -12,7 +12,7 @@ export function setAlert(msg, alertType) {
 
         setTimeout(() => dispatch({
             type: REMOVE_ALERT,
-            payload: id
+            id
         }), 5000);
     };
 }

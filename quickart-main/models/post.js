@@ -10,6 +10,10 @@ const PostSchema = new mongoose.Schema({
         required: true
     },
     price: {
+        type: Number,
+        required: true
+    },
+    category: {
         type: String,
         required: true
     },
@@ -18,11 +22,11 @@ const PostSchema = new mongoose.Schema({
         default: Date.now
         //required: true
     },
-    info: {
+    pickUpOptions: {
         type: String,
         required: true
     },
-    pickUpOptions: {
+    description: {
         type: String,
         required: true
     },
