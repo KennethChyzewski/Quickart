@@ -144,3 +144,17 @@ input[type='checkbox']:focus {
   position: relative;
   top: 80px;
 }
+
+.alert-error2 {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: center;
+  width: fit-content;
+  outline: none;
+  box-shadow: 0px 0px 12px 0.8px black;
+  position: relative;
+  bottom: 250px;
+  left: 1070px;
+}

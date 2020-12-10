@@ -63,6 +63,8 @@
 .tagBar {
   display: inline-block;
   cursor: pointer;
+  position: relative;
+  right: 20px;
 }
 
 .profileDesc {
@@ -146,4 +148,20 @@
 .contactForm {
   position: relative;
   top: 20px;
+}
+
+.circleImgPosts2 {
+  border-radius: 50%;
+  width: 50%;
+  margin: 1rem;
+}
+
+.tagbaritems {
+  position: relative;
+  right: 50px;
+}
+
+.paragraphColour2 {
+  position: relative;
+  left: 5px;
 }
