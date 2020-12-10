@@ -37,12 +37,12 @@ export function createPost(post, jwbToken) {
     // connection to Mongo DB and try to create the post
     // if we were able to successfully connect and create the post
     const passing = JSON.stringify({
-      postedBy: post.postedBy,
       title: post.title,
-      price: post.price,
+      price: Number(post.price),
+      category: post.category,
       date: post.postEndDate,
-      info: post.info,
-      pickUpOptions: post.pickUpOptions,
+      description: post.description,
+      pickUpOptions: post.pickUpOptions
     });
     return fetch(`http://localhost:5000/posts`, {
       method: 'POST',

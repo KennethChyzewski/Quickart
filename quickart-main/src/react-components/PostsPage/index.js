@@ -19,6 +19,8 @@ import { ThreeSixty } from '@material-ui/icons';
 /* Component for the Main Posts Page */
 class PostsPage extends React.Component {
   state = {
+    //Pretty sure this is mandatory by default
+    category: 'Fruit',
     //Reqiured by Report page
     otherReport: '',
     isReporting: false,
@@ -44,7 +46,7 @@ class PostsPage extends React.Component {
     category: '',
     postEndDate: '',
     pickUpOptions: '',
-    info: '',
+    description: '',
   };
   isAdmin = '';
 
@@ -69,22 +71,28 @@ class PostsPage extends React.Component {
     });
   };
 
-  onPostEvent = e => {
+  onPostEvent = async(e) => {
     e.preventDefault();
     if (!this.state.title) {
       this.props.setAlert('A title is required.', 'error');
-    } else if (!this.state.category) {
-      this.props.setAlert('A category is required.', 'error');
-    } else if (!this.state.postEndDate) {
+    } 
+    // else if (!this.state.category) {
+    //   this.props.setAlert('A category is required.', 'error');
+    // } 
+    else if (!this.state.postEndDate) {
       this.props.setAlert('A post end date is required.', 'error');
     } else if (!this.state.pickUpOptions) {
       this.props.setAlert('A pick up option is required.', 'error');
-    } else if (!this.state.info) {
+    } else if (!this.state.description) {
       this.props.setAlert('A description is required.', 'error');
     } else {
-      let reduxState = store.getState();
-      this.setState({ postedBy: reduxState['loginState']['id'] });
-      this.props.createPost(this.state, localStorage.token);
+      //Default 'Fruit' bug fix....
+      if (!this.state.category) {
+        // this.setState({ category: "Fruit" });
+        this.state.category = "Fruit";
+      }
+      await this.props.createPost(this.state, localStorage.token);
+      this.props.history.push('/profile');
     }
   };
 
@@ -250,7 +258,7 @@ class PostsPage extends React.Component {
         <div className='rightGridPost'>
           <h3>{post.title}</h3>
           <h4>{'$' + post.price}</h4>
-          <p className='smallMargin'>{post.info}</p>
+          <p className='smallMargin'>{post.description}</p>
 
           <button
             className='btn regularButton likes'
@@ -407,7 +415,7 @@ class PostsPage extends React.Component {
                     id='category'
                     onChange={this.onChangeEvent}
                   >
-                    <option value='Fruit'> Fruit </option>
+                    <option selected value='Fruit'> Fruit </option>
                     <option value='Vegtable'> Vegtable</option>
                     <option value='Grain'> Grain </option>
                     <option value='Meat'> Meat </option>
@@ -435,7 +443,7 @@ class PostsPage extends React.Component {
                 <textarea
                   className='inputGroup'
                   placeholder='Your message here'
-                  id='info'
+                  id='description'
                   onChange={this.onChangeEvent}
                 ></textarea>
                 <input
@@ -459,7 +467,7 @@ class PostsPage extends React.Component {
 //   test: state.loginState
 // })
 
-export default connect(null, {
+export default withRouter(connect(null, {
   setAlert,
   reportPost,
   loadAllPosts,
@@ -467,4 +475,14 @@ export default connect(null, {
   likePost,
   dislikePost,
   deletePost,
-})(PostsPage);
+})(PostsPage));
+
+// export default connect(null, {
+//   setAlert,
+//   reportPost,
+//   loadAllPosts,
+//   createPost,
+//   likePost,
+//   dislikePost,
+//   deletePost,
+// })(PostsPage);

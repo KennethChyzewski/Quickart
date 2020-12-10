@@ -232,8 +232,9 @@ app.post('/posts',
                 postedBy: req.user.id,
                 title: req.body.title,
                 price: req.body.price,
+                category: req.body.category,
                 date: req.body.date,
-                info: req.body.info,
+                description: req.body.description,
                 pickUpOptions: req.body.pickUpOptions,
                 // likes: req.body.likes, //should always be [] initially
                 // dislikes: req.body.dislikes, //should always be [] initially
