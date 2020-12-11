@@ -14,6 +14,7 @@ import {
   dislikePost,
   deletePost,
 } from '../../actions/postsActions';
+// import { login } from '../../actions/pageActions';
 import Alert from '../Alert';
 import { ThreeSixty } from '@material-ui/icons';
 
@@ -67,8 +68,6 @@ class PostsPage extends React.Component {
     this.setState({ user: reduxState['settingsState']})
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
-
-   
   }
 
   onChangeEvent = e => {
@@ -102,7 +101,10 @@ class PostsPage extends React.Component {
         this.state.category = "Fruit";
       }
       await this.props.createPost(this.state, localStorage.token);
-      this.props.history.push('/profile');
+      // this.props.history.push('/profile');
+      //Update the page with the newly created post
+      localStorage.setItem('previousPage', '/posts');
+      this.props.history.push('/loading');
     }
   };
 
@@ -112,6 +114,9 @@ class PostsPage extends React.Component {
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
+    //Update the page with the removed post
+    localStorage.setItem('previousPage', '/posts');
+    this.props.history.push('/loading');
   };
 
   onSubmitEvent = e => {
@@ -136,59 +141,26 @@ class PostsPage extends React.Component {
   //Like and Dislike Button Events
   likeFunction(e) {
     e.preventDefault();
-    // console.log(e.target.id);
-
-    //If the post has neither been liked or disliked before
-    // if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-    //   let newLikes = this.state.likes + 1;
-    //   this.setState({ likes: newLikes });
-    //   this.setState({ likeUpdated: true });
-    // }
-
-    // //If the post has been disliked before
-    // else if (
-    //   this.state.likeUpdated == false &&
-    //   this.state.dislikeUpdated == true
-    // ) {
-    //   let newLikes = this.state.likes + 1;
-    //   let newDislikes = this.state.dislikes - 1;
-    //   this.setState({ likes: newLikes });
-    //   this.setState({ dislikes: newDislikes });
-    //   this.setState({ likeUpdated: true });
-    //   this.setState({ dislikeUpdated: false });
-    // }
+    //Decode the like button and get its Post ID from it
     let postID = e.target.id.substring(0, e.target.id.length - 1);
     this.props.likePost(postID, localStorage.token);
     //Update the like count, which is updated in mongodb but not the local state
-    //this.loadPost();
+    localStorage.setItem('previousPage', '/posts');
+    this.props.history.push('/loading');
   }
   dislikeFunction(e) {
-    //If the post has neither been liked or disliked before
-    // if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-    //   let newDislikes = this.state.dislikes + 1;
-    //   this.setState({ dislikes: newDislikes });
-    //   this.setState({ dislikeUpdated: true });
-    // } else if (
-    //   this.state.likeUpdated == true &&
-    //   this.state.dislikeUpdated == false
-    // ) {
-    //   let newDislikes = this.state.dislikes + 1;
-    //   let newLikes = this.state.likes - 1;
-    //   this.setState({ dislikes: newDislikes });
-    //   this.setState({ likes: newLikes });
-    //   this.setState({ dislikeUpdated: true });
-    //   this.setState({ likeUpdated: false });
-    // }
+    e.preventDefault();
+    //Decode the dislike button and get its Post ID from it
     let postID = e.target.id.substring(0, e.target.id.length - 1);
     this.props.dislikePost(postID, localStorage.token);
     //Update the dislike count, which is updated in mongodb but not the local state
-    //this.loadPost();
+    localStorage.setItem('previousPage', '/posts');
+    this.props.history.push('/loading');
   }
 
   searchByTitleName(e) {
     //Database call/query
     //Get Request PostbyName Endpoint, this will get the array of post objects
-
     this.setState({ searchResult: e.target.value }, () => {});
   }
 
@@ -285,7 +257,7 @@ class PostsPage extends React.Component {
         <div className='lefttGridPost'>
           <Link to='/profile'>
             <img className='circleImgPosts' src={userPicture} alt='' />
-            <h4 className='postUser'>{post.postedBy}</h4>
+            <h4 className='postUser'>{post.name}</h4>
           </Link>
         </div>
         <div className='rightGridPost'>
@@ -387,7 +359,7 @@ class PostsPage extends React.Component {
                     name='Location'
                     onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label for='Toronto'> Toronto</label>
+                  <label htmlFor='Toronto'> Toronto</label>
                   <br></br>
                   <input
                     type='radio'
@@ -396,7 +368,7 @@ class PostsPage extends React.Component {
                     name='Location'
                     onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label for='Ottawa'> Ottawa</label>
+                  <label htmlFor='Ottawa'> Ottawa</label>
                   <br></br>
                   <input
                     type='radio'
@@ -405,7 +377,7 @@ class PostsPage extends React.Component {
                     name='Location'
                     onClick={this.searchyByLocation.bind(this)}
                   ></input>
-                  <label for='Mississauga'> Mississauga</label>
+                  <label htmlFor='Mississauga'> Mississauga</label>
                   <br></br>
                 </form>
               </div>

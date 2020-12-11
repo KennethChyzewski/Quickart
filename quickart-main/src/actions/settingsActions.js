@@ -123,7 +123,7 @@ export function updateProfile(profileDetails, jwbToken) {
   };
 }
 
-export function deleteUser(userID, jwbToken){
+export function deleteUser(jwbToken){
   return dispatch => {
     return fetch(`http://localhost:5000/profile`, {
       method: 'DELETE',
