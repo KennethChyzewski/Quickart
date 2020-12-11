@@ -326,13 +326,13 @@ app.get('/profile/me', auth, async (req, res) => {
     }
 });
 
-// POST /profile/me - create empty profile JUMP
-app.post('/profile/me', async (req, res) => {
+// POST /profile/me - create empty profile
+app.post('/profile/me', auth, async (req, res) => {
     try {
         let profile = new Profile({
             tags: [],
             postings: [],
-            user: req.body.id,
+            user: req.user.id, //mongoose.Types.ObjectId(req.body.id),
             name: req.body.name,
             location: req.body.location,
             biography: "",
@@ -350,52 +350,52 @@ app.post('/profile/me', async (req, res) => {
 // POST /profile - create or update user profile
 // Can we delete check? I think front end has validation for this...
 app.post('/profile', auth, async (req, res) => {
-        const {
-            name,
-            location, 
-            biography, 
-            niche, 
-            tags, 
-            postings
-        } = req.body;
+    const {
+        name,
+        location, 
+        biography, 
+        niche, 
+        tags, 
+        postings
+    } = req.body;
 
-        const profileFields = {}; 
-        profileFields.user = req.user.id;
-        if (name) {
-            profileFields.name = name;
-        }
-        if (location) {
-            profileFields.location = location;
-        }
-        if (biography) {
-            profileFields.biography = biography;
-        }
-        if (niche) {
-            profileFields.niche = niche;
-        }
-        if (tags) {
-            profileFields.tags = tags
-        }
-        if (postings) {
-            profileFields.postings = postings;
-        }
+    const profileFields = {}; 
+    profileFields.user = req.user.id;
+    if (name) {
+        profileFields.name = name;
+    }
+    if (location) {
+        profileFields.location = location;
+    }
+    if (biography) {
+        profileFields.biography = biography;
+    }
+    if (niche) {
+        profileFields.niche = niche;
+    }
+    if (tags) {
+        profileFields.tags = tags
+    }
+    if (postings) {
+        profileFields.postings = postings;
+    }
 
-        try {
-            let profile = await Profile.findOne({ user: req.user.id });
-            //we found the profile
-            if(profile) {
-                profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields });//, { new: true });
-                return res.json(profile);
-            } 
-            //if not, we need to create profile
-            profile = new Profile(profileFields);
-            await profile.save();
-            res.json(profile);
-        } catch(error) {
-            console.error(error.message);
-            res.status(500).send('Server Error');
-        }
-        res.send();
+    try {
+        let profile = await Profile.findOne({ user: req.user.id });
+        //we found the profile
+        if (profile) {
+            profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields });//, { new: true });
+            return res.json(profile);
+        } 
+        //if not, we need to create profile
+        profile = new Profile(profileFields);
+        await profile.save();
+        res.json(profile);
+    } catch(error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+    res.send();
 })
 
 // GET /profile - Get all profiles
@@ -449,8 +449,8 @@ app.delete('/profile', auth, async (req, res) => {
 // POST /users - Register a user
 app.post('/users', [
     check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Please enter a password with 6 or more characaters').isLength({ min: 6})
+    check('email', 'Please include a valid email').isEmail()
+    //check('password', 'Please enter a password with 6 or more characaters').isLength({ min: 6})
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
