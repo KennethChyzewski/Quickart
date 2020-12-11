@@ -12,7 +12,7 @@ const reportsReducer = (state = initialState, action) => {
     switch(type) {
         case REPORT_POST_SUCCESS:
             console.log("Report Post Success");
-            return [...state, payload];
+            return action.data;
 
         case REPORT_POST_FAILED:
             console.log("Report Post Failed");

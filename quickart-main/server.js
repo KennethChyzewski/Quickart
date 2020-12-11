@@ -27,6 +27,7 @@ const Message = require('./models/message');
 const Post = require('./models/post');
 const Profile = require('./models/profile');
 const User = require('./models/user');
+const Report = require('./models/reports');
 
 /// Route for getting all restaurant information.
 // GET /restaurants
@@ -515,6 +516,30 @@ app.post('/users', [
         console.error(error.message);
         res.status(500).send('Sever error');
     }
+});
+
+////////////////////////////////////// REPORT ROUTES //////////////////////////////////////
+// POST /posts - Create a report for reportng a user
+app.post('/reports', 
+    async(req, res) => {
+        try {
+
+            let report = new Report({
+                reportedBy: req.body.reportedBy,
+                name: req.body.name,
+                reportDescription: req.body.reportDescription,
+                avatar: req.body.avatar,
+                reason: req.body.reason,
+                linkToPost: req.body.linkToPost,
+            });
+            console.log("report: ", report)
+            await report.save();
+            res.json(report);
+        } catch(error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+        res.send();
 });
 
 
