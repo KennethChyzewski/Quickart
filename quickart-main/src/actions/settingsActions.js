@@ -61,17 +61,19 @@ export function getEditProfile(jwbToken) {
 }
 
 
-export function makeEmptyProfile(userDetails) {
+export function makeEmptyProfile(userDetails, jwbToken) {
   return dispatch => {
     return fetch(`http://localhost:5000/profile/me`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-auth-token': jwbToken
       },
       body: JSON.stringify({
+        user: userDetails.id,
         name: userDetails.name, 
         email: userDetails.email,
-        location: userDetails.location
+        location: userDetails.location,
       })
     })
     .then(response => response.json())
