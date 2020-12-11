@@ -59,6 +59,11 @@ password: admin
 12. View all reports on a user's profile as an admin.
 13. Delete A Post as an Admin 
 
+### Disclaimer(Changes from Phase 1):
+1. The messaging system is not functional. 
+2. The delete button was removed on the post page.
+3. The edit profile page is slightly different from phase 1.
+
 ### BELOW IS MEANT FOR DEVELOPERS: 
 
 ### How to Start up and run the web application
