@@ -193,14 +193,9 @@ app.delete('/posts/:id', auth, async (req, res) => {
         const post = await Post.findById(req.params.id);
         if (!post) {
             return res.status(404).json({ msg: 'Post not found' });
-		}
-        //Make sure user who is trying to delete post is the owner of post
-        //Only admins should be able to kill posts so its fine
-       /* 
-        if (post.postedBy.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'Unauthorized transaction' });
-        } 
-        */
+        }
+        await Report.deleteMany({ linkToPost: req.params.id });
+    
         await post.remove();
         res.json({ msg: 'Post removed' });
     } catch(error) {
@@ -235,7 +230,7 @@ app.post('/posts',
                 title: req.body.title,
                 price: req.body.price,
                 category: req.body.category,
-                date: req.body.date,
+                postEndDate: req.body.postEndDate,
                 description: req.body.description,
                 pickUpOptions: req.body.pickUpOptions,
                 // likes: req.body.likes, //should always be [] initially

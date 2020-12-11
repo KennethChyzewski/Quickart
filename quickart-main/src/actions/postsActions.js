@@ -40,10 +40,11 @@ export function createPost(post, jwbToken) {
       title: post.title,
       price: Number(post.price),
       category: post.category,
-      date: post.postEndDate,
+      postEndDate: post.postEndDate,
       description: post.description,
       pickUpOptions: post.pickUpOptions
     });
+    console.log(passing)
     return fetch(`http://localhost:5000/posts`, {
       method: 'POST',
       headers: {
