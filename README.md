@@ -23,15 +23,6 @@
 1. Click either the login button found on the Welcome Page or Navigation Bar to be redirected to the login form.
 2. Enter login credentials for an admin user provided below. This will redirect the admin to their profiles page.
 
-### Quickart Features
-1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
-2. Registration form.
-3. Create new post. 
-4. View more details about a specific post. 
-5. Report a post.
-6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
-10. Edit User profile.
-11. View all reports on a user's profile as an admin.
 
 ## Login Credentials 
 Regular User: \
@@ -47,6 +38,17 @@ password: admin
 2. Redux 
 3. Material UI
 4. react-scroll
+
+## Quickart Features
+1. Welcome page, featuring an about page to introduce to the user Quickart's main goal and purpose. 
+2. Registration form.
+3. Create new post. 
+4. View more details about a specific post. 
+5. Report a post.
+6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
+10. Edit User profile.
+11. View all reports on a user's profile as an admin.
+
 
 
 ### How to Start up and run the web application
