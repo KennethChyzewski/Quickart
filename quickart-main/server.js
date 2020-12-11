@@ -518,6 +518,17 @@ app.post('/users', [
 
 ////////////////////////////////////// REPORT ROUTES //////////////////////////////////////
 // POST /posts - Create a report for reportng a user
+app.get('/reports', auth, async (req, res) => {
+    try {
+        const posts = await Report.find();
+        // For now we dont include data since we dont have any to pass need to fix. 
+        res.json(posts);
+    } catch(error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 app.post('/reports', 
     async(req, res) => {
         try {
