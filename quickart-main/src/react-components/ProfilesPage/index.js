@@ -39,6 +39,28 @@ class ProfilesPage extends React.Component {
     this.setState(reduxState['settingsState']);
   }
 
+
+  // const reportedPosts = this.state.user_posts.map(post => (
+  //   <div className='post backgroundWhite'>
+  //     <div className='lefttGridPost'>
+  //       <Link to='/profile'>
+  //         <img className='circleImgPosts' src={userPicture} alt='' />
+  //         <h4 className='postUser'>{post.name}</h4>
+  //       </Link>
+  //     </div>
+  //     <div className='rightGridPost'>
+  //       <h4>{post.reason}</h4>
+  //       <p className='smallMargin'>
+  //         {post.reportDescription}
+  //       </p>
+  //       <Link to={{ pathname: '/DetailPosting/' + post.linkToPost}}
+  //        className='btn btnDefault-report'>
+  //         View Reported Posting
+  //       </Link> 
+  //     </div>
+  //   </div>
+  // ));
+
   render() {
     const allUserPosts = this.state.postings.map(post => (
       <div className='backgroundWhite'>
@@ -48,9 +70,12 @@ class ProfilesPage extends React.Component {
             {
               //Need to change the 'to' so it links to the actual post link
             }
-            <Link className='addSomeMargin' to='/posts'>
+            {/* <Link className='addSomeMargin' to='/posts'>
               {post.title}
-            </Link>
+            </Link> */}
+            <Link to={{ pathname: '/DetailPosting/' + post._id}} className='addSomeMargin'>
+              {post.title}
+            </Link> 
           </h4>
           <h6 className='addSomeMargin'>{post.postEndDate}</h6>
           <p className='addSomeMargin'>{post.description}</p>
