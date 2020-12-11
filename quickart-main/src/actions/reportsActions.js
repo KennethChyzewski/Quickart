@@ -1,13 +1,13 @@
 import { REPORT_POST_SUCCESS, REPORT_POST_FAILED, REPORT_GET_SUCCESS, REPORT_GET_FAILURE } from '../constants';
 
 export function reportPost(post, jwbToken) {
+    console.log("post: ", post)
     return dispatch => {
       const passing = JSON.stringify({
         date: null,
         reportDescription: post.reportDescription,
-        reportedBy: post.user._id,
-        name: post.name ,
-        avatar: post.avatar,
+        reportedBy: post.user.id,
+        name: post.name,
         reason: post.reason,
         linkToPost: post.postId, // the actual post that got reported
       });
