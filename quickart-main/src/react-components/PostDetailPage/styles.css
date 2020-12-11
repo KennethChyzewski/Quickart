@@ -64,7 +64,7 @@
   display: inline-block;
   cursor: pointer;
   position: relative;
-  right: 20px;
+  left: 0px;
 }
 
 .profileDesc {
