@@ -26,6 +26,12 @@ class PostsPage extends React.Component {
     otherReport: '',
     isReporting: false,
 
+    userAvatar: "",
+    userName: "",
+    userId: "",
+    userResult: "",
+    postID: "",
+
     userReport: '',
 
     //Required by like
@@ -64,7 +70,10 @@ class PostsPage extends React.Component {
     let userType = reduxState['loginState']['accType']; // login state
     this.isAdmin = userType === "admin"
     
-   
+
+    const result = reduxState['settingsState']
+    this.setState({userResult: result})
+
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
 
@@ -117,13 +126,16 @@ class PostsPage extends React.Component {
   onSubmitEvent = e => {
     e.preventDefault();
     //this.props.reportPost(this.state);
+    console.log("state: ", this.state)
     let reduxState = store.getState();
-    this.setState(reduxState['settingsState'])
     console.log("setState: ", this.state)
     this.open_close_report();
   };
 
-  open_close_report = e => {
+  open_close_report(e) {
+    //e.preventDefault(); 
+    //console.log("e.target.value: ", e.target.value)
+    this.setState({ postID: e.target.value }, () => {});
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -240,17 +252,17 @@ class PostsPage extends React.Component {
         <form className='form' onSubmit={this.onSubmitEvent}>
           <h1>Report User</h1>
           <h4>Reason: </h4>
-          <select id='reason'>
+          <select id='reason' onChange={this.onChangeEvent}>
             <option value='Fake Items'>Fake Items</option>
             <option value='Illegal items'>Illegal Items</option>
             <option value='Other'>Other</option>
           </select>
           <input
             className='inputGroup'
-            id='otherReport'
+            id='reportDescription'
             type='text'
             placeholder='Report'
-            onChange={this.onChangeEvent}
+            onChange={this.onChangeEvent} 
           ></input>
           <button type='submit' value='report' className='btn btnDefault-posts'>
             Submit Report
