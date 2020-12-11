@@ -62,8 +62,8 @@ export function makeEmptyProfile(userDetails) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: userDetails.id,
-        name: userDetails.email, 
+        name: userDetails.name, 
+        email: userDetails.email,
         location: userDetails.location
       })
     })

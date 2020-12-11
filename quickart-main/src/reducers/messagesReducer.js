@@ -5,11 +5,8 @@ const initialState = [
 ];
 
 const messagesReducer = (state = initialState, action) => {
-
-    //Destructure 'action'
-    const { type, payload } = action;   
     
-    switch(type) {
+    switch(action.type) {
 
         case LOAD_MESSAGES_SUCCESS:
             console.log("Loaded Messages Success");

@@ -132,48 +132,53 @@ class PostsPage extends React.Component {
   //Like and Dislike Button Events
   likeFunction(e) {
     e.preventDefault();
-    console.log(e.target.id);
+    // console.log(e.target.id);
 
     //If the post has neither been liked or disliked before
-    if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-      let newLikes = this.state.likes + 1;
-      this.setState({ likes: newLikes });
-      this.setState({ likeUpdated: true });
-    }
+    // if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
+    //   let newLikes = this.state.likes + 1;
+    //   this.setState({ likes: newLikes });
+    //   this.setState({ likeUpdated: true });
+    // }
 
-    //If the post has been disliked before
-    else if (
-      this.state.likeUpdated == false &&
-      this.state.dislikeUpdated == true
-    ) {
-      let newLikes = this.state.likes + 1;
-      let newDislikes = this.state.dislikes - 1;
-      this.setState({ likes: newLikes });
-      this.setState({ dislikes: newDislikes });
-      this.setState({ likeUpdated: true });
-      this.setState({ dislikeUpdated: false });
-    }
-
-    this.props.likePost(this.state);
+    // //If the post has been disliked before
+    // else if (
+    //   this.state.likeUpdated == false &&
+    //   this.state.dislikeUpdated == true
+    // ) {
+    //   let newLikes = this.state.likes + 1;
+    //   let newDislikes = this.state.dislikes - 1;
+    //   this.setState({ likes: newLikes });
+    //   this.setState({ dislikes: newDislikes });
+    //   this.setState({ likeUpdated: true });
+    //   this.setState({ dislikeUpdated: false });
+    // }
+    let postID = e.target.id.substring(0, e.target.id.length - 1);
+    this.props.likePost(postID, localStorage.token);
+    //Update the like count, which is updated in mongodb but not the local state
+    //this.loadPost();
   }
   dislikeFunction(e) {
     //If the post has neither been liked or disliked before
-    if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
-      let newDislikes = this.state.dislikes + 1;
-      this.setState({ dislikes: newDislikes });
-      this.setState({ dislikeUpdated: true });
-    } else if (
-      this.state.likeUpdated == true &&
-      this.state.dislikeUpdated == false
-    ) {
-      let newDislikes = this.state.dislikes + 1;
-      let newLikes = this.state.likes - 1;
-      this.setState({ dislikes: newDislikes });
-      this.setState({ likes: newLikes });
-      this.setState({ dislikeUpdated: true });
-      this.setState({ likeUpdated: false });
-    }
-    this.props.dislikePost(this.state);
+    // if (this.state.likeUpdated == false && this.state.dislikeUpdated == false) {
+    //   let newDislikes = this.state.dislikes + 1;
+    //   this.setState({ dislikes: newDislikes });
+    //   this.setState({ dislikeUpdated: true });
+    // } else if (
+    //   this.state.likeUpdated == true &&
+    //   this.state.dislikeUpdated == false
+    // ) {
+    //   let newDislikes = this.state.dislikes + 1;
+    //   let newLikes = this.state.likes - 1;
+    //   this.setState({ dislikes: newDislikes });
+    //   this.setState({ likes: newLikes });
+    //   this.setState({ dislikeUpdated: true });
+    //   this.setState({ likeUpdated: false });
+    // }
+    let postID = e.target.id.substring(0, e.target.id.length - 1);
+    this.props.dislikePost(postID, localStorage.token);
+    //Update the dislike count, which is updated in mongodb but not the local state
+    //this.loadPost();
   }
 
   searchByTitleName(e) {
@@ -287,7 +292,7 @@ class PostsPage extends React.Component {
           <button
             className='btn regularButton likes'
             value={post.likes}
-            id={post.id}
+            id={post._id + '1'}
             onClick={e => this.likeFunction(e)}
           >
             Likes: {post.likes.length}
@@ -295,10 +300,11 @@ class PostsPage extends React.Component {
           <button
             className='btn regularButton dislikes'
             value={post.dislikes}
-            id={post.id}
+            id={post._id + '2'}
             onClick={e => this.dislikeFunction(e)}
           >
-            <span>Dislikes: {post.dislikes.length}</span>
+            {/* <span>Dislikes: {post.dislikes.length}</span> */}
+            Dislikes: {post.dislikes.length}
           </button>
 
           <Link
@@ -439,10 +445,7 @@ class PostsPage extends React.Component {
                     id='category'
                     onChange={this.onChangeEvent}
                   >
-                    <option selected value='Fruit'>
-                      {' '}
-                      Fruit{' '}
-                    </option>
+                    <option value='Fruit'> {' '}Fruit{' '} </option>
                     <option value='Vegtable'> Vegtable</option>
                     <option value='Grain'> Grain </option>
                     <option value='Meat'> Meat </option>
