@@ -352,11 +352,12 @@ app.post('/profile/me', auth, async (req, res) => {
 app.post('/profile', auth, async (req, res) => {
     const {
         name,
+        // email,
+        // password,
         location, 
         biography, 
         niche, 
-        tags, 
-        postings
+        tags
     } = req.body;
 
     const profileFields = {}; 
@@ -364,6 +365,15 @@ app.post('/profile', auth, async (req, res) => {
     if (name) {
         profileFields.name = name;
     }
+    // if (email) {
+    //     profileFields.email = email;
+    // }
+    // if (password) {
+    //     // Encrypt password using bcrypt Create salt to hash
+    //     const salt = await bcrypt.genSalt(10); //documentation recommendation
+    //     profileFields.password = await bcrypt.hash(password, salt);
+    //     //profileFields.password = password;
+    // }
     if (location) {
         profileFields.location = location;
     }
@@ -375,9 +385,6 @@ app.post('/profile', auth, async (req, res) => {
     }
     if (tags) {
         profileFields.tags = tags
-    }
-    if (postings) {
-        profileFields.postings = postings;
     }
 
     try {
