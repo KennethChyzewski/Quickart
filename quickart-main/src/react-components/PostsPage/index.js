@@ -138,7 +138,7 @@ class PostsPage extends React.Component {
     } else {
       this.setState({ ['isReporting']: false });
       document.getElementById('reportFormContainer').style.display = 'none';
-      this.props.setAlert('Post has been successfully reported.', 'success');
+      this.props.setAlert('Post has been successfully reported.', 'success2');
     }
   };
 
