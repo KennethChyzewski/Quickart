@@ -8,14 +8,15 @@ import { updateProfile, getEditProfile, deleteUser } from '../../actions/setting
 import { setAlert } from '../../actions/alertActions';
 
 import './styles.css';
+import { Category } from '@material-ui/icons';
 
 /* Component for the Edit User Profile's Page*/
 class EditProfilePage extends React.Component {
   state = {
     user:"",
     name: "",
-    email: "",
-    password: "",
+    // email: "",
+    // password: "",
     location: "",
     biography: "",
     niche: "",
@@ -32,8 +33,8 @@ class EditProfilePage extends React.Component {
     await this.props.getEditProfile(localStorage.token)
     reduxState = store.getState()
     this.setState(reduxState["settingsState"])
-
   }
+
   onTagEvent = e => {
     let value = e.target.value
     if(this.state.tags.includes(value)){
@@ -58,22 +59,7 @@ class EditProfilePage extends React.Component {
 
   onSubmitEvent = async(e) => {
     e.preventDefault();
-    if (!this.state.name){
-      this.props.setAlert('A name is required.', 'error');
-    } else if (!this.state.email) {
-      this.props.setAlert('An email is required.', 'error');
-    } else if (!this.state.password) {
-      this.props.setAlert('A password is required.', 'error');
-    } else if (!this.state.location){
-      this.props.setAlert('A location is required.', 'error');
-    } else if (!this.state.biography) {
-      this.props.setAlert('A biography is required.', 'error');
-    } else if (!this.state.niche){
-      this.props.setAlert('A niche is required.', 'error');
-    } else if (!this.state.tags){
-      this.props.setAlert('Tags are required.', 'error');
-    } else {
-      console.log(this.state)
+
       await this.props.updateProfile(this.state, localStorage.token);
       const state = store.getState();
 
@@ -87,7 +73,7 @@ class EditProfilePage extends React.Component {
           'error'
         );
       }
-    }
+    // }
   };
 
   render() {
@@ -122,8 +108,7 @@ class EditProfilePage extends React.Component {
                 placeholder={this.state.name}
                 onChange={this.onChangeEvent} />
             </div>
-
-            <label className='labelDefault'>Email Address</label>
+            {/* <label className='labelDefault'>Email Address</label>
             <div className='form-group'>
               <input
                 id='email'
@@ -139,10 +124,10 @@ class EditProfilePage extends React.Component {
                 id='password'
                 className='inputGroup'
                 type='password'
-                placeholder={this.state.password}
+                placeholder={'*******'}
                 onChange={this.onChangeEvent}
               />
-            </div>
+            </div> */}
             <label className='labelDefault'>Location</label>
             <div className='form-group'>
               <input

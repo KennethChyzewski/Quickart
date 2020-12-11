@@ -3,9 +3,10 @@ import { PROFILE_SETTINGS_RETRIEVED,  PROFILE_SETTINGS_NOT_RETRIEVED, EMPTY_PROF
 const initialState = {
   user: "",
   name: "",
-  location:"",
-  biography:"",
-  niche:"",
+  email: "",
+  location: "",
+  biography: "",
+  niche: "",
   tags: [],
   postings: []
 };
