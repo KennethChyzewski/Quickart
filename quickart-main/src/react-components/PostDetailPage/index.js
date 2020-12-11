@@ -18,6 +18,7 @@ class DetailedPost extends React.Component {
     postId: '',
     tags: [],
     date: '',
+    user: "",
     isReporting: false,
   };
   isAdmin = '';
@@ -35,17 +36,14 @@ class DetailedPost extends React.Component {
     this.isAdmin = userType === "admin"
     
     this.setState(reduxState['postsState']);
-    this.setState(reduxState['settingsState']);
+    this.setState({user: reduxState['settingsState']});
 
-    // let userType = state['loginState']['user'];
-    // this.isAdmin = userType === 'admin';
     const formatter = { year: 'numeric', month: 'long', day: 'numeric' };
     const dateFormat = new Date(this.state.postEndDate).toLocaleDateString(
       [],
       formatter
     );
     this.setState({ date: dateFormat.toString() });
-    console.log(this.state.date);
   }
 
   onDeletePost = e => {
@@ -61,8 +59,6 @@ class DetailedPost extends React.Component {
     //Update the redux state
     this.open_close_report();
     this.props.reportPost(this.state, localStorage.token); // calls the server
-    
-    console.log("this.state: ", this.state)
   };
 
   open_close_report = e => {
