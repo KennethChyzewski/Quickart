@@ -83,7 +83,7 @@ class DetailedPost extends React.Component {
         variant='outlined'
         href=''
         startIcon={<AddIcon />}
-        class={'tagOption-' + tag}
+        className={'tagOption-' + tag}
       >
         {tag}
       </Button>

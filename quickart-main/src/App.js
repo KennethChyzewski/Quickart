@@ -13,6 +13,7 @@ import EditProfilePage from './react-components/EditProfilePage';
 import EditProfileAfterRegistrationPage from './react-components/EditProfileAfterRegistrationPage';
 import UserReportsPage from './react-components/UserReportsPage';
 import MessagesPage from './react-components/MessagesPage';
+import LoadingPage from './react-components/LoadingPage';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -89,6 +90,11 @@ class App extends React.Component {
                 exact
                 path='/messages'
                 render={() => <MessagesPage appState={this.state} />}
+              />
+              <Route
+                exact
+                path='/loading'
+                render={() => <LoadingPage appState={this.state} />}
               />
 
               {/* <Route exact path='/feed' render={() => 

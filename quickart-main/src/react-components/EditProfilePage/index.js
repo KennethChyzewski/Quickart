@@ -46,10 +46,7 @@ class EditProfilePage extends React.Component {
   
   onDeleteButton = async(e) =>{
     e.preventDefault();
-    console.log('i happened')
-    let reduxState = store.getState()
-    let userID = reduxState['loginState']['id']
-    await this.props.deleteUser(userID, localStorage.token)
+    await this.props.deleteUser(localStorage.token)
     window.location = '/'
   }
 

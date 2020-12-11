@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 	postsState: postsReducer,
 	reportsState: reportsReducer,
 	messagesState: messagesReducer,
-	usersState: usersReducer,
+	usersState: usersReducer
 });
 
 export default rootReducer;
