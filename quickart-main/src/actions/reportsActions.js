@@ -11,7 +11,6 @@ export function reportPost(post, jwbToken) {
         reason: post.reason,
         linkToPost: post.postId, // the actual post that got reported
       });
-      console.log("passing: ", passing)
       return fetch(`http://localhost:5000/reports`, {
         method: 'POST',
         headers: {
@@ -29,12 +28,13 @@ export function reportPost(post, jwbToken) {
           data, // data is the whats returned to you from the server, this is what the redux state becomes
         });
       });
+      
       // if any of the catches trigger, meaning connection or update failed
       // dispatch({
       //   type: REPORT_POST_FAILED,
       //   msg: 'reportsActions REPORT happened'
       // })
-      };
+    };
 }
 
 

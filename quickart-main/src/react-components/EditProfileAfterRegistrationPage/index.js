@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import store from '../../store';
 import { connect } from 'react-redux';
-
+import Alert from '../Alert';
 import { updateProfile } from '../../actions/settingsActions';
 import { setAlert } from '../../actions/alertActions';
 
@@ -50,14 +50,21 @@ class EditProfileAfterRegistrationPage extends React.Component {
 
   onSubmitEvent = async(e) => {
     e.preventDefault();
+
+    if (!this.state.biography) {
+      this.props.setAlert('A biography is required.', 'error');
+    } else if (!this.state.niche){
+      this.props.setAlert('A niche is required.', 'error');
+    } else if (this.state.tags.length < 1){
+      this.props.setAlert('Tags are required.', 'error');
+    } else {
+
       //Update the redux state
       await this.props.updateProfile(this.state, localStorage.token);
       // Check the redux state after trying to login the user
       const state = store.getState();
-      let updateSuccess =
-        Object.keys(state['settingsState']).length !== 0 ? true : false;
+      let updateSuccess =Object.keys(state['settingsState']).length !== 0 ? true : false;
       if (updateSuccess) {
-        //Redirect the user
         this.props.history.push('/posts');
       } else {
         this.props.setAlert(
@@ -65,6 +72,7 @@ class EditProfileAfterRegistrationPage extends React.Component {
           'error'
         );
       }
+    }
   };
 
   render() {
@@ -88,6 +96,7 @@ class EditProfileAfterRegistrationPage extends React.Component {
     return (
       <section className='mainBackground-editProfile'>
         <div className='containerForm'>
+          <Alert/>
           <h1 className='textDefaultColor-editProfile'>Edit Profile</h1>
           {/* <form className='form'> */}
           <form className='form' onSubmit={this.onSubmitEvent}>
@@ -187,7 +196,7 @@ class EditProfileAfterRegistrationPage extends React.Component {
       </section>
     );
   }
-}
+} 
 
 //Map redux state to this components porps
 // const mapStateToProps = state => ({
