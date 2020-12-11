@@ -417,7 +417,7 @@ class PostsPage extends React.Component {
                   id='title'
                   onChange={this.onChangeEvent}
                 />
-                <label className='labelDefault'>Price</label>
+                <label className='labelDefault'>Price (CAD)</label>
                 <input
                   className='inputGroup-Posts'
                   type='number'
