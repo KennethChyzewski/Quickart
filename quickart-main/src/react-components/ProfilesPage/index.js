@@ -87,7 +87,7 @@ class ProfilesPage extends React.Component {
 
     const tags = (
       <div className='informationColour'>
-        <div className='tagBar'>
+        <div className='tagBar2'>
           <h2 className='textDefaultColor'> Tags </h2>
         </div>
       </div>
