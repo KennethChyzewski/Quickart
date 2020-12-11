@@ -12,9 +12,6 @@ const ReportSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    avatar: {
-        type: String
-    },
     reason: {
         type: String,
         // required: true

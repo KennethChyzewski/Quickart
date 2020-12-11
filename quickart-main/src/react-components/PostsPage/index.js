@@ -25,14 +25,8 @@ class PostsPage extends React.Component {
     //Reqiured by Report page
     otherReport: '',
     isReporting: false,
-
-    userAvatar: "",
-    userName: "",
-    userId: "",
-    userResult: "",
-    postID: "",
-
-    userReport: '',
+    postId: "",
+    user: "",
 
     //Required by like
     likes: 0,
@@ -70,10 +64,7 @@ class PostsPage extends React.Component {
     let userType = reduxState['loginState']['accType']; // login state
     this.isAdmin = userType === "admin"
     
-
-    const result = reduxState['settingsState']
-    this.setState({userResult: result})
-
+    this.setState({ user: reduxState['settingsState']})
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
 
@@ -125,20 +116,17 @@ class PostsPage extends React.Component {
 
   onSubmitEvent = e => {
     e.preventDefault();
-    //this.props.reportPost(this.state);
+    this.props.reportPost(this.state);
     console.log("state: ", this.state)
-    let reduxState = store.getState();
-    console.log("setState: ", this.state)
     this.open_close_report();
   };
 
   open_close_report(e) {
     //e.preventDefault(); 
-    //console.log("e.target.value: ", e.target.value)
-    this.setState({ postID: e.target.value }, () => {});
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
+      this.setState({ postId: e.target.value });
     } else {
       this.setState({ ['isReporting']: false });
       document.getElementById('reportFormContainer').style.display = 'none';
