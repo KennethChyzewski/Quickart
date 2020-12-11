@@ -20,6 +20,7 @@ const gravatar = require('gravatar');
 
 // Express validator
 const { check, validationResult } = require('express-validator');
+
 // Mongo and Mongoose
 const { ObjectID } = require('mongodb')
 const { mongoose } = require('./db/mongoose');
@@ -27,8 +28,9 @@ const Message = require('./models/message');
 const Post = require('./models/post');
 const Profile = require('./models/profile');
 const User = require('./models/user');
+const Report = require('./models/reports');
 
-/// Route for getting all restaurant information.
+/// Route for getting all information.
 // GET /restaurants
 app.get('/', (req, res) => {
 	res.send('API running')
@@ -513,6 +515,41 @@ app.post('/users', [
         console.error(error.message);
         res.status(500).send('Sever error');
     }
+});
+
+////////////////////////////////////// REPORT ROUTES //////////////////////////////////////
+// POST /posts - Create a report for reportng a user
+app.get('/reports', auth, async (req, res) => {
+    try {
+        const posts = await Report.find();
+        // For now we dont include data since we dont have any to pass need to fix. 
+        res.json(posts);
+    } catch(error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+app.post('/reports', 
+    async(req, res) => {
+        try {
+
+            let report = new Report({
+                reportedBy: req.body.reportedBy,
+                name: req.body.name,
+                reportDescription: req.body.reportDescription,
+                avatar: req.body.avatar,
+                reason: req.body.reason,
+                linkToPost: req.body.linkToPost,
+            });
+            console.log("report: ", report)
+            await report.save();
+            res.json(report);
+        } catch(error) {
+            console.error(error.message);
+            res.status(500).send('Server Error');
+        }
+        res.send();
 });
 
 

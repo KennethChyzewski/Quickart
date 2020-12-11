@@ -18,6 +18,7 @@ class DetailedPost extends React.Component {
     postId: '',
     tags: [],
     date: '',
+    isReporting: false,
   };
   isAdmin = '';
 
@@ -58,12 +59,13 @@ class DetailedPost extends React.Component {
   onSubmitEvent = e => {
     e.preventDefault();
     //Update the redux state
-    this.props.reportPost(this.state);
     this.open_close_report();
+    this.props.reportPost(this.state, localStorage.token); // calls the server
+    
+    console.log("this.state: ", this.state)
   };
 
   open_close_report = e => {
-    let idreported = e.target.value;
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -73,10 +75,16 @@ class DetailedPost extends React.Component {
     }
   };
 
+  onChangeEvent = e => {
+    this.setState({
+      [e.target.id]: e.target.value, 
+    });
+  }
+
   render() {
     // const allTags = (<div> </div>)
     // console.log(this.state)
-
+    console.log(this.state)
     const allTags = this.state.tags.map(tag => (
       <Button
         size='small'
@@ -96,17 +104,17 @@ class DetailedPost extends React.Component {
         <form className='form' onSubmit={this.onSubmitEvent}>
           <h1>Report User</h1>
           <h4>Reason: </h4>
-          <select id='reason'>
-            <option value='Fake Items'>Fake Product</option>
+          <select id='reason' onChange={this.onChangeEvent}>
+            <option value='Fake Items'>{' '}Fake Items{' '}</option>
             <option value='Illegal items'>Illegal Items</option>
             <option value='Other'>Other</option>
           </select>
           <input
             className='inputGroup'
-            id='otherReport'
+            id='reportDescription'
             type='text'
             placeholder='Report'
-            onChange={this.onChangeEvent}
+            onChange={this.onChangeEvent} 
           ></input>
           <button type='submit' value='report' className='btn btnDefault-posts'>
             Submit Report

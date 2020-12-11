@@ -2,8 +2,6 @@ import { GET_ALL_USERS_SUCCESS, GET_ALL_USERS_FAILED } from '../constants';
 
 export function getAllUsers(jwbToken) {
   return dispatch => {
-    // connection to Mongo DB and try to get all posts
-    // if we were able to successfully connect and get all posts
     return fetch(`http://localhost:5000/profile`, {
       method: 'GET',
       headers: {
@@ -20,5 +18,12 @@ export function getAllUsers(jwbToken) {
         data
       })
     })
+    .catch((error) => {
+      console.error('Error:', error);
+      dispatch({
+          type: GET_ALL_USERS_FAILED,
+          msg: 'loginActions LOGIN happened'
+      });
+    });
   };
 }

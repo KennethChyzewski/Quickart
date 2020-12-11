@@ -26,6 +26,8 @@ class PostsPage extends React.Component {
     //Reqiured by Report page
     otherReport: '',
     isReporting: false,
+    postId: "",
+    user: "",
 
     //Required by like
     likes: 0,
@@ -60,9 +62,10 @@ class PostsPage extends React.Component {
     await this.props.loadAllPosts(localStorage.token);
     let reduxState = store.getState();
     //This check needs to be updated for admin.
-    let userType = reduxState['loginState']['accType'];
+    let userType = reduxState['loginState']['accType']; // login state
     this.isAdmin = userType === "admin"
     
+    this.setState({ user: reduxState['settingsState']})
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
   }
@@ -119,14 +122,16 @@ class PostsPage extends React.Component {
   onSubmitEvent = e => {
     e.preventDefault();
     this.props.reportPost(this.state);
+    console.log("state: ", this.state)
     this.open_close_report();
   };
 
-  open_close_report = e => {
-    let idreported = e.target.value;
+  open_close_report(e) {
+    //e.preventDefault(); 
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
+      this.setState({ postId: e.target.value });
     } else {
       this.setState({ ['isReporting']: false });
       document.getElementById('reportFormContainer').style.display = 'none';
@@ -207,17 +212,17 @@ class PostsPage extends React.Component {
         <form className='form' onSubmit={this.onSubmitEvent}>
           <h1>Report User</h1>
           <h4>Reason: </h4>
-          <select id='reason'>
-            <option value='Fake Items'>Fake Product</option>
+          <select id='reason' onChange={this.onChangeEvent}>
+            <option value='Fake Items'>Fake Items</option>
             <option value='Illegal items'>Illegal Items</option>
             <option value='Other'>Other</option>
           </select>
           <input
             className='inputGroup'
-            id='otherReport'
+            id='reportDescription'
             type='text'
             placeholder='Report'
-            onChange={this.onChangeEvent}
+            onChange={this.onChangeEvent} 
           ></input>
           <button type='submit' value='report' className='btn btnDefault-posts'>
             Submit Report
