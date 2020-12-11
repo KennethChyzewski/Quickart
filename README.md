@@ -55,9 +55,11 @@ password: admin
 5. Report a post.
 6. A sticky bar filter on the Posts page for users to specify which items they are specifically looking for. 
 10. Edit User profile.
-11. View all reports on a user's profile as an admin.
+11. Delete your own Account (Not possible as Admin)
+12. View all reports on a user's profile as an admin.
+13. Delete A Post as an Admin 
 
-
+### BELOW IS MEANT FOR DEVELOPERS: 
 
 ### How to Start up and run the web application
 ```
