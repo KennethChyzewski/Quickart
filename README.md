@@ -26,6 +26,10 @@
 ## How to Use the application as an Admin
 1. Click either the login button found on the Welcome Page or Navigation Bar to be redirected to the login form.
 2. Enter login credentials for an admin user provided below. This will redirect the admin to their profiles page.
+3. On the Admin profile page, navigate to the user reports page by clicking the User Reports button.
+4. In the user reports page, admins can view all reported posts in detail by clicking on the View Reported Posting.
+5. After an admin has made a decision by viewing a report in detail, they may choose to delete that post by clicking on the delete post button on the View Reported Posting page.
+6. An Admin may also navigate to the posts page and delete any post that violate the user conduct rules. 
 
 
 ## Login Credentials 
