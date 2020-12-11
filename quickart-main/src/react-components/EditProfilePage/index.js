@@ -21,6 +21,7 @@ class EditProfilePage extends React.Component {
     niche: "",
     tags: []
   };
+  possible_cats = ["Fruit", "Vegetables", "Meat", "Grain", "Other"]
 
   componentDidMount(){
     this.loadProfile()
@@ -37,6 +38,7 @@ class EditProfilePage extends React.Component {
     let value = e.target.value
     if(this.state.tags.includes(value)){
       this.state.tags.splice(this.state.tags.indexOf(value),1)
+      this.setState({tags: this.state.tags })
     }else{
       this.state.tags.push(value)
       console.log(value)
@@ -89,6 +91,17 @@ class EditProfilePage extends React.Component {
   };
 
   render() {
+    const displaytags = this.possible_cats.map(element => (
+      <div>
+        {this.state.tags.includes(element) ?  
+        <input type='checkbox' id={element} value={element} onChange={this.onTagEvent} checked></input>
+        :
+        <input type='checkbox' id={element} value={element} onChange={this.onTagEvent}></input>
+        }
+        <label htmlFor={element}> {element} </label>
+        <br></br>
+      </div>
+    ))
     const niche = (
       <div className='form-group'>
         <textarea className='inputGroup' placeholder='Niche'></textarea>
@@ -159,21 +172,8 @@ class EditProfilePage extends React.Component {
             </div>
             <label className='labelDefault'>Tags</label>
             <div className='tagCheckBox'>
-                <input type='checkbox' id="Fruit" value="Fruit" onChange={this.onTagEvent}></input>
-                <label htmlFor="Fruit"> Fruit </label>
-                <br></br>
-                <input type='checkbox' id="Vegetables" value="Vegetables" onChange={this.onTagEvent}></input>
-                <label htmlFor="Vegetables"> Vegetables </label>
-                <br></br>
-                <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
-                <label htmlFor="Meat"> Meat </label>
-                <br></br>
-                <input type='checkbox' id="Grain" value="Grain" onChange={this.onTagEvent}></input>
-                <label for="Grain"> Grain </label>
-                <br></br>
-                <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
-                <label htmlFor="Other"> Other </label>
-                <br></br>
+                {displaytags}
+                {console.log(this.state)}
             </div>
             {/* <input
               type='submit'
