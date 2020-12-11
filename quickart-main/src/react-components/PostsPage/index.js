@@ -174,15 +174,18 @@ class PostsPage extends React.Component {
     let reduxState = store.getState()
     const all_posts = reduxState['postsState'];
     let lstposting = []
-
-    all_posts.forEach(element => {
-      if (element.location === target){
-        lstposting.push(element)
+    if (e.target.value != "Any"){
+      all_posts.forEach(element => {
+        if (element.location === target){
+          lstposting.push(element)
+        }
+      })
+      
+      if(lstposting){
+        this.setState({displayPosts : lstposting})
       }
-    })
-    
-    if(lstposting){
-      this.setState({displayPosts : lstposting})
+    }else {
+      this.setState({displayPosts: all_posts})
     }
   }
   searchByCategoryName(e) {
@@ -352,6 +355,15 @@ class PostsPage extends React.Component {
             <div className='filter'>
               <div id='Tag-Content' className='tagContent'>
                 <form className='tagCheckbox'>
+                <input
+                    type='radio'
+                    id='Any'
+                    value='Any'
+                    name='Location'
+                    onClick={this.searchyByLocation.bind(this)}
+                  ></input>
+                  <label htmlFor='Any'> Any</label>
+                  <br></br>
                   <input
                     type='radio'
                     id='Toronto'
@@ -460,7 +472,7 @@ class PostsPage extends React.Component {
               </form>
             </div>
             <div className='allPosts'>{filteredPostItems}</div>
-            {!this.isAdmin ? reportForm : ''}
+            {this.isAdmin ? "" : reportForm}
           </div>
         </div>
       </section>

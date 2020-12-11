@@ -187,14 +187,17 @@ class EditProfilePage extends React.Component {
             >
               Submit
             </button>
-            <button
-              className='btn btnDefault'
-              type='button'
-              value="delete"
-              onClick={this.onDeleteButton}
-              >
-              Delete My Account
-            </button>
+            
+            {this.isAdmin ? "" : 
+              <button
+                className='btn btnDefault'
+                type='button'
+                value="delete"
+                onClick={this.onDeleteButton}
+                >
+                Delete My Account
+              </button>
+            }
             {/*<Link to='/' className='btn btnDefault'>
               Delete my Account
           </Link>*/}
