@@ -76,7 +76,7 @@ class EditProfilePage extends React.Component {
       const state = store.getState();
 
       //FIX THIS WITH AN ACTUAL CHECK
-      const updateSuccess = true
+      let updateSuccess =Object.keys(state['settingsState']).length !== 0 ? true : false;
       if (updateSuccess) {
         this.props.history.push('/profile');
       } else {

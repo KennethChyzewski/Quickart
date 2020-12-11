@@ -51,7 +51,6 @@ class DetailedPost extends React.Component {
     this.props.deletePost(idDeleting, localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
-    this.setState({ displayPosts: reduxState['postsState'] });
   };
 
   onSubmitEvent = e => {
