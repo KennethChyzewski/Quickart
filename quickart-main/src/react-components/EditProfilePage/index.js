@@ -168,6 +168,9 @@ class EditProfilePage extends React.Component {
                 <input type='checkbox' id="Meat" value="Meat" onChange={this.onTagEvent}></input>
                 <label htmlFor="Meat"> Meat </label>
                 <br></br>
+                <input type='checkbox' id="Grain" value="Grain" onChange={this.onTagEvent}></input>
+                <label for="Grain"> Grain </label>
+                <br></br>
                 <input type='checkbox' id="Other" value="Other" onChange={this.onTagEvent}></input>
                 <label htmlFor="Other"> Other </label>
                 <br></br>
