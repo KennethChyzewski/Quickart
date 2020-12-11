@@ -21,6 +21,10 @@ const ReportSchema = new mongoose.Schema({
     },
     linkToPost: { // the actual post that got reported
         type: mongoose.Schema.Types.ObjectId,
+    },
+    report_date: {
+        type: Date,
+        default: Date.now
     }
 })
 

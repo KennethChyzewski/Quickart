@@ -16,6 +16,7 @@ export const SEND_MESSAGE_SUCCESS = 'send_message_success';
 export const SEND_MESSAGE_FAILED = 'send_message_failed';
 
 export const PROFILE_SETTINGS_RETRIEVED = 'profile_settings_retrieved';
+export const PROFILE_SETTINGS_NOT_RETRIEVED = 'profile_settings_not_retrieved'
 export const EMPTY_PROFILE_CREATE_SUCCESS = 'empty_profile_create_success';
 export const PROFILE_UPDATE_SUCCESS = 'profile_update_success';
 export const PROFILE_UPDATE_FAILED = 'profile_update_failed';
@@ -37,3 +38,5 @@ export const DELETE_POST_FAILURE = 'delete_post_failure';
 
 export const REPORT_POST_SUCCESS = 'report_post_success';
 export const REPORT_POST_FAILED = 'report_post_failed';
+export const REPORT_GET_SUCCESS = 'report_get_success'
+export const REPORT_GET_FAILURE = 'report_get_failure'

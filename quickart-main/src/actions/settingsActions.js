@@ -1,14 +1,7 @@
-import { PROFILE_SETTINGS_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, DELETED_PROFILE_SUCCESS, DELETED_PROFILE_FAILURE, REPORT_USER_SUCCESS, REPORT_USER_FAILED } from '../constants';
-
-//Hardcoded Phase 1 data
-import { userSettings } from '../allSettings';
-
+import { PROFILE_SETTINGS_RETRIEVED, PROFILE_SETTINGS_NOT_RETRIEVED, EMPTY_PROFILE_CREATE_SUCCESS, PROFILE_UPDATE_SUCCESS, PROFILE_UPDATE_FAILED, DELETED_PROFILE_SUCCESS, DELETED_PROFILE_FAILURE } from '../constants';
 
 export function getProfile(userID, jwbToken) {
   return dispatch => {
-    // connection to Mongo DB and try to get the user's settings
-    // if we were able to successfully connect and change the user's settings
-    // return fetch(`http://localhost:5000/profile/me?user=${credentials.id}`, {
       return fetch(`http://localhost:5000/profile/user/${userID}`, {
       method: 'GET',
       headers: {
@@ -25,6 +18,13 @@ export function getProfile(userID, jwbToken) {
         data
       });
     })
+    .catch((error) => {
+      console.error('Error:', error);
+      dispatch({
+          type: PROFILE_SETTINGS_NOT_RETRIEVED,
+          msg: 'loginActions LOGIN happened'
+      });
+    });
   };
 }
 
@@ -50,6 +50,13 @@ export function getEditProfile(jwbToken) {
         data
       });
     })
+    .catch((error) => {
+      console.error('Error:', error);
+      dispatch({
+        type: PROFILE_SETTINGS_NOT_RETRIEVED,
+        msg: 'settingsActions UPDATE happened'
+      })
+    });
   };
 }
 
@@ -79,18 +86,14 @@ export function makeEmptyProfile(userDetails) {
   };
 }
 
-
 export function updateProfile(profileDetails, jwbToken) {
   return dispatch => {
-    // connection to Mongo DB and try to update the user's profile
-    // if we were able to successfully connect and change the user's profile
     return fetch(`http://localhost:5000/profile`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'x-auth-token': jwbToken
       },
-      // body: JSON.stringify({ profileDetails })
       body: JSON.stringify({ 
         tags: profileDetails.tags,
         user: profileDetails.user,
@@ -109,9 +112,9 @@ export function updateProfile(profileDetails, jwbToken) {
         msg: 'settingsActions UPDATE happened',
         data
       })
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.error('Error:', error);
-      // if any of the catches trigger, meaning connection or update failed
       dispatch({
         type: PROFILE_UPDATE_FAILED,
         msg: 'settingsActions UPDATE happened'
@@ -128,9 +131,6 @@ export function deleteUser(userID, jwbToken){
         'Content-Type': 'application/json',
         'x-auth-token': jwbToken
       },
-      // body: JSON.stringify({ 
-      //   userID 
-      // })
     })
     .then(response => response.json())
     .then(data => {
@@ -140,21 +140,12 @@ export function deleteUser(userID, jwbToken){
         msg: 'deletedProfileAction happened'
       })
     })
-  };
-}
-
-export function reportUser(userID) {
-  return dispatch => {
-    // connection to Mongo DB and try to add report info to the userID
-    // if we were able to successfully connect and report the user's profile
-    dispatch({
-      type: REPORT_USER_SUCCESS,
-      msg: 'settingsActions REPORT happened'
-    })
-    // if any of the catches trigger, meaning connection or update failed
-    // dispatch({
-    //   type: REPORT_USER_FAILED,
-    //   msg: 'settingsActions REPORT happened'
-    // })
+    .catch((error) => {
+      console.error('Error:', error);
+      dispatch({
+        type: DELETED_PROFILE_FAILURE,
+        msg: 'settingsActions UPDATE happened'
+      })
+    });
   };
 }

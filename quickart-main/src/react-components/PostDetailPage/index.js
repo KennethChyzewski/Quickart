@@ -61,6 +61,7 @@ class DetailedPost extends React.Component {
     //Update the redux state
     this.open_close_report();
     this.props.reportPost(this.state, localStorage.token); // calls the server
+    
     console.log("this.state: ", this.state)
   };
 
@@ -83,7 +84,7 @@ class DetailedPost extends React.Component {
   render() {
     // const allTags = (<div> </div>)
     // console.log(this.state)
-
+    console.log(this.state)
     const allTags = this.state.tags.map(tag => (
       <Button
         size='small'
@@ -104,7 +105,7 @@ class DetailedPost extends React.Component {
           <h1>Report User</h1>
           <h4>Reason: </h4>
           <select id='reason' onChange={this.onChangeEvent}>
-            <option value='Fake Items'>Fake Items</option>
+            <option value='Fake Items'>{' '}Fake Items{' '}</option>
             <option value='Illegal items'>Illegal Items</option>
             <option value='Other'>Other</option>
           </select>

@@ -31,11 +31,12 @@ class ProfilesPage extends React.Component {
 
     //settingsState should be stored here
     reduxState = store.getState();
-    this.setState(reduxState['settingsState']);
 
     //This check needs to be updated for admin
     let userType = reduxState['loginState']['accType'];
     this.isAdmin = userType === "admin"
+    console.log(this.isAdmin)
+    this.setState(reduxState['settingsState']);
   }
 
   render() {
@@ -111,7 +112,7 @@ class ProfilesPage extends React.Component {
               <Link to='/editProfile' className='btn btnDefault'>
                 Edit Profile
               </Link>
-              {this.isAdmin ? '' : userReports}
+              {this.isAdmin ? userReports : ""}
             </div>
 
             <div className='profile-top backgroundDefault'>
@@ -129,14 +130,14 @@ class ProfilesPage extends React.Component {
 
                 {this.state.biography}
               </p>
-              {this.isAdmin ? '' : niche}
-              {this.isAdmin ? '' : tags}
+              {this.isAdmin ? "" : niche}
+              {this.isAdmin ? "" : tags}
               <ul className='tagbaritems'>
-                {this.isAdmin ? '' : allTags}
+                {this.isAdmin ? "" : allTags}
               </ul>
             </div>
-            {this.isAdmin ? '' : postings}
-            {this.isAdmin ? '' : allUserPosts}
+            {this.isAdmin ? "" : postings}
+            {this.isAdmin ? "" : allUserPosts}
           </div>
         </div>
       </section>
