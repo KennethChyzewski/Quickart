@@ -17,6 +17,8 @@
 2. Enter login credentials for a regular user provided below. This will redirect the user to their profiles page.
 3. Click on the posts button on the navigation bar to be taken to the post page.
 4. You can change your profile settings with the appropriate forms found by clicking the 'Edit Profile' button on the 'Profile' page.
+5. Now the user may navigate to the post page by using the navigation bar. The post page button is found on the top right. 
+6. Users may use the sticky bar found to the left of the All Post box to filter for specific posts. Users may filter by the title, category, maximum price of a post. Additionally, they may filter by the poster creator's location. 
 5. To view more details of a post, click the 'view' button. 
 6. Feel free to navigate between the different pages found on the top right of the navigation bar.
 7. To log out, click the 'Log Out' button on the top right of the navigation bar. 
