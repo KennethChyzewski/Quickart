@@ -7,7 +7,7 @@
 }
 
 .containerProfile {
-  max-width: 1100px;
+  max-width: 100%;
   margin: auto;
   overflow: hidden;
   margin-bottom: 20rem;
@@ -19,7 +19,7 @@
   width: fit-content;
   box-shadow: 0px 0px 12px 0.8px black;
   position: relative;
-  top: 100px;
+  top: 120px;
 }
 
 .profileArea {
@@ -35,6 +35,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  width: 800px;
   box-shadow: 0px 0px 12px 0.8px black;
 }
 
@@ -62,4 +63,11 @@
 
 .addSomeMargin {
   margin: 5px;
+}
+
+.tagBar2 {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  left: 2px;
 }

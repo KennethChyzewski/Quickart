@@ -1,15 +1,16 @@
 .text {
-	font-size: 50px;
-	margin-left: 60px;
-	margin-top: 3px;
+  font-size: 50px;
+  margin-left: 60px;
+  margin-top: 3px;
 }
 
 .center {
-	margin: auto;
-	width: 60%;
-	/* border: 5px solid #FFFF00; */
-	padding: 10px;
-	position: fixed;
-	left: 500px;
-	top: 300px;
+  margin: auto;
+  width: 60%;
+  /* border: 5px solid #FFFF00; */
+  padding: 10px;
+  position: relative;
+  top: 300px;
+  left: 20px;
+  text-align: center;
 }
