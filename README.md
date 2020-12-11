@@ -6,7 +6,7 @@
 ### Creating a New User Account
 1. Click either the Sign up button found on the Welcome Page or the register button on the Navigation Bar to be redirected to the register form.
 2. Enter all required information on the register form.
-3. The app will redirect you to an edit profile page, please fill out your biography, niche, and check any relevant food tags.
+3. The app will redirect you to an initial setup page, please fill out your biography, niche, and check off any relevant food tags.
 4. After clicking submit on the edit profile page with all relevant fields filled out, the web application will redirect the user to their profiles page.
 5. Now the user may navigate to the post page by using the navigation bar. The post page button is found on the top right. 
 
