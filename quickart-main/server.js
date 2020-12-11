@@ -197,6 +197,14 @@ app.delete('/posts/:id', auth, async (req, res) => {
         await Report.deleteMany({ linkToPost: req.params.id });
     
         await post.remove();
+        //Delete all reports
+        await Report.deleteMany({ linkToPost: req.params.id });
+        //Delete the post from owner's profile
+        const postersProfile = await Profile.findOne({ "postings._id": mongoose.Types.ObjectId(req.params.id) });
+        const keepPosts = await postersProfile.postings.filter(post => post._id != req.params.id);
+        postersProfile.postings = keepPosts;
+		await postersProfile.save()
+        // await Profile.deleteOne({ linkToPost: req.params.id });
         res.json({ msg: 'Post removed' });
     } catch(error) {
         console.error(error.message);

@@ -34,7 +34,7 @@ export const LIKE_POST_FAILED = 'like_post_failed';
 export const DISLIKE_POST_SUCCESS = 'dislike_post_success';
 export const DISLIKE_POST_FAILED = 'dislike_post_failed';
 export const DELETE_POST_SUCESS = 'delete_post_sucess';
-export const DELETE_POST_FAILURE = 'delete_post_failure';
+export const DELETE_POST_FAILED = 'delete_post_failed';
 
 export const REPORT_POST_SUCCESS = 'report_post_success';
 export const REPORT_POST_FAILED = 'report_post_failed';

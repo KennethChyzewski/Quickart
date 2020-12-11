@@ -108,9 +108,9 @@ class PostsPage extends React.Component {
     }
   };
 
-  onDeletePost = e => {
+  onDeletePost = async e => {
     let idDeleting = e.target.value;
-    this.props.deletePost(idDeleting, localStorage.token);
+    await this.props.deletePost(idDeleting, localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
     this.setState({ displayPosts: reduxState['postsState'] });
@@ -119,9 +119,12 @@ class PostsPage extends React.Component {
     this.props.history.push('/loading');
   };
 
-  onSubmitEvent = e => {
+  onSubmitEvent = async e => {
     e.preventDefault();
-    this.props.reportPost(this.state);
+    if (!this.state.reason) {
+      this.state.reason = "Fake items";
+    }
+    await this.props.reportPost(this.state);
     console.log("state: ", this.state)
     this.open_close_report();
   };
@@ -135,6 +138,7 @@ class PostsPage extends React.Component {
     } else {
       this.setState({ ['isReporting']: false });
       document.getElementById('reportFormContainer').style.display = 'none';
+      this.props.setAlert('Post has been successfully reported.', 'success');
     }
   };
 

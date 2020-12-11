@@ -1,4 +1,4 @@
-import { ALL_POSTS_LOADED, SINGLE_POST_LOADED,  CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED, DELETE_POST_SUCESS, DELETE_POST_FAILURE } from '../constants';
+import { ALL_POSTS_LOADED, SINGLE_POST_LOADED,  CREATE_POST_SUCCESS, CREATE_POST_FAILED, LIKE_POST_SUCCESS, LIKE_POST_FAILED, DISLIKE_POST_SUCCESS,  DISLIKE_POST_FAILED, DELETE_POST_SUCESS, DELETE_POST_FAILED } from '../constants';
 
 const initialState = [
     //We make the state a list so we can store a list of all alerts 
@@ -43,7 +43,7 @@ const postsReducer = (state = initialState, action) => {
             console.log("Delete Post Sucess")
             return action.data;
             
-        case DELETE_POST_FAILURE:
+        case DELETE_POST_FAILED:
             console.log("Delete Post Failed")
             return action.data;
         default:

@@ -7,6 +7,8 @@ import {
   LIKE_POST_FAILED,
   DISLIKE_POST_SUCCESS,
   DISLIKE_POST_FAILED,
+  DELETE_POST_SUCESS,
+  DELETE_POST_FAILED
 } from '../constants';
 
 export function loadAllPosts(jwbToken) {
@@ -166,8 +168,8 @@ export function deletePost(postID, jwbToken) {
       .then(data => {
         console.log('Success:', data);
         dispatch({
-          type: SINGLE_POST_LOADED,
-          msg: 'loadONEPosts GET happened',
+          type: DELETE_POST_SUCESS,
+          msg: 'deletePost DELETE happened',
           data,
         });
       });

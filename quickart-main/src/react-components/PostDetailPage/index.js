@@ -46,11 +46,13 @@ class DetailedPost extends React.Component {
     this.setState({ date: dateFormat.toString() });
   }
 
-  onDeletePost = e => {
+  onDeletePost = async e => {
     let idDeleting = e.target.value;
-    this.props.deletePost(idDeleting, localStorage.token);
+    await this.props.deletePost(idDeleting, localStorage.token);
     let reduxState = store.getState();
     this.setState({ posts: reduxState['postsState'] });
+    //Redirect admin to user reports
+    this.props.history.push('/userReports');
   };
 
   onSubmitEvent = e => {
@@ -238,6 +240,6 @@ class DetailedPost extends React.Component {
     );
   }
 }
-export default connect(null, { loadOnePosts, deletePost, reportPost })(
+export default withRouter(connect(null, { loadOnePosts, deletePost, reportPost })(
   DetailedPost
-);
+));
