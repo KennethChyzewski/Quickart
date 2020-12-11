@@ -37,3 +37,5 @@ export const DELETE_POST_FAILURE = 'delete_post_failure';
 
 export const REPORT_POST_SUCCESS = 'report_post_success';
 export const REPORT_POST_FAILED = 'report_post_failed';
+export const REPORT_GET_SUCCESS = 'report_get_success'
+export const REPORT_GET_FAILURE = 'report_get_failure'
