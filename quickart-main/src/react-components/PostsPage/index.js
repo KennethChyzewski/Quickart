@@ -26,6 +26,8 @@ class PostsPage extends React.Component {
     otherReport: '',
     isReporting: false,
 
+    userReport: '',
+
     //Required by like
     likes: 0,
     dislikes: 0,
@@ -59,7 +61,7 @@ class PostsPage extends React.Component {
     await this.props.loadAllPosts(localStorage.token);
     let reduxState = store.getState();
     //This check needs to be updated for admin.
-    let userType = reduxState['loginState']['accType'];
+    let userType = reduxState['loginState']['accType']; // login state
     this.isAdmin = userType === "admin"
     
    
@@ -114,12 +116,14 @@ class PostsPage extends React.Component {
 
   onSubmitEvent = e => {
     e.preventDefault();
-    this.props.reportPost(this.state);
+    //this.props.reportPost(this.state);
+    let reduxState = store.getState();
+    this.setState(reduxState['settingsState'])
+    console.log("setState: ", this.state)
     this.open_close_report();
   };
 
   open_close_report = e => {
-    let idreported = e.target.value;
     if (this.state.isReporting === false) {
       this.setState({ ['isReporting']: true });
       document.getElementById('reportFormContainer').style.display = 'block';
@@ -237,7 +241,7 @@ class PostsPage extends React.Component {
           <h1>Report User</h1>
           <h4>Reason: </h4>
           <select id='reason'>
-            <option value='Fake Items'>Fake Product</option>
+            <option value='Fake Items'>Fake Items</option>
             <option value='Illegal items'>Illegal Items</option>
             <option value='Other'>Other</option>
           </select>
