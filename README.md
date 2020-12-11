@@ -60,9 +60,10 @@ password: admin
 13. Delete A Post as an Admin 
 
 ### Disclaimer(Changes from Phase 1):
-1. The messaging system is not functional. 
+1. The messaging system is not functional due to time constraints. 
 2. The delete button was removed on the post page.
 3. The edit profile page is slightly different from phase 1.
+4. The contact seller form is not functional due to time contraints. 
 
 ### BELOW IS MEANT FOR DEVELOPERS: 
 
