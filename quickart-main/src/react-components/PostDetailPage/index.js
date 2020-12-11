@@ -131,7 +131,7 @@ class DetailedPost extends React.Component {
           <div className='detailPostTitle'>
             <h2 className='textDefaultColor'>{this.state.title}</h2>
 
-            <h4 className='textBlackColor'>{this.state.price}</h4>
+            <h4 className='textBlackColor'>Price (CAD): ${this.state.price}</h4>
 
             <h5 className='textBlackColor'>
               Posting End Date: {this.state.date}
