@@ -1,7 +1,9 @@
 # team38 - Quickart
 
 ## URL to Quickart:
-[ADD URL HERE]
+https://quickart2.herokuapp.com/
+
+### Note this was in place wayyy before 10pm check commits I killed it by accident when moving stuff in the readme
 
 ## How to Use the application as a regular user
 
