@@ -41,6 +41,7 @@ const postsReducer = (state = initialState, action) => {
 
         case DELETE_POST_SUCESS:
             console.log("Delete Post Sucess")
+            // return [...state, action.data];
             return action.data;
             
         case DELETE_POST_FAILED:

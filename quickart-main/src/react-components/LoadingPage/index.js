@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import './styles.css';
 
 class LoadingPage extends React.Component {
-  // componentDidMount() {
-  // 	// Make sure that localStorage.previousPage is set before you do a this.props.history.push('/loading');
-  // 	let path = localStorage.previousPage;
-  //   	localStorage.removeItem('previousPage');
-  // 	setTimeout(() => this.props.history.push(path), 1000);
-  // }
+  componentDidMount() {
+  	// Make sure that localStorage.previousPage is set before you do a this.props.history.push('/loading');
+  	let path = localStorage.previousPage;
+    	localStorage.removeItem('previousPage');
+  	setTimeout(() => this.props.history.push(path), 1000);
+  }
 
   render() {
     return (

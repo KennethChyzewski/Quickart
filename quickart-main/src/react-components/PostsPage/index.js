@@ -117,6 +117,7 @@ class PostsPage extends React.Component {
     //Update the page with the removed post
     localStorage.setItem('previousPage', '/posts');
     this.props.history.push('/loading');
+    // this.props.setAlert('Post has been successfully deleted.', 'success2');
   };
 
   onSubmitEvent = async e => {
@@ -299,14 +300,15 @@ class PostsPage extends React.Component {
             View
           </Link>
           {this.isAdmin ? (
-            <button
-              type='button'
-              className='btn btnDefaultDeletePost'
-              value={post._id}
-              onClick={this.onDeletePost}
-            >
-              Delete Post
-            </button>
+            // <button
+            //   type='button'
+            //   className='btn btnDefaultDeletePost'
+            //   value={post._id}
+            //   onClick={this.onDeletePost}
+            // >
+            //   Delete Post
+            // </button>
+            <div></div>
           ) : (
             <button
               id='userReportBtn'
