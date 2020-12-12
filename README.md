@@ -1,5 +1,6 @@
 # team38 - Quickart
 
+Phase 2 Commit: e8e5113c4bea63d4eed0682902c30dc42bc1365b
 ## URL to Quickart:
 https://quickart2.herokuapp.com/
 
