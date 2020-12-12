@@ -1,7 +1,7 @@
 # team38 - Quickart
 
 ## URL to Quickart:
-https://quickart1.herokuapp.com/
+https://quickart2.herokuapp.com/
 
 ## How to Use the application as a regular user
 
