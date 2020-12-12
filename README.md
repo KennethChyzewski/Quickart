@@ -34,11 +34,14 @@
 
 ## Login Credentials 
 Regular User: \
-username: user \
+username: user@user.com \
 password: user 
 
+username: user2@user2.com \
+password: user2
+
 Admin User: \
-username: admin \
+username: admin@admin.com \
 password: admin 
 
 ## Third-Party Libraries Used
